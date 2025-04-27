@@ -37,7 +37,7 @@ header{
 }
 body{
     min-height: 100vh;
-    background: url(/images/background1.jpg) no-repeat;
+    background: url(../Site/images/background1.jpg) no-repeat;
     background-size: cover;
     background-position: center;
 }
