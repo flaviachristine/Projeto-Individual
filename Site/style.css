@@ -1,0 +1,65 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 100px;
+    background: rgba(255, 255, 255, .1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    /* border-bottom: 2px solid rgba(255, 255, 255, .2); */
+}
+.logo img{
+    width: 65px;
+}
+.navbar a{
+    color: #ffff;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 35px;
+    transition: .3s;
+    
+}
+.navbar a:hover{
+    color: aquamarine;
+}
+body{
+    min-height: 100vh;
+    background: url(/images/background1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.divLogoPrincipal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+.card{
+    margin: auto;
+    display: flex;
+    background: rgba(255, 255, 255, .2);
+    align-items: center;
+    font-size: 14px;
+    padding: 120px;
+    border-radius: 20px;
+    gap: 25px;
+    width: 700px;
+    height: 600px;
+}
+.card img{
+    width: 250px;
+    border-radius: 10px;
+}
