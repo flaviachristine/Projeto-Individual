@@ -36,7 +36,7 @@ header{
     
 }
 .navbar a:hover{
-    color: aquamarine;
+    color: #1cade6;
 }
 body{
     min-height: 100vh;
@@ -98,5 +98,12 @@ body{
     color: #39a9dd;
 }
 footer{
-    background-color: blue;
+    background-color: #1cade6;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 15px;
+    color: #ffff;
 }
