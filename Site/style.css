@@ -14,7 +14,7 @@ header{
     left: 0;
     width: 100%;
     padding: 10px 100px;
-    background: rgba(255, 255, 255, .1);
+    background: rgba(255, 255, 255, .2);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,10 +41,11 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 96vh;
+    height: 100vh;
     background: url(../Site/images/farm.jpg) no-repeat;
     background-size: cover;
     background-position: center;
+    border-bottom: #ffff 2px;
 }
 .divLogoPrincipal img{
     width: 600px;
@@ -59,4 +60,52 @@ footer{
     padding: 15px;
     font-size: 15px;
     color: #ffff;
+}
+.divConteudo1{
+    width: 100%;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+}
+.imagemDivConteudo1{
+    width: 350px;
+    padding: 100px;
+    margin-left: 150px;
+    align-items: center;
+    justify-content: center;
+}
+.textoDivConteudo1{
+    margin-left: 400px;
+    margin-right: 200px;
+    padding: 100px;
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+}
+.textoDivConteudo1 h1{
+    margin-bottom: 10px;
+}
+.divConteudo2{
+    width: 100%;
+    background-color: rgb(82, 160, 99);
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+.imagemDivConteudo2{
+    width: 350px;
+    padding: 100px;
+    margin-right: 500px;
+    align-items: center;
+    justify-content: center;
+}
+.textoDivConteudo2{
+    margin-left: 200px;
+    padding: 100px;
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
 }
