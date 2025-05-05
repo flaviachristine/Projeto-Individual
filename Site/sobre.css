@@ -1,6 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap');
-
 
 *{
     margin: 0;
@@ -37,68 +35,64 @@ header{
 .navbar a:hover{
     color: #1cade6;
 }
-.divLogoPrincipal{
+body{
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
-    background: url(../Site/images/farm.jpg) no-repeat;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    background: url(../Site/images/background1.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    border-bottom: #ffff 2px;
+    justify-content: space-between;
 }
-.divLogoPrincipal img{
-    width: 600px;
-    margin-bottom: 200px;
-}
-
-.divConteudo1{
-    width: 100%;
-    background-color: antiquewhite;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; 
-}
-.imagemDivConteudo1{
-    width: 350px;
-    padding: 100px;
-    margin-left: 150px;
-    align-items: center;
-    justify-content: center;
-}
-.textoDivConteudo1{
-    margin-left: 400px;
-    margin-right: 200px;
-    padding: 100px;
-    text-align: justify;
-    align-items: center;
-    justify-content: center;
-}
-.textoDivConteudo1 h1{
+.container{
+    color: white;
+    width: 900px;
+    background: rgba(0, 195, 255);
+    border-radius: 10px;
+    padding: 30px 40px;
+    margin-top: 150px;
     margin-bottom: 10px;
 }
-.divConteudo2{
-    width: 100%;
-    background-color: rgb(82, 160, 99);
+.criador{
+    display: flex;
+    flex-direction: row;
+}
+.tituloCriador{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.imgCriador{
+    border-radius: 20px;
+}
+.criador .textoBarone1{
+    margin-left: 50px;
+    text-align: justify;
+}
+.criador2{
+    margin-top: 50px;
     display: flex;
     flex-direction: row-reverse;
-    align-items: center;
-    justify-content: center;
 }
-.imagemDivConteudo2{
-    width: 350px;
-    padding: 100px;
-    margin-right: 500px;
-    align-items: center;
-    justify-content: center;
+.imgFazenda{
+    border-radius: 20px;
 }
-.textoDivConteudo2{
-    margin-left: 200px;
-    padding: 100px;
+.criador2 .textoBarone2{
+    margin-right: 50px;
     text-align: justify;
-    align-items: center;
-    justify-content: center;
+}
+.criador3{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+}
+.imgFazenda{
+    border-radius: 20px;
+}
+.criador3 .textoBarone3{
+    margin-left: 50px;
+    text-align: justify;
 }
 footer{
     background-color: #1cade6;
