@@ -42,7 +42,7 @@ header{
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: url(../Site/images/farm.jpg) no-repeat;
+    background: url(../ASSETS/farm.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     border-bottom: #ffff 2px;

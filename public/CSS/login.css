@@ -43,7 +43,7 @@ body{
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background: url(../Site/images/background1.jpg) no-repeat;
+    background: url(../ASSETS/background1.jpg) no-repeat;
     background-position: center;
     justify-content: space-between;
 }
