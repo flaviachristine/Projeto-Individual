@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: Poppins;
-    src: url(../font/Poppins-Regular.ttf);
+    src: url(../Poppins/Poppins-Regular.ttf);
 }
 
 *{
@@ -83,14 +83,6 @@ header{
     flex-direction: row;
     align-items: center;
     justify-content: center; 
-}
-.contentExclusive{
-    width: 100%;
-    background-color:  antiquewhite;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 150px;
 }
 .imagemDivConteudo1{
     width: 350px;
