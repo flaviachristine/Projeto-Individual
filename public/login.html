@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/login.css">
-    <script src="./js/sessao.js"></script>
     <title>Login</title>
 </head>
 
@@ -20,22 +19,17 @@
         </nav>
     </header>
     <div class="container">
-        <form action="">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="Email" required id="email_input">
-
+                <input type="text" placeholder="Email" id="email_input">
             </div>
             <div class="input-box">
-                <input type="text" placeholder="Senha" required id="senha_input">
-
+                <input type="password" placeholder="Senha" id="senha_input">
             </div>
-
             <button class="btn" onclick="entrar()">Login</button>
             <div class="registrar">
                 <p>Ainda não tem uma conta? <a href="cadastro.html">Registre-se</a></p>
             </div>
-        </form>
     </div>
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
@@ -70,36 +64,33 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.SENHA_USUARIO = json.senha;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.EMAIL_USUARIO = json.emailVar;
+                    sessionStorage.SENHA_USUARIO = json.senhaVar;
+                    sessionStorage.ID_USUARIO = JSON.stringify(json.idusuario)
 
-                        window.location = "home.html"
-
+                    setTimeout(function () {
+                        window.location = "./home.html";
+                    }, 1000);
                 });
-
-            }
-            else {
+            } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
-                erro_mensagem.innerHTML = `<b>ERRO!</b><br><br> Email e/ou senha inválidos!`
-                document.getElementById("caixa_erro").style.backgroundColor = "rgb(39, 39, 39)"
-
-                setTimeout(() => {
-                    erro_mensagem.innerHTML = ``
-                    document.getElementById("caixa_erro").style.backgroundColor = ""
-                }, 4000)
-
-
                 resposta.text().then(texto => {
                     console.error(texto);
+                    finalizarAguardar(texto);
                 });
             }
 
         }).catch(function (erro) {
             console.log(erro);
         })
+
+        return false;
     }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>
