@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="stylesheet" href="./CSS/home.css">
+    <title>Stardew-Project</title>
 </head>
+
 <body>
-    <h1>Home</h1>
-</body>
-</html>
-<script>
+    <header class="header">
+        <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
+        <nav class="navbar">
+            <a href="dev.html">Desenvolvedora</a>
+            <a href="dashboard.html" class="dash">Dashboard</a>
+        </nav>
+        <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
+    </header>
+    <div class="divLogoPrincipal">
+        <h1>Bem-Vindo!</h1>
+        <section class="features">
+            <div class="feature-card">
+                <a href="quiz.html">
+                    <h3>Quiz</h3>
+                    <p>Experimente o quiz sobre NPC´s casáveis e veja qual seria a sua cara metade!</p>
+            </div>
 
-    function exibirDashboard() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
-    }
+            <div class="feature-card">
+                <a href="calculadora.html">
+                <h3>Calculadora</h3>
+                <p>Utilize a calculadora financeira para ver quais as melhores plantaçõess para a sua fazenda!</p>
+            </div>
 
-</script>
+            <div class="feature-card">
+                <a href="dashboard.html">
+                <h3>Dashboard</h3>
+                <p>Confira os seus resultados em comparação à outros visitantes!</p>
+            </div>
+        </section>
+    </div>

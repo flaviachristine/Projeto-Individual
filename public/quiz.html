@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/quiz.css">
+    <title>Stardew-Project</title>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
+        <nav class="navbar">
+            <a href="dev.html">Desenvolvedora</a>
+            <a href="dashboard.html" class="dash">Dashboard</a>
+        </nav>
+        <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
+    </header>
+    <div class="divLogoPrincipal">
+        <div class="container">
+
+            <h1>Qual NPC de Stardew Valley mais combina com você?</h1><br><br>
+            <div id="container"></div>
+            <div id="resultado"></div>
+
+            <script>
+                var pontuacao = {
+                    Abigail: 0, Sebastian: 0, Leah: 0, Sam: 0, Penny: 0,
+                    Haley: 0, Maru: 0, Shane: 0, Alex: 0, Emily: 0
+                }
+
+                var perguntas = [
+                    {
+                        texto: "O que você prefere fazer em um dia de folga?",
+                        opcoes: [
+                            { texto: "Explorar cavernas", npcs: ["Abigail"] },
+                            { texto: "Jogar bola ou praticar esportes", npcs: ["Alex"] },
+                            { texto: "Ler um bom livro perto do mar", npcs: ["Elliott"] },
+                            { texto: "Meditar ou relaxar com cristais", npcs: ["Emily"] }
+                        ]
+                    },
+                    {
+                        texto: "Qual desses estilos mais combina com você?",
+                        opcoes: [
+                            { texto: "Estilo moderno e fashion", npcs: ["Haley"] },
+                            { texto: "Natural e boêmio", npcs: ["Leah"] },
+                            { texto: "Tecnológico e prático", npcs: ["Maru"] },
+                            { texto: "Clássico e discreto", npcs: ["Penny"] }
+                        ]
+                    },
+                    {
+                        texto: "Em um festival da cidade, onde você estaria?",
+                        opcoes: [
+                            { texto: "Tocando guitarra com os amigos", npcs: ["Sam"] },
+                            { texto: "Observando tudo de longe, mais na sua", npcs: ["Sebastian"] },
+                            { texto: "Aproveitando os jogos com entusiasmo", npcs: ["Alex"] },
+                            { texto: "Contando histórias perto da fogueira", npcs: ["Elliott"] }
+                        ]
+                    },
+                    {
+                        texto: "Qual animal de estimação você escolheria?",
+                        opcoes: [
+                            { texto: "Gato preto", npcs: ["Sebastian"] },
+                            { texto: "Cão esportivo", npcs: ["Alex"] },
+                            { texto: "Pássaro exótico", npcs: ["Emily"] },
+                            { texto: "Coelho fofo", npcs: ["Haley"] }
+                        ]
+                    },
+                    {
+                        texto: "Qual dessas frases mais te representa?",
+                        opcoes: [
+                            { texto: "A vida é uma aventura a ser explorada", npcs: ["Abigail"] },
+                            { texto: "Com esforço, tudo se conquista", npcs: ["Maru"] },
+                            { texto: "Nada como um bom vinho e poesia", npcs: ["Elliott"] },
+                            { texto: "Prefiro a calma e a simplicidade", npcs: ["Leah"] }
+                        ]
+                    }
+                ]
+
+                var perguntaAtual = 0
+
+                function mostrarPergunta() {
+                    var div = document.getElementById("container")
+                    div.innerHTML = ""
+
+                    if (perguntaAtual >= perguntas.length) {
+                        mostrarResultado()
+                        return
+                    }
+
+                    var p = perguntas[perguntaAtual]
+                    div.innerHTML += "<h2>" + p.texto + "</h2><br><br>"
+
+                    for (var i = 0; i < p.opcoes.length; i++) {
+                        div.innerHTML += "<button class='opcao' onclick='responder(" + i + ")'>" + p.opcoes[i].texto + "</button><br><br>"
+                    }
+                }
+
+                function responder(indiceOpcao) {
+                    var op = perguntas[perguntaAtual].opcoes[indiceOpcao]
+
+                    for (var i = 0; i < op.npcs.length; i++) {
+                        var nome = op.npcs[i]
+                        pontuacao[nome]++
+                    }
+
+                    perguntaAtual++
+                    mostrarPergunta()
+                }
+
+                var imagensNPC = {
+                    Abigail: "https://stardewvalleywiki.com/mediawiki/images/8/88/Abigail.png",
+                    Sebastian: "https://stardewvalleywiki.com/mediawiki/images/a/a8/Sebastian.png",
+                    Leah: "https://stardewvalleywiki.com/mediawiki/images/e/e6/Leah.png",
+                    Sam: "https://stardewvalleywiki.com/mediawiki/images/d/d0/Sam.png",
+                    Penny: "https://stardewvalleywiki.com/mediawiki/images/a/ab/Penny.png",
+                    Haley: "https://stardewvalleywiki.com/mediawiki/images/1/1b/Haley.png",
+                    Maru: "https://stardewvalleywiki.com/mediawiki/images/d/d0/Maru.png",
+                    Shane: "https://stardewvalleywiki.com/mediawiki/images/8/8b/Shane.png",
+                    Alex: "https://stardewvalleywiki.com/mediawiki/images/f/f1/Alex.png",
+                    Emily: "https://stardewvalleywiki.com/mediawiki/images/2/28/Emily.png"
+                }
+
+                var textoNpc = {
+                    Abigail: "Abigail mora na loja com seus pais. Às vezes discute com sua mãe que se preocupa com o seu estilo de vida alternativo. Sua mãe diz o seguinte: Eu gostaria que Abby se vestisse mais apropriadamente e parasse de tingir seu cabelo de azul. Ela tem uma maravilhosa cor de cabelo natural, assim como sua avó. Ah, e eu gostaria que ela encontrasse alguns interesses saudáveis, em vez deste absurdo oculto em que ela está. Diz sua mãe Caroline. Você pode encontrar Abigail sozinha no cemitério, ou talvez em uma tempestade a procura de sapos.",
+                    Sebastian: "Sebastian é um solitário rebelde que mora no porão da casa dos pais. Ele é meio-irmão mais velho de Maru e sente que a irmã recebe toda a atenção e adoração, enquanto ele é abandonado para apodrecer no escuro. Ele tende a se envolver profundamente em jogos de computador, histórias em quadrinhos e romances de ficção científica, e às vezes passa muito tempo sozinho em seu quarto, praticando esses hobbies. Ele pode ser um pouco hostil com pessoas que não conhece. Será que um charmoso novo fazendeiro conseguiria cultivar o deserto do seu coração? Quem sabe?",
+                    Leah: "Leah mora sozinha em uma pequena cabana nos arredores da cidade. Ela adora passar o tempo ao ar livre, buscando uma refeição saborosa ou simplesmente apreciando os presentes da estação. Ela é uma artista talentosa com um vasto portfólio de trabalhos... mas fica nervosa demais para exibi-los ao público. Talvez você possa dar um empurrãozinho na confiança dela?",
+                    Sam: "Sam é um cara extrovertido e simpático, cheio de energia juvenil. Ele toca guitarra e bateria e quer formar uma banda com Sebastian assim que tiver músicas suficientes. No entanto, ele tem o hábito de começar projetos ambiciosos e não concluí-los. Sam está um pouco estressado com o retorno iminente do pai, que está ausente há anos por conta do trabalho.",
+                    Penny: "Penny mora com a mãe, Pam, em um pequeno trailer à beira do rio. Enquanto Pam se diverte no bar, Penny cuida discretamente de suas tarefas no quarto escuro e abafado que é obrigada a chamar de lar. Ela é tímida e modesta, sem grandes ambições na vida além de se estabelecer e constituir família. Gosta de cozinhar (embora suas habilidades sejam questionáveis) e ler livros da biblioteca local.",
+                    Haley: "Ser rica e popular durante o ensino médio tornou Haley um pouco convencida e egocêntrica. Ela tem a tendência de julgar as pessoas por motivos superficiais. Mas será tarde demais para ela descobrir um significado mais profundo para a vida? Será que existe uma jovem divertida e de mente aberta escondida dentro dessa casca açucarada?",
+                    Maru: "Crescendo com um carpinteiro e uma cientista como pais, Maru adquiriu uma paixão por criar gadgets desde cedo. Quando não está em seu quarto, mexendo em ferramentas e máquinas, às vezes faz bicos na clínica local. Simpática, extrovertida e ambiciosa, Maru seria uma ótima parceira para uma novata como você... Você conseguirá conquistar o coração dela ou ela escapará por entre seus dedos e desaparecerá da sua vida para sempre?",
+                    Shane: "Shane é um aldeão da Vila Pelicanos que está quase sempre bravo e infeliz, e sofre de depressão e alcoolismo. Porém, sua atitude com o jogador começa a mudar caso este decida fazer amizade com ele. Ele trabalha no Mercado Joja quase todos os dias das 09:00 até as 17:00 a menos que o Centro Comunitário seja restaurado, e frequentemente passa a noite no Saloon Fruta Estrelar. Ele não trabalha aos fins de semana, exceto em dias de chuva, e pode ser visto com frequência no rancho.",
+                    Alex: "Alex adora esportes e curtir a praia. Ele é bastante arrogante e se gaba para todos de que vai ser um atleta profissional. Será que sua arrogância é apenas uma fachada para mascarar sua insegurança devastadora? Será que ele está usando seu sonho esportivo para preencher o vazio deixado pelo desaparecimento dos pais? Ou será apenas um jovem descarado tentando parecer descolado?",
+                    Emily: "Emily é uma aldeã que mora na Vila Pelicanos. Sua casa fica ao sul da praça da cidade, ao lado da casa de Jodi, na Rua do Salgueiro, nº 2. Ela trabalha geralmente à tarde no Saloon Fruta Estrelar começando por volta das 4:00 PM."
+                }
+
+                function mostrarResultado() {
+                    var maiorPontuacao = 0
+                    var npcFinal = ""
+                    var nomes = ["Abigail", "Sebastian", "Leah", "Sam", "Penny", "Haley", "Maru", "Shane", "Alex", "Emily"]
+
+                    for (var i = 0; i < nomes.length; i++) {
+                        var nome = nomes[i]
+                        if (pontuacao[nome] > maiorPontuacao) {
+                            maiorPontuacao = pontuacao[nome]
+                            npcFinal = nome
+                        }
+                    }
+
+                    document.getElementById("container").innerHTML = ""
+                    document.getElementById("resultado").innerHTML = `<h2>Você combina mais com: ${npcFinal}!</h2><br><br><img src="${imagensNPC[npcFinal]}" alt="${npcFinal}" style="width:150px; border-radius:10px; align-items: center;"><br><br>${textoNpc[npcFinal]}`
+
+                }
+
+                mostrarPergunta()
+            </script>
+</body>

@@ -54,20 +54,30 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
+
         fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar
             }),
+        })
+       .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
-        }
-        )
-        window.location = "login.html"
+        if (resposta.ok) {
+
+            setTimeout(() => {
+                window.location = "./login.html";
+              }, 2000);
+
+        } 
+      });
+    
+
     }
 </script>
