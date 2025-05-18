@@ -27,7 +27,7 @@
             <script>
                 var pontuacao = {
                     Abigail: 0, Sebastian: 0, Leah: 0, Sam: 0, Penny: 0,
-                    Haley: 0, Maru: 0, Shane: 0, Alex: 0, Emily: 0
+                    Haley: 0, Maru: 0, Shane: 0, Alex: 0, Emily: 0, Elliott: 0, Harvey: 0
                 }
 
                 var perguntas = [
@@ -36,8 +36,9 @@
                         opcoes: [
                             { texto: "Explorar cavernas", npcs: ["Abigail"] },
                             { texto: "Jogar bola ou praticar esportes", npcs: ["Alex"] },
-                            { texto: "Ler um bom livro perto do mar", npcs: ["Elliott"] },
-                            { texto: "Meditar ou relaxar com cristais", npcs: ["Emily"] }
+                            { texto: "Pegar sol perto do mar", npcs: ["Haley"] },
+                            { texto: "Meditar ou relaxar com cristais", npcs: ["Emily"] },
+                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] }
                         ]
                     },
                     {
@@ -46,7 +47,8 @@
                             { texto: "Estilo moderno e fashion", npcs: ["Haley"] },
                             { texto: "Natural e boêmio", npcs: ["Leah"] },
                             { texto: "Tecnológico e prático", npcs: ["Maru"] },
-                            { texto: "Clássico e discreto", npcs: ["Penny"] }
+                            { texto: "Clássico e discreto", npcs: ["Penny"] },
+                            { texto: "Despojado e colorido", npcs: ["Emily"] }
                         ]
                     },
                     {
@@ -54,8 +56,9 @@
                         opcoes: [
                             { texto: "Tocando guitarra com os amigos", npcs: ["Sam"] },
                             { texto: "Observando tudo de longe, mais na sua", npcs: ["Sebastian"] },
-                            { texto: "Aproveitando os jogos com entusiasmo", npcs: ["Alex"] },
-                            { texto: "Contando histórias perto da fogueira", npcs: ["Elliott"] }
+                            { texto: "Aproveitando os jogos com entusiasmo", npcs: ["Shane"] },
+                            { texto: "Contando histórias perto da fogueira", npcs: ["Elliott"] },
+                            { texto: "Assistindo o por do sol", npcs: ["Harvey"] }
                         ]
                     },
                     {
@@ -64,7 +67,8 @@
                             { texto: "Gato preto", npcs: ["Sebastian"] },
                             { texto: "Cão esportivo", npcs: ["Alex"] },
                             { texto: "Pássaro exótico", npcs: ["Emily"] },
-                            { texto: "Coelho fofo", npcs: ["Haley"] }
+                            { texto: "Coelho fofo", npcs: ["Haley"] },
+                            { texto: "Cavalos", npcs: ["Elliott"] }
                         ]
                     },
                     {
@@ -73,7 +77,8 @@
                             { texto: "A vida é uma aventura a ser explorada", npcs: ["Abigail"] },
                             { texto: "Com esforço, tudo se conquista", npcs: ["Maru"] },
                             { texto: "Nada como um bom vinho e poesia", npcs: ["Elliott"] },
-                            { texto: "Prefiro a calma e a simplicidade", npcs: ["Leah"] }
+                            { texto: "Prefiro a calma e a simplicidade", npcs: ["Leah"] },
+                            { texto: "Espero poder ajudar todos sempre que puder", npcs: ["Harvey"] }
                         ]
                     }
                 ]
@@ -110,16 +115,18 @@
                 }
 
                 var imagensNPC = {
-                    Abigail: "https://stardewvalleywiki.com/mediawiki/images/8/88/Abigail.png",
-                    Sebastian: "https://stardewvalleywiki.com/mediawiki/images/a/a8/Sebastian.png",
-                    Leah: "https://stardewvalleywiki.com/mediawiki/images/e/e6/Leah.png",
-                    Sam: "https://stardewvalleywiki.com/mediawiki/images/d/d0/Sam.png",
-                    Penny: "https://stardewvalleywiki.com/mediawiki/images/a/ab/Penny.png",
-                    Haley: "https://stardewvalleywiki.com/mediawiki/images/1/1b/Haley.png",
-                    Maru: "https://stardewvalleywiki.com/mediawiki/images/d/d0/Maru.png",
-                    Shane: "https://stardewvalleywiki.com/mediawiki/images/8/8b/Shane.png",
-                    Alex: "https://stardewvalleywiki.com/mediawiki/images/f/f1/Alex.png",
-                    Emily: "https://stardewvalleywiki.com/mediawiki/images/2/28/Emily.png"
+                    Abigail: "./ASSETS/Abigail.png",
+                    Sebastian: "./ASSETS/Sebastian.png",
+                    Leah: "./ASSETS/Leah.png",
+                    Sam: "./ASSETS/Sam.png",
+                    Penny: "./ASSETS/Penny.png",
+                    Haley: "./ASSETS/Haley.png",
+                    Maru: "./ASSETS/Maru.png",
+                    Shane: "./ASSETS/Shane.png",
+                    Alex: "./ASSETS/Alex.png",
+                    Emily: "./ASSETS/Emily.png",
+                    Elliott: "./ASSETS/Elliott.png",
+                    Harvey: "./ASSETS/Harvey.png"
                 }
 
                 var textoNpc = {
@@ -132,7 +139,9 @@
                     Maru: "Crescendo com um carpinteiro e uma cientista como pais, Maru adquiriu uma paixão por criar gadgets desde cedo. Quando não está em seu quarto, mexendo em ferramentas e máquinas, às vezes faz bicos na clínica local. Simpática, extrovertida e ambiciosa, Maru seria uma ótima parceira para uma novata como você... Você conseguirá conquistar o coração dela ou ela escapará por entre seus dedos e desaparecerá da sua vida para sempre?",
                     Shane: "Shane é um aldeão da Vila Pelicanos que está quase sempre bravo e infeliz, e sofre de depressão e alcoolismo. Porém, sua atitude com o jogador começa a mudar caso este decida fazer amizade com ele. Ele trabalha no Mercado Joja quase todos os dias das 09:00 até as 17:00 a menos que o Centro Comunitário seja restaurado, e frequentemente passa a noite no Saloon Fruta Estrelar. Ele não trabalha aos fins de semana, exceto em dias de chuva, e pode ser visto com frequência no rancho.",
                     Alex: "Alex adora esportes e curtir a praia. Ele é bastante arrogante e se gaba para todos de que vai ser um atleta profissional. Será que sua arrogância é apenas uma fachada para mascarar sua insegurança devastadora? Será que ele está usando seu sonho esportivo para preencher o vazio deixado pelo desaparecimento dos pais? Ou será apenas um jovem descarado tentando parecer descolado?",
-                    Emily: "Emily é uma aldeã que mora na Vila Pelicanos. Sua casa fica ao sul da praça da cidade, ao lado da casa de Jodi, na Rua do Salgueiro, nº 2. Ela trabalha geralmente à tarde no Saloon Fruta Estrelar começando por volta das 4:00 PM."
+                    Emily: "Emily é uma aldeã que mora na Vila Pelicanos. Sua casa fica ao sul da praça da cidade, ao lado da casa de Jodi, na Rua do Salgueiro, nº 2. Ela trabalha geralmente à tarde no Saloon Fruta Estrelar começando por volta das 4:00 PM.",
+                    Elliott: "Elliott mora sozinho em uma cabana na praia. Ele é um escritor que sonha em, um dia, escrever um romance magnífico. Ele é sentimental e “romântico” com tendências a fazer poesias sobre flores. Quando ele pode pagar, gosta de uma bebida forte no Saloon Fruta Estrelar. Poderia um humilde fazendeiro como você ser a inspiração que Elliott procura? Só existe um jeito de descobrir…",
+                    Harvey: "Harvey é o médico da cidade. Ele é um pouco velho para um solteiro, mas tem um grande coração amável e uma posição respeitada na comunidade. Ele mora em um pequeno apartamento em cima da clínica, mas gasta grande parte do seu tempo trabalhando. Você consegue sentir uma tristeza nele, como se houvesse algo que ele não diz."
                 }
 
                 function mostrarResultado() {
