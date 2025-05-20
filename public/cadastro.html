@@ -20,64 +20,149 @@
             <a href="login.html">Login</a>
         </nav>
     </header>
-    <div class="container">
-        <form action="">
-            <h1>Cadastro</h1>
-            <div class="input-box">
-                <input type="text" placeholder="Nome" id="nome_input">
+    
+        <div class="container">
+            <form action="">
+                <h1>Cadastro</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Nome" id="nome_input">
 
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Email" id="email_input">
+                </div>
+                <div class="input-box">
+                    <input type="text" placeholder="Email" id="email_input">
 
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Senha" id="senha_input">
+                </div>
+                <div class="input-box">
+                    <input type="text" placeholder="Senha" id="senha_input">
 
-            </div>
-            <button class="btn" type="submit" onclick="cadastrar()">Cadastrar</button>
-            <div class="registrar">
-                <p>Já possui uma conta? <a href="login.html">Entrar</a></p>
-            </div>
-        </form>
-    </div>
-    <footer class="footer">
-        © 2025 Flávia Hidalgo - Todos os direitos Reservados
-    </footer>
+                </div>
+                <button class="btn" type="submit" onclick="cadastrar()">Cadastrar</button>
+                <div class="registrar">
+                    <p>Já possui uma conta? <a href="login.html">Entrar</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="mensagem_erro"></div>
+        <footer class="footer">
+            © 2025 Flávia Hidalgo - Todos os direitos Reservados
+        </footer>
 </body>
 
 </html>
 <script>
-    function cadastrar() {
+    // function cadastrar() {
 
+    //     var nomeVar = nome_input.value;
+    //     var emailVar = email_input.value;
+    //     var senhaVar = senha_input.value;
+
+
+    //     fetch("/usuarios/cadastrar", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //             nomeServer: nomeVar,
+    //             emailServer: emailVar,
+    //             senhaServer: senhaVar
+    //         }),
+    //     })
+    //         .then(function (resposta) {
+    //             console.log("resposta: ", resposta);
+
+    //             if (resposta.ok) {
+                    
+    //                 setTimeout(() => {
+    //                     window.location = "./login.html";
+    //                 }, "2000");
+    //             } 
+    //         });
+
+
+    // }
+      function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
 
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
-        })
-       .then(function (resposta) {
+
+    //Validações específicas
+
+    
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" 
+    ) {
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // // Verificando se o código de ativação é de alguma empresa cadastrada
+    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
+    //     console.log("Código de ativação válido.");
+    //     break;
+    //   } else {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+    //     finalizarAguardar();
+    //   }
+    // }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      }),
+    })
+      .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
 
-            setTimeout(() => {
-                window.location = "./login.html";
-              }, 2000);
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-        } 
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
       });
-    
 
-    }
+    return false;
+  }
+  function sumirMensagem() {
+    mensagem_erro.innerHTML = "";
+  }
 </script>
