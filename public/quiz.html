@@ -21,7 +21,7 @@
         <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
     </header>
     <div class="divLogoPrincipal">
-        <div class="container">
+        <div class="containerP">
 
             <h1>Qual NPC de Stardew Valley mais combina com você?</h1><br><br>
             <div id="container"></div>
@@ -44,6 +44,12 @@
                             { texto: "Jogar bola ou praticar esportes", npcs: ["Alex"] },
                             { texto: "Pegar sol perto do mar", npcs: ["Haley"] },
                             { texto: "Meditar ou relaxar com cristais", npcs: ["Emily"] },
+                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
+                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
+                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
+                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
+                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
+                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
                             { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] }
                         ]
                     },
@@ -173,7 +179,7 @@
                         },
                         body: JSON.stringify({
                             npcServer: npcFinal,
-                            idUsuarioServer: idUsuario
+                            idUsuarioServer: sessionStorage.ID_USUARIO
                         }),
                     })
 

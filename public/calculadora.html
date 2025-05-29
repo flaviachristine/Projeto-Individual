@@ -41,7 +41,9 @@
             <button onclick="remover(selectFruta.value, iptQtd.value)">Remover Produto</button>
             <div id="msg"></div>
 
-            
+            <button onclick="vender()">Vender</button>
+
+
         </div>
     </div>
     <footer class="footer">
@@ -54,7 +56,8 @@
 <script>
     var caixa = [
         [], // Nome Horta
-        []  // Quantidade Horta
+        [],  // Quantidade Horta
+        [] // Preço de cada Horta
     ]
 
     function trocaSelect() {
@@ -98,59 +101,152 @@
 
             selectFruta.innerHTML = `<option value="abobora">Abóbora</option>`
             selectFruta.innerHTML += `<option value="berinjela">Berinjela</option>`
-            selectFruta.innerHTML += `<option value="verao">Alcachofra</option>`
-            selectFruta.innerHTML += `<option value="verao">Amaranto</option>`
-            selectFruta.innerHTML += `<option value="verao">Beterraba</option>`
-            selectFruta.innerHTML += `<option value="verao">Brócolis</option>`
-            selectFruta.innerHTML += `<option value="verao">Couve-Chinesa</option>`
-            selectFruta.innerHTML += `<option value="verao">Inhame</option>`
-            selectFruta.innerHTML += `<option value="verao">Rosa-de-Fada</option>`
-            selectFruta.innerHTML += `<option value="verao">Uva</option>`
+            selectFruta.innerHTML += `<option value="alcachofra">Alcachofra</option>`
+            selectFruta.innerHTML += `<option value="amaranto">Amaranto</option>`
+            selectFruta.innerHTML += `<option value="beterraba">Beterraba</option>`
+            selectFruta.innerHTML += `<option value="brocolis">Brócolis</option>`
+            selectFruta.innerHTML += `<option value="couve-chinesa">Couve-Chinesa</option>`
+            selectFruta.innerHTML += `<option value="inhame">Inhame</option>`
+            selectFruta.innerHTML += `<option value="rosa-de-fada">Rosa-de-Fada</option>`
+            selectFruta.innerHTML += `<option value="uva">Uva</option>`
+            selectFruta.innerHTML += `<option value="oxicoco">Oxicoco</option>`
 
 
         } else if (estacao == 'inverno') {
 
-            selectFruta.innerHTML = `<option value="verao">Melão-Poeiro</option>`
-            
+            selectFruta.innerHTML = `<option value="melao-poeiro">Melão-Poeiro</option>`
+
 
         }
 
     }
-    
+
     function adicionar(horta, qtd) {
 
         var quantidade = Number(qtd);
 
-
-        // Caso já houver tal horta registrada, soma a quantidade para o total da mesma
         if (caixa[0].includes(horta)) {
 
-            // Pega o index da horta já existente na lista para somar à quantidade
             caixa[1][caixa[0].indexOf(horta)] += quantidade;
-
-        // Caso ainda não exista tal horta na lista, ela é adicionada junto com a quantidade informada
         } else {
-
-            // Adiciona a horta e a quantidade à lista
             caixa[0].push(horta)
             caixa[1].push(quantidade)
 
-            
+            if (horta == 'alho') {
+                caixa[2].push(quantidade * 60)
+            } else if(horta == 'arroz'){
+                caixa[2].push(quantidade * 30)
+            }else if(horta == 'batata'){
+                caixa[2].push(quantidade * 80)
+            }else if(horta == 'cenoura'){
+                caixa[2].push(quantidade * 35)
+            }else if(horta == 'chirivia'){
+                caixa[2].push(quantidade * 35)
+            }else if(horta == 'couve'){
+                caixa[2].push(quantidade * 110)
+            }else if(horta == 'couve-flor'){
+                caixa[2].push(quantidade * 175)
+            }else if(horta == 'cafe'){
+                caixa[2].push(quantidade * 15)
+            }else if(horta == 'jasmin'){
+                caixa[2].push(quantidade * 50)
+            }else if(horta == 'morango'){
+                caixa[2].push(quantidade * 120)
+            }else if(horta == 'ruibabo'){
+                caixa[2].push(quantidade * 220)
+            }else if(horta == 'tulipa'){
+                caixa[2].push(quantidade * 30)
+            }else if(horta == 'vagem'){
+                caixa[2].push(quantidade * 40)
+            }else if(horta == 'abobrinha'){
+                caixa[2].push(quantidade * 45)
+            }else if(horta == 'carambola'){
+                caixa[2].push(quantidade * 750)
+            }else if(horta == 'micanga'){
+                caixa[2].push(quantidade * 90)
+            }else if(horta == 'girassol'){
+                caixa[2].push(quantidade * 80)
+            }else if(horta == 'lupulo'){
+                caixa[2].push(quantidade * 25)
+            }else if(horta == 'melao'){
+                caixa[2].push(quantidade * 250)
+            }else if(horta == 'mirtilo'){
+                caixa[2].push(quantidade * 50)
+            }else if(horta == 'papoula'){
+                caixa[2].push(quantidade * 140)
+            }else if(horta == 'pimenta'){
+                caixa[2].push(quantidade * 40)
+            }else if(horta == 'rabanete'){
+                caixa[2].push(quantidade * 90)
+            }else if(horta == 'repolho'){
+                caixa[2].push(quantidade * 260)
+            }else if(horta == 'tomate'){
+                caixa[2].push(quantidade * 60)
+            }else if(horta == 'trigo'){
+                caixa[2].push(quantidade * 25)
+            }else if(horta == 'abobora'){
+                caixa[2].push(quantidade * 320)
+            }else if(horta == 'alcachofra'){
+                caixa[2].push(quantidade * 160)
+            }else if(horta == 'amaranto'){
+                caixa[2].push(quantidade * 150)
+            }else if(horta == 'berinjela'){
+                caixa[2].push(quantidade * 60)
+            }else if(horta == 'beterraba'){
+                caixa[2].push(quantidade * 100)
+            }else if(horta == 'brocolis'){
+                caixa[2].push(quantidade * 70)
+            }else if(horta == 'couve-chinesa'){
+                caixa[2].push(quantidade * 80)
+            }else if(horta == 'inhame'){
+                caixa[2].push(quantidade * 160)
+            }else if(horta == 'oxicoco'){
+                caixa[2].push(quantidade * 75)
+            }else if(horta == 'rosa-de-fada'){
+                caixa[2].push(quantidade * 290)
+            }else if(horta == 'uva'){
+                caixa[2].push(quantidade * 80)
+            }else if(horta == 'melao-poeiro'){
+                caixa[2].push(quantidade * 60)
+            }
         }
+
+
+
     }
 
-    function remover(){
+    function remover() {
         var remover = inputDeletar.value
 
-        if(caixa[0].includes(remover)){
-            while(caixa[0].includes(remover)){
+        if (caixa[0].includes(remover)) {
+            while (caixa[0].includes(remover)) {
                 caixa[1].splice(caixa[0].indexOf(remover), 1)
                 caixa[1].splice(caixa[1].indexOf(remover), 1)
             }
             msg.innerHTML = `O produto ${remover} foi removido da caixa`
-        } else{
+        } else {
             msg.innerHTML = `O produto ${remover} não foi vendido hoje`
         }
     }
+    function vender() {
+
+        // for(var i= 0; i < caixa.length; i++){
+
+        fetch("/venda/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                produtoServer: caixa[0][0],
+                qtdServer: caixa[1][0],
+                precoServer: caixa[2][0]
+            }),
+        })
+        msg.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} moedas!`
+        caixa = [[], [], []]
+    }
+    // }
 
 </script>

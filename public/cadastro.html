@@ -105,11 +105,12 @@
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
+      // finalizarAguardar();
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    } 
+    // else {
+    //   setInterval(sumirMensagem, 5000);
+    // }
 
     // // Verificando se o código de ativação é de alguma empresa cadastrada
     // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
@@ -133,7 +134,7 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        idUsuarioServer: idUsuarioVar,
+        // idUsuarioServer: idUsuarioVar,
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar

@@ -2,8 +2,8 @@
 var quizModel = require("../models/quizModel");
 
 function cadastrar(req, res) {
-    var usuario = req.body.idUsuario;
-    var personagem = req.body.npc;
+    var usuario = req.body.idUsuarioServer;
+    var personagem = req.body.npcServer;
 
     
     if (personagem == undefined) {
