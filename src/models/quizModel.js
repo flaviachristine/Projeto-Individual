@@ -1,22 +1,14 @@
 var database = require("../database/config")
 
-function listar() {
+function cadastrar(personagem, usuario) {
+    
     var instrucao = `
-        SELECT * FROM carro;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function cadastrar(nome) {
-    var instrucao = `
-        INSERT INTO carro (nome) VALUES ('${nome}');
+        INSERT INTO tentativa (fkUsuario, fkQuiz, npc) VALUES ('${usuario}', 1, '${personagem}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 module.exports = {
-    cadastrar,
-    listar
+    cadastrar
 };

@@ -50,7 +50,7 @@ body{
     align-items: center;
     flex-direction: column;
     height: 100%;
-    background: url(../ASSETS/background1.jpg) no-repeat;
+    background: url(../ASSETS/testeGalinha.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     justify-content: space-between;
@@ -58,7 +58,7 @@ body{
 .container{
     color: white;
     width: 900px;
-    background: rgba(0, 195, 255);
+    background: rgb(255, 139, 174);
     border-radius: 10px;
     padding: 30px 40px;
     margin-top: 150px;
@@ -73,42 +73,49 @@ body{
     margin-bottom: 40px;
 }
 .imgCriador{
+    width: 300px;
     border-radius: 20px;
-    width: 400px;
 }
 .criador .textoBarone1{
     margin-left: 50px;
     text-align: justify;
+    display: flex;
+    align-items: center;
 }
 .criador2{
-    margin-top: 50px;
     display: flex;
     flex-direction: row-reverse;
 }
-.imgPenny{
+.imgLucaseFla{
     border-radius: 20px;
-    width: 400px;
+    width: 300px;
 }
 .criador2 .textoBarone2{
     margin-right: 50px;
     text-align: justify;
+    display: flex;
+    align-items: center;
 }
 .criador3{
-    margin-top: 50px;
     display: flex;
     flex-direction: row;
 }
-.imgFazenda{
+.criador3{
+    display: flex;
+    flex-direction: row;
+}
+.imgFlaviaStardew{
     border-radius: 20px;
-    width: 400px;
+    width: 300px;
 }
 .criador3 .textoBarone3{
     margin-left: 50px;
     text-align: justify;
+    display: flex;
+    align-items: center;
 }
 footer{
-    
-    background-color: #1cade6;
+    background-color:rgb(255, 139, 174);
     width: 100%;
     display: flex;
     align-items: center;

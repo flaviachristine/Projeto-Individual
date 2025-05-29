@@ -12,7 +12,10 @@
     <header class="header">
         <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
         <nav class="navbar">
+            <a href="home.html">Home</a>
             <a href="dev.html">Desenvolvedora</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="calculadora.html">Calculadora</a>
             <a href="dashboard.html" class="dash">Dashboard</a>
         </nav>
         <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
@@ -23,8 +26,11 @@
             <h1>Qual NPC de Stardew Valley mais combina com você?</h1><br><br>
             <div id="container"></div>
             <div id="resultado"></div>
-
             <script>
+
+                var idUsuario = sessionStorage.ID_USUARIO
+
+
                 var pontuacao = {
                     Abigail: 0, Sebastian: 0, Leah: 0, Sam: 0, Penny: 0,
                     Haley: 0, Maru: 0, Shane: 0, Alex: 0, Emily: 0, Elliott: 0, Harvey: 0
@@ -159,6 +165,17 @@
 
                     document.getElementById("container").innerHTML = ""
                     document.getElementById("resultado").innerHTML = `<h2>Você combina mais com: ${npcFinal}!</h2><br><br><img src="${imagensNPC[npcFinal]}" alt="${npcFinal}" style="width:150px; border-radius:10px; align-items: center;"><br><br>${textoNpc[npcFinal]}`
+
+                    fetch("/quiz/cadastrar", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            npcServer: npcFinal,
+                            idUsuarioServer: idUsuario
+                        }),
+                    })
 
                 }
 

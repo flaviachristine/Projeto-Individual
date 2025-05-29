@@ -13,7 +13,8 @@
         <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
         <nav class="navbar">
             <a href="index.html">Home</a>
-            <a href="sobre.html">Sobre</a>
+            <a href="historia.html">História do Jogo</a>
+            <a href="gameplay.html">Sobre o Jogo</a>
             <a href="cadastro.html">Cadastro</a>
             <a href="login.html">Login</a>
         </nav>
@@ -38,10 +39,12 @@
 
 </html>
 <script>
+    var emailVar = 0
+    var senhaVar = 0
     function entrar() {
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        emailVar = email_input.value;
+        senhaVar = senha_input.value;
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -64,9 +67,9 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.emailVar;
-                    sessionStorage.SENHA_USUARIO = json.senhaVar;
-                    sessionStorage.ID_USUARIO = JSON.stringify(json.idusuario)
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.SENHA_USUARIO = json.senha;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
                     setTimeout(function () {
                         window.location = "./home.html";

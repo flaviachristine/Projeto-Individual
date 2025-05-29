@@ -66,51 +66,31 @@ header {
 }
 
 .divLogoPrincipal h1 {
-    color: #ffff;
-    margin-bottom: 100px;
-    font-weight: bolder;
-    margin-top: -100px;
-    font-size: 60px;
+    color: white;
+    
 }
-
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    gap: 20px;
-}
-
-.feature-card {
-    width: 300px;
+.container{
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s;
-}
-.feature-card a {
-   color: #1a1919;
-   text-decoration: none;
+    background-color: #1cade6;
+    width: 50%;
+    align-items: center;
+    padding: 20px;
+    height: 500px;
+    border-radius: 20px;
 }
 
-.feature-card a:visited {
-    color: #1a1919;
+
+footer{
+    background-color: #1cade6;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 15px;
+    color: #ffff;
 }
 
-.feature-card a:active {
-    color: #1a1919; 
-}
-.feature-card:hover {
-    transform: translateY(-10px);
-}
 
-.feature-card h3 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #1cade6;
-}
+

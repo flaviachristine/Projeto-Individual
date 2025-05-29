@@ -14,8 +14,9 @@
     <header class="header">
         <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
         <nav class="navbar">
-            <a href="index.html">Home</a>
-            <a href="sobre.html">Sobre</a>
+           <a href="index.html">Home</a>
+            <a href="historia.html">História do Jogo</a>
+            <a href="gameplay.html">Sobre o Jogo</a>
             <a href="cadastro.html">Cadastro</a>
             <a href="login.html">Login</a>
         </nav>
@@ -132,6 +133,7 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
+        idUsuarioServer: idUsuarioVar,
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar
@@ -142,27 +144,27 @@
 
         if (resposta.ok) {
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          // mensagem_erro.innerHTML =
+          //   "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
+          // limparFormulario();
+          // finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+      // .catch(function (resposta) {
+      //   console.log(`#ERRO: ${resposta}`);
+      //   // finalizarAguardar();
+      // });
 
     return false;
   }
-  function sumirMensagem() {
-    mensagem_erro.innerHTML = "";
-  }
+  // function sumirMensagem() {
+  //   mensagem_erro.innerHTML = "";
+  // }
 </script>

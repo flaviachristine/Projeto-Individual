@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/calculadora.css">
+    <title>Stardew-Project</title>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="dev.html">Desenvolvedora</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="calculadora.html">Calculadora</a>
+            <a href="dashboard.html" class="dash">Dashboard</a>
+        </nav>
+        <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
+    </header>
+    <div class="divLogoPrincipal">
+        <div class="container">
+            <h1>Calculadora</h1>
+            <label for="">Selecione uma estação:</label>
+            <select name="" id="selectEstacao" onchange="trocaSelect()">
+                <option value="primavera">Primavera</option>
+                <option value="verao">Verão</option>
+                <option value="outono">Outono</option>
+                <option value="inverno">Inverno</option>
+            </select>
+            <select name="" id="selectFruta"></select>
+            <input type="number" id="iptQtd" placeholder="Quantidade">
+
+
+            <button onclick="adicionar(selectFruta.value, iptQtd.value)">Adicionar na Caixa</button>
+
+            Produto a ser removido da caixa
+            <input type="text" id="inputDeletar">
+            <button onclick="remover(selectFruta.value, iptQtd.value)">Remover Produto</button>
+            <div id="msg"></div>
+
+            
+        </div>
+    </div>
+    <footer class="footer">
+        © 2025 Flávia Hidalgo - Todos os direitos Reservados
+    </footer>
+</body>
+
+</html>
+
+<script>
+    var caixa = [
+        [], // Nome Horta
+        []  // Quantidade Horta
+    ]
+
+    function trocaSelect() {
+
+        var estacao = selectEstacao.value;
+
+        if (estacao == 'primavera') {
+
+            selectFruta.innerHTML = `<option value="chirivia">Chirivia</option>`
+            selectFruta.innerHTML += `<option value="batata">Batata</option>`
+            selectFruta.innerHTML += `<option value="morango">Morango</option>`
+            selectFruta.innerHTML += `<option value="vagem">Vagem</option>`
+            selectFruta.innerHTML += `<option value="couve-flor">Couve-Flor</option>`
+            selectFruta.innerHTML += `<option value="couve">Couve</option>`
+            selectFruta.innerHTML += `<option value="alho">Alho</option>`
+            selectFruta.innerHTML += `<option value="arroz">Arroz não moído</option>`
+            selectFruta.innerHTML += `<option value="cenoura">Cenoura</option>`
+            selectFruta.innerHTML += `<option value="cafe">Grão de Café</option>`
+            selectFruta.innerHTML += `<option value="jasmin">Jasmin-Azul</option>`
+            selectFruta.innerHTML += `<option value="ruibarbo">Ruibarbo</option>`
+            selectFruta.innerHTML += `<option value="tulipa">Tulipa</option>`
+
+        } else if (estacao == 'verao') {
+
+            selectFruta.innerHTML = `<option value="melao">Melão</option>`
+            selectFruta.innerHTML += `<option value="mirtilo">Mirtilo</option>`
+            selectFruta.innerHTML += `<option value="pimenta">Pimenta</option>`
+            selectFruta.innerHTML += `<option value="abobrinha">Abobrinha de Verão</option>`
+            selectFruta.innerHTML += `<option value="carambola">Carambola</option>`
+            selectFruta.innerHTML += `<option value="micanga">Flor-Miçanga</option>`
+            selectFruta.innerHTML += `<option value="girassol">Girassol</option>`
+            selectFruta.innerHTML += `<option value="lupulo">Lúpulo</option>`
+            selectFruta.innerHTML += `<option value="milho">Milho</option>`
+            selectFruta.innerHTML += `<option value="papoula">Papoula</option>`
+            selectFruta.innerHTML += `<option value="rabanete">Rabanete</option>`
+            selectFruta.innerHTML += `<option value="repolho">Repolho Roxo</option>`
+            selectFruta.innerHTML += `<option value="tomate">Tomate</option>`
+            selectFruta.innerHTML += `<option value="trigo">Trigo</option>`
+
+        } else if (estacao == 'outono') {
+
+            selectFruta.innerHTML = `<option value="abobora">Abóbora</option>`
+            selectFruta.innerHTML += `<option value="berinjela">Berinjela</option>`
+            selectFruta.innerHTML += `<option value="verao">Alcachofra</option>`
+            selectFruta.innerHTML += `<option value="verao">Amaranto</option>`
+            selectFruta.innerHTML += `<option value="verao">Beterraba</option>`
+            selectFruta.innerHTML += `<option value="verao">Brócolis</option>`
+            selectFruta.innerHTML += `<option value="verao">Couve-Chinesa</option>`
+            selectFruta.innerHTML += `<option value="verao">Inhame</option>`
+            selectFruta.innerHTML += `<option value="verao">Rosa-de-Fada</option>`
+            selectFruta.innerHTML += `<option value="verao">Uva</option>`
+
+
+        } else if (estacao == 'inverno') {
+
+            selectFruta.innerHTML = `<option value="verao">Melão-Poeiro</option>`
+            
+
+        }
+
+    }
+    
+    function adicionar(horta, qtd) {
+
+        var quantidade = Number(qtd);
+
+
+        // Caso já houver tal horta registrada, soma a quantidade para o total da mesma
+        if (caixa[0].includes(horta)) {
+
+            // Pega o index da horta já existente na lista para somar à quantidade
+            caixa[1][caixa[0].indexOf(horta)] += quantidade;
+
+        // Caso ainda não exista tal horta na lista, ela é adicionada junto com a quantidade informada
+        } else {
+
+            // Adiciona a horta e a quantidade à lista
+            caixa[0].push(horta)
+            caixa[1].push(quantidade)
+
+            
+        }
+    }
+
+    function remover(){
+        var remover = inputDeletar.value
+
+        if(caixa[0].includes(remover)){
+            while(caixa[0].includes(remover)){
+                caixa[1].splice(caixa[0].indexOf(remover), 1)
+                caixa[1].splice(caixa[1].indexOf(remover), 1)
+            }
+            msg.innerHTML = `O produto ${remover} foi removido da caixa`
+        } else{
+            msg.innerHTML = `O produto ${remover} não foi vendido hoje`
+        }
+    }
+
+</script>
