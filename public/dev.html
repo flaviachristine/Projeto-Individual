@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/dev.css">
-    <title>Sobre</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>Sobre Mim</title>
+    <style>
+        .swiper {
+            width: 50%;
+            height: 95vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            --swiper-navigation-size: 30px;
+            --swiper-navigation-top-offset: 50%;
+            --swiper-navigation-sides-offset: 10px;
+            --swiper-navigation-color: rgb(255, 255, 255);
+        }
+    </style>
 </head>
+
 <body>
     <header class="header">
         <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
@@ -18,40 +35,164 @@
         </nav>
         <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
     </header>
-    <div class="container">
-        <div class="tituloCriador"><h1>Sobre Mim</h1></div>
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="tituloCriador">
+                        <h1>Sobre Mim</h1>
+                    </div>
+                    <div class="criador">
+                        <div class="imgCriador"><img src="./ASSETS/flaviaTotvs.png" alt="" class="imgCriador"></div>
+                        <div class="textoBarone1">Esta sou eu, Flávia Christine Hidalgo Pereira, nascida no dia
+                            19/01/2007, sou do
+                            signo de capricornio, apenas a cunho de curiosidade.
+                            Atualmente tenho 18 anos e estou cursando o Tecnologo de Análise e Desenvolvimento de
+                            Sistemas na
+                            instituição SPtech. Meus hobbies incluem ouvir músicas,
+                            jogar jogos (principalmente Stardew Valley), desenhar (mesmo sendo horrível nisso), pintar
+                            as unhas e
+                            muito mais!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="tituloCriador">
+                        <h1>Principal Influência</h1>
+                    </div>
+                    <div class="criador">
+                        <div class="imgLucaseFla"><img src="./ASSETS/flaviaeLucas.jpg" alt="" class="imgLucaseFla">
+                        </div>
+                        <div class="textoBarone1">Minha paixão por Stardew Valley e jogos em geral veio por conta do meu
+                            irmão
+                            Lucas. Nós temos 10 anos de diferença
+                            mas isso nunca nos atrapalhou, ele sempre me influenciou e até hoje é uma grande referência
+                            para mim,
+                            tanto profissionalmente quanto como pessoa.
+                            Em meados de 2017 ele me apresentou o jogo, naquela época meu objetivo era tomar conta de
+                            sua fazenda
+                            sem nem pensar na possibilidade de começar uma própria.
+                            Porém, como esperado, me apaixonei pela dinâmica do jogo e por seus personagens extremamente
+                            cativantes
+                            e desde então se tornou meu jogo predileto.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="tituloCriador">
+                        <h1>Jogatinas</h1>
+                    </div>
+                    <div class="criador">
+                        <div class="imgFlaviaStardew"><img src="./ASSETS/flaviaStardew.png" alt="" class="imgFlaviaStardew">
+                        </div>
+                        <div class="textoBarone1">Durante minhas jogatinas de stardew, me desconecto da realidade,
+                            consigo relaxar
+                            com as músicas
+                            e me sentir em paz comigo mesma. Apesar do jogo ter muitos objetivos e afazeres, tirar minha
+                            cabeça de
+                            problemas reais e poder
+                            viver uma realidade diferente me traz um certo conforto, poder descansar a mente e me
+                            divertir. Muitas
+                            vezes posso jogar com meus amigos, o que torna tudo ainda melhor,
+                            a companhia de amigos de verdade, com um jogo que tanto amo, faz toda a diferença.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ...
+        </div>
+        <!-- If we need pagination
+  <div class="swiper-pagination"></div> -->
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar
+  <div class="swiper-scrollbar"></div> -->
+    </div>
+
+    <!-- <div class="container">
+        <div class="tituloCriador">
+            <h1>Sobre Mim</h1>
+        </div>
         <div class="criador">
             <div class="imgCriador"><img src="./ASSETS/flaviaTotvs.png" alt="" class="imgCriador"></div>
-            <div class="textoBarone1">Esta sou eu, Flávia Christine Hidalgo Pereira, nascida no dia 19/01/2007, sou do signo de capricornio, apenas a cunho de curiosidade.
-            Atualmente tenho 18 anos e estou cursando o Tecnologo de Análise e Desenvolvimento de Sistemas na instituição SPtech. Meus hobbies incluem ouvir músicas,
-            jogar jogos (principalmente Stardew Valley), desenhar (mesmo sendo horrível nisso), pintar as unhas e muito mais!
+            <div class="textoBarone1">Esta sou eu, Flávia Christine Hidalgo Pereira, nascida no dia 19/01/2007, sou do
+                signo de capricornio, apenas a cunho de curiosidade.
+                Atualmente tenho 18 anos e estou cursando o Tecnologo de Análise e Desenvolvimento de Sistemas na
+                instituição SPtech. Meus hobbies incluem ouvir músicas,
+                jogar jogos (principalmente Stardew Valley), desenhar (mesmo sendo horrível nisso), pintar as unhas e
+                muito mais!
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="tituloCriador"><h1>Principal Influência</h1></div>
+        <div class="tituloCriador">
+            <h1>Principal Influência</h1>
+        </div>
         <div class="criador">
             <div class="imgLucaseFla"><img src="./ASSETS/flaviaeLucas.jpg" alt="" class="imgLucaseFla"></div>
-            <div class="textoBarone1">Minha paixão por Stardew Valley e jogos em geral veio por conta do meu irmão Lucas. Nós temos 10 anos de diferença
-            mas isso nunca nos atrapalhou, ele sempre me influenciou e até hoje é uma grande referência para mim, tanto profissionalmente quanto como pessoa.
-            Em meados de 2017 ele me apresentou o jogo, naquela época meu objetivo era tomar conta de sua fazenda sem nem pensar na possibilidade de começar uma própria.
-            Porém, como esperado, me apaixonei pela dinâmica do jogo e por seus personagens extremamente cativantes e desde então se tornou meu jogo predileto.
+            <div class="textoBarone1">Minha paixão por Stardew Valley e jogos em geral veio por conta do meu irmão
+                Lucas. Nós temos 10 anos de diferença
+                mas isso nunca nos atrapalhou, ele sempre me influenciou e até hoje é uma grande referência para mim,
+                tanto profissionalmente quanto como pessoa.
+                Em meados de 2017 ele me apresentou o jogo, naquela época meu objetivo era tomar conta de sua fazenda
+                sem nem pensar na possibilidade de começar uma própria.
+                Porém, como esperado, me apaixonei pela dinâmica do jogo e por seus personagens extremamente cativantes
+                e desde então se tornou meu jogo predileto.
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="tituloCriador"><h1>Jogatinas</h1></div>
+        <div class="tituloCriador">
+            <h1>Jogatinas</h1>
+        </div>
         <div class="criador">
             <div class="imgFlaviaStardew"><img src="./ASSETS/flaviaStardew.png" alt="" class="imgFlaviaStardew"></div>
-            <div class="textoBarone1">Durante minhas jogatinas de stardew, me desconecto da realidade, consigo relaxar com as músicas
-            e me sentir em paz comigo mesma. Apesar do jogo ter muitos objetivos e afazeres, tirar minha cabeça de problemas reais e poder
-            viver uma realidade diferente me traz um certo conforto, poder descansar a mente e me divertir. Muitas vezes posso jogar com meus amigos, o que torna tudo ainda melhor,
-            a companhia de amigos de verdade, com um jogo que tanto amo, faz toda a diferença.
+            <div class="textoBarone1">Durante minhas jogatinas de stardew, me desconecto da realidade, consigo relaxar
+                com as músicas
+                e me sentir em paz comigo mesma. Apesar do jogo ter muitos objetivos e afazeres, tirar minha cabeça de
+                problemas reais e poder
+                viver uma realidade diferente me traz um certo conforto, poder descansar a mente e me divertir. Muitas
+                vezes posso jogar com meus amigos, o que torna tudo ainda melhor,
+                a companhia de amigos de verdade, com um jogo que tanto amo, faz toda a diferença.
             </div>
         </div>
-    </div>
+    </div> -->
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
     </footer>
 </body>
+
 </html>
+<script>
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+
+        // If we need pagination
+        //   pagination: {
+        //     el: '.swiper-pagination',
+        //   },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // And if we need scrollbar
+        //   scrollbar: {
+        //     el: '.swiper-scrollbar',
+        //   },
+    });
+
+</script>

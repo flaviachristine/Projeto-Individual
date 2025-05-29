@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/sobre.css">
+    <link rel="stylesheet" href="./CSS/gameplay.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <title>Sobre</title>
 </head>
+<style>
+    .swiper {
+        width: 50%;
+        height: 95vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        --swiper-navigation-size: 30px;
+        --swiper-navigation-top-offset: 50%;
+        --swiper-navigation-sides-offset: 10px;
+        --swiper-navigation-color: var(--swiper-theme-color);
+    }
+</style>
+
 <body>
     <header class="header">
         <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
@@ -17,28 +34,163 @@
             <a href="login.html">Login</a>
         </nav>
     </header>
-    <div class="container">
-        <div class="tituloCriador"><h1>Gameplay</h1></div>
-        <div class="criador">
-            <div class="imgCriador"><img src="./ASSETS/barone.jpg" alt="" class="imgCriador"></div>
-            <div class="textoBarone1">Em 2011, após se formar em Ciência da Computação na Universidade de Washington Tacoma, Eric enfrentava dificuldades para encontrar emprego. Foi nesse momento que decidiu criar um jogo por conta própria, tanto para aprender mais sobre desenvolvimento quanto para montar um portfólio profissional.
-                Apaixonado pela série Harvest Moon, Eric sentia falta de um jogo que trouxesse aquela experiência acolhedora de vida no campo, mas com mais profundidade. Assim nasceu a ideia de Stardew Valley, um projeto que ele encarou como um desafio pessoal.</div>
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="tituloCriador">
+                        <h1>Cultivo e Criação de Animais</h1>
+                    </div>
+                    <div class="criador">
+                        <div class="imgCriador"><img src="./ASSETS/flaviaTotvs.png" alt="" class="imgCriador"></div>
+                        <div class="textoBarone1">Os jogadores podem cultivar uma variedade de plantas, incluindo
+                            frutas, legumes e
+                            flores, e criar animais como vacas, galinhas e ovelhas para obter produtos como leite, ovos
+                            e lã.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="tituloCriador">
+                        <h1>Pesca</h1>
+                    </div>
+                    <div class="criador">
+                        <div class="imgLucaseFla"><img src="./ASSETS/flaviaeLucas.jpg" alt="" class="imgLucaseFla">
+                        </div>
+                        <div class="textoBarone1">Stardew Valley oferece a possibilidade de pescar em diferentes locais,
+                            como rios,
+                            lagos e o oceano, com diferentes tipos de peixes disponíveis em cada estação.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="tituloCriador">
+                        <h1>Pesca</h1>
+                    </div>
+                    <div class="criador">
+                        <div class="imgLucaseFla"><img src="./ASSETS/flaviaeLucas.jpg" alt="" class="imgLucaseFla">
+                        </div>
+                        <div class="textoBarone1">Stardew Valley oferece a possibilidade de pescar em diferentes locais,
+                            como rios,
+                            lagos e o oceano, com diferentes tipos de peixes disponíveis em cada estação.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="tituloCriador">
+                        <h1>Pesca</h1>
+                    </div>
+                    <div class="criador">
+                        <div class="imgLucaseFla"><img src="./ASSETS/flaviaeLucas.jpg" alt="" class="imgLucaseFla">
+                        </div>
+                        <div class="textoBarone1">Stardew Valley oferece a possibilidade de pescar em diferentes locais,
+                            como rios,
+                            lagos e o oceano, com diferentes tipos de peixes disponíveis em cada estação.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="criador2">
-            <div class="imgPenny"><img src="./ASSETS/pennyBarone.jpg" alt="" class="imgPenny"></div>
-            <div class="textoBarone2">Durante quase cinco anos, Eric trabalhou completamente sozinho no desenvolvimento do jogo. Ele aprendeu a fazer tudo do zero: desde a programação em C#, passando pela arte em pixel art, até a criação da trilha sonora e dos diálogos dos personagens.
-                Sem uma equipe ou recursos financeiros, Eric contou com o apoio da namorada, que o ajudou enquanto ele se dedicava ao projeto em tempo integral (que posteriormente, se tornou inspiração para a personagem Penny). </div>
-        </div>
-        <div class="criador3">
-            <div class="imgFazenda"><img src="./ASSETS/farmBarone.jpg" alt="" class="imgFazenda"></div>
-            <div class="textoBarone3">Em 2016, com o apoio da publicadora indie Chucklefish, Stardew Valley foi lançado para PC e rapidamente se tornou um fenômeno. Em apenas dois meses, já havia vendido mais de 1 milhão de cópias.
+        <!-- If we need pagination
+  <div class="swiper-pagination"></div> -->
 
-O jogo logo chegou a outras plataformas — como consoles e celulares — e ultrapassou a marca de 20 milhões de unidades vendidas no mundo todo. O sucesso surpreendeu até o próprio criador.</div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!-- 
+  <div class="swiper-scrollbar"></div> -->
+    </div>
+    <!-- <div class="container">
+        <div class="tituloCriador">
+            <h1>Cultivo e Criação de Animais</h1>
+        </div>
+        <div class="criador">
+            <div class="imgCriador"><img src="./ASSETS/flaviaTotvs.png" alt="" class="imgCriador"></div>
+            <div class="textoBarone1">Os jogadores podem cultivar uma variedade de plantas, incluindo frutas, legumes e
+                flores, e criar animais como vacas, galinhas e ovelhas para obter produtos como leite, ovos e lã.
+            </div>
         </div>
     </div>
+    <div class="container">
+        <div class="tituloCriador">
+            <h1>Pesca</h1>
+        </div>
+        <div class="criador">
+            <div class="imgLucaseFla"><img src="./ASSETS/flaviaeLucas.jpg" alt="" class="imgLucaseFla"></div>
+            <div class="textoBarone1">Stardew Valley oferece a possibilidade de pescar em diferentes locais, como rios,
+                lagos e o oceano, com diferentes tipos de peixes disponíveis em cada estação.
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="tituloCriador">
+            <h1>Mineração</h1>
+        </div>
+        <div class="criador">
+            <div class="imgFlaviaStardew"><img src="./ASSETS/flaviaStardew.png" alt="" class="imgFlaviaStardew"></div>
+            <div class="textoBarone1">Os jogadores podem minerar em cavernas e minas subterrâneas para encontrar
+                minerais, gemas e outros recursos valiosos, além de combater monstros que habitam esses locais.
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="tituloCriador">
+            <h1>Coleta e Forragem</h1>
+        </div>
+        <div class="criador">
+            <div class="imgFlaviaStardew"><img src="./ASSETS/flaviaStardew.png" alt="" class="imgFlaviaStardew"></div>
+            <div class="textoBarone1">O ambiente oferece uma variedade de recursos naturais que os jogadores podem
+                coletar, como frutas, cogumelos e flores, que podem ser usados para receitas, artesanato ou vendidos.
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="tituloCriador">
+            <h1>Culinária</h1>
+        </div>
+        <div class="criador">
+            <div class="imgFlaviaStardew"><img src="./ASSETS/flaviaStardew.png" alt="" class="imgFlaviaStardew"></div>
+            <div class="textoBarone1">Com os recursos coletados e cultivados, os jogadores podem preparar uma variedade
+                de pratos que restauram a energia e fornecem benefícios adicionais, como aumentar a velocidade de
+                movimento ou a defesa
+            </div>
+        </div>
+    </div> -->
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
     </footer>
 </body>
+
 </html>
+<script>
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+
+        // If we need pagination
+        //   pagination: {
+        //     el: '.swiper-pagination',
+        //   },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // And if we need scrollbar
+        //   scrollbar: {
+        //     el: '.swiper-scrollbar',
+        //   },
+    });
+
+</script>

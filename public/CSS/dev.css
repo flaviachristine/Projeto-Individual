@@ -63,6 +63,7 @@ body{
     padding: 30px 40px;
     margin-top: 150px;
     margin-bottom: 10px;
+    margin-left: 25px;
 }
 .criador{
     display: flex;
@@ -106,7 +107,7 @@ body{
 }
 .imgFlaviaStardew{
     border-radius: 20px;
-    width: 300px;
+    width: 400px;
 }
 .criador3 .textoBarone3{
     margin-left: 50px;
