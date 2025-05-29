@@ -22,26 +22,28 @@
     </header>
     <div class="divLogoPrincipal">
         <div class="container">
-            <h1>Calculadora</h1>
+            <h1>Calculadora</h1><br>
             <label for="">Selecione uma estação:</label>
             <select name="" id="selectEstacao" onchange="trocaSelect()">
                 <option value="primavera">Primavera</option>
                 <option value="verao">Verão</option>
                 <option value="outono">Outono</option>
                 <option value="inverno">Inverno</option>
-            </select>
-            <select name="" id="selectFruta"></select>
-            <input type="number" id="iptQtd" placeholder="Quantidade">
+            </select><br>
+            <label for="">Selecione o produto</label>
+            <select name="" id="selectFruta"></select><br>
+            <label for="">Selecione a quantidade do produto</label>
+            <input type="number" id="iptQtd" placeholder="Quantidade"><br>
 
 
-            <button onclick="adicionar(selectFruta.value, iptQtd.value)">Adicionar na Caixa</button>
-
+            <button onclick="adicionar(selectFruta.value, iptQtd.value)">Adicionar na Caixa</button><br>
+            <button onclick="vender()">Vender</button><br>
             Produto a ser removido da caixa
-            <input type="text" id="inputDeletar">
-            <button onclick="remover(selectFruta.value, iptQtd.value)">Remover Produto</button>
+            <input type="text" id="inputDeletar"><br>
+            <button onclick="remover(selectFruta.value, iptQtd.value)">Remover Produto</button><br>
             <div id="msg"></div>
 
-            <button onclick="vender()">Vender</button>
+            
 
 
         </div>
@@ -124,6 +126,10 @@
     function adicionar(horta, qtd) {
 
         var quantidade = Number(qtd);
+
+        if(quantidade == '' || caixa[0] == ''){
+            msg.innerHTML = `Preencha todos os campos para prosseguir`
+        } 
 
         if (caixa[0].includes(horta)) {
 
