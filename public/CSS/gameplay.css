@@ -43,6 +43,7 @@ header{
 }
 .navbar a:hover{
     color: #1cade6;
+    cursor: pointer;
 }
 body{
     display: flex;
@@ -65,56 +66,91 @@ body{
     margin-top: 150px;
     margin-bottom: 10px;
 }
-.criador{
+.cultivo{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.tituloCriador{
+.tituloCultivo{
     text-align: center;
     margin-bottom: 40px;
 }
-.imgCriador{
-    width: 300px;
+.imgCultivo{
+    width: 500px;
     border-radius: 20px;
 }
-.criador .textoBarone1{
+.cultivo .textoCultivo{
+    margin-top: 20px;
     margin-left: 50px;
     text-align: justify;
     display: flex;
     align-items: center;
 }
-.criador2{
+.pesca{
     display: flex;
-    flex-direction: row-reverse;
-}
-.imgLucaseFla{
-    border-radius: 20px;
-    width: 300px;
-}
-.criador2 .textoBarone2{
-    margin-right: 50px;
-    text-align: justify;
-    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
-.criador3{
-    display: flex;
-    flex-direction: row;
+.tituloPesca{
+    text-align: center;
+    margin-bottom: 40px;
 }
-.criador3{
-    display: flex;
-    flex-direction: row;
-}
-.imgFlaviaStardew{
+.imgPesca{
+    width: 400px;
     border-radius: 20px;
-    width: 300px;
 }
-.criador3 .textoBarone3{
+.cultivo .textoPesca{
+    margin-top: 20px;
     margin-left: 50px;
     text-align: justify;
     display: flex;
     align-items: center;
 }
+.mineracao{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tituloMineracao{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.imgMineracao{
+    width: 550px;
+    border-radius: 20px;
+}
+.cultivo .textoMineracao{
+    margin-top: 20px;
+    margin-left: 50px;
+    text-align: justify;
+    display: flex;
+    align-items: center;
+}
+.combate{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tituloCombate{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.imgCombate{
+    width: 500px;
+    border-radius: 20px;
+}
+.cultivo .textoCombate{
+    margin-top: 20px;
+    margin-left: 50px;
+    text-align: justify;
+    display: flex;
+    align-items: center;
+}
+
 footer{
     background-color:#1cade6;
     width: 100%;
