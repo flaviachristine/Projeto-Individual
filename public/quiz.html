@@ -26,7 +26,14 @@
             <h1>Qual NPC de Stardew Valley mais combina com você?</h1><br><br>
             <div id="container"></div>
             <div id="resultado"></div>
-            <script>
+        </div>
+    </div>
+</body>
+<footer class="footer">
+    © 2025 Flávia Hidalgo - Todos os direitos Reservados
+</footer>
+</html>
+ <script>
 
                 var idUsuario = sessionStorage.ID_USUARIO
 
@@ -44,13 +51,13 @@
                             { texto: "Jogar bola ou praticar esportes", npcs: ["Alex"] },
                             { texto: "Pegar sol perto do mar", npcs: ["Haley"] },
                             { texto: "Meditar ou relaxar com cristais", npcs: ["Emily"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian", "Harvey"] }
+                            { texto: "Escutar músicas", npcs: ["Sebastian"] },
+                            { texto: "Escrever poemas", npcs: ["Elliott"] },
+                            { texto: "Tomar um bom café", npcs: ["Harvey"] },
+                            { texto: "Fazer minha propria arte", npcs: ["Leah"] },
+                            { texto: "Ir beber no bar", npcs: ["Shane"] },
+                            { texto: "Ler um bom livro", npcs: ["Penny"] },
+                            { texto: "Estudar astronomia", npcs: ["Maru"] }
                         ]
                     },
                     {
@@ -60,7 +67,14 @@
                             { texto: "Natural e boêmio", npcs: ["Leah"] },
                             { texto: "Tecnológico e prático", npcs: ["Maru"] },
                             { texto: "Clássico e discreto", npcs: ["Penny"] },
-                            { texto: "Despojado e colorido", npcs: ["Emily"] }
+                            { texto: "Despojado e colorido", npcs: ["Emily"] },
+                            { texto: "Gótico e alternativo", npcs: ["Abigail"] },
+                            { texto: "Emo alternativo", npcs: ["Sebastian"] },
+                            { texto: "Esportivo", npcs: ["Alex"] },
+                            { texto: "Casual", npcs: ["Harvey"] },
+                            { texto: "Formal e romântico", npcs: ["Elliott"] },
+                            { texto: "Descolado", npcs: ["Sam"] },
+                            { texto: "Desleixado", npcs: ["Shane"] },
                         ]
                     },
                     {
@@ -68,19 +82,31 @@
                         opcoes: [
                             { texto: "Tocando guitarra com os amigos", npcs: ["Sam"] },
                             { texto: "Observando tudo de longe, mais na sua", npcs: ["Sebastian"] },
-                            { texto: "Aproveitando os jogos com entusiasmo", npcs: ["Shane"] },
+                            { texto: "Aproveitando os jogos com entusiasmo", npcs: ["Alex"] },
                             { texto: "Contando histórias perto da fogueira", npcs: ["Elliott"] },
-                            { texto: "Assistindo o por do sol", npcs: ["Harvey"] }
+                            { texto: "Assistindo o por do sol", npcs: ["Harvey"] },
+                            { texto: "Olhando o que posso comprar", npcs: ["Haley"] },
+                            { texto: "Dançando por ai", npcs: ["Emily"] },
+                            { texto: "Bebendo no meu canto", npcs: ["Shane"] },
+                            { texto: "Cuidando das crianças da cidade", npcs: ["Penny"] },
+                            { texto: "Acompanhando meu pai", npcs: ["Maru"] },
+                            { texto: "Admirando as artes do festival", npcs: ["Leah"] }
                         ]
                     },
                     {
                         texto: "Qual animal de estimação você escolheria?",
                         opcoes: [
-                            { texto: "Gato preto", npcs: ["Sebastian"] },
+                            { texto: "Sapo", npcs: ["Sebastian"] },
                             { texto: "Cão esportivo", npcs: ["Alex"] },
                             { texto: "Pássaro exótico", npcs: ["Emily"] },
                             { texto: "Coelho fofo", npcs: ["Haley"] },
-                            { texto: "Cavalos", npcs: ["Elliott"] }
+                            { texto: "Cavalos", npcs: ["Elliott"] },
+                            { texto: "Galinha azul", npcs: ["Shane"] },
+                            { texto: "Vaca", npcs: ["Leah"] },
+                            { texto: "Tartaruga", npcs: ["Maru"] },
+                            { texto: "Gato preto", npcs: ["Abigail"] },
+                            { texto: "Águia", npcs: ["Harvey"] },
+                            { texto: "Pato", npcs: ["Sam"] }
                         ]
                     },
                     {
@@ -90,7 +116,13 @@
                             { texto: "Com esforço, tudo se conquista", npcs: ["Maru"] },
                             { texto: "Nada como um bom vinho e poesia", npcs: ["Elliott"] },
                             { texto: "Prefiro a calma e a simplicidade", npcs: ["Leah"] },
-                            { texto: "Espero poder ajudar todos sempre que puder", npcs: ["Harvey"] }
+                            { texto: "Espero poder ajudar todos sempre que puder", npcs: ["Harvey"] },
+                            { texto: "As aparências enganam", npcs: ["Haley"] },
+                            { texto: "Mesmo no escuro, me sinto bem", npcs: ["Sebastian"] },
+                            { texto: "Nada melhor que a minha guitarra e um bom som", npcs: ["Sam"] },
+                            { texto: "Quero apenas dançar, sem me preocupar", npcs: ["Emily"] },
+                            { texto: "Não há nada que uma boa cerveja não resolva", npcs: ["Shane"] },
+                            { texto: "Precisamos ter foco nos objetivos", npcs: ["Alex"] }
                         ]
                     }
                 ]
@@ -159,7 +191,7 @@
                 function mostrarResultado() {
                     var maiorPontuacao = 0
                     var npcFinal = ""
-                    var nomes = ["Abigail", "Sebastian", "Leah", "Sam", "Penny", "Haley", "Maru", "Shane", "Alex", "Emily"]
+                    var nomes = ["Abigail", "Sebastian", "Leah", "Sam", "Penny", "Haley", "Maru", "Shane", "Alex", "Emily", "Elliot", "Harvey"]
 
                     for (var i = 0; i < nomes.length; i++) {
                         var nome = nomes[i]
@@ -187,4 +219,3 @@
 
                 mostrarPergunta()
             </script>
-</body>

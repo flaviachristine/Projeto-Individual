@@ -56,7 +56,7 @@ body{
     justify-content: space-between;
 }
 .container{
-    margin-left: 25px;
+    /* margin-left: 25px; */
     color: white;
     width: 900px;
     background: #1cade6;

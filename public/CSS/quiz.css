@@ -23,6 +23,7 @@ header{
     backdrop-filter: blur(10px);
     font-size: 16px;
     font-weight: bold;
+    z-index: 1;
     /* border-bottom: 2px solid rgba(255, 255, 255, .2); */
 }
 .logo img{
@@ -51,7 +52,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     background: url(../ASSETS/farm.jpg) no-repeat;
     background-size: cover;
     background-position: center;
@@ -66,13 +67,14 @@ header{
     backdrop-filter: blur(30px);
     display: flex;
     flex-direction: column;
-    
+    margin-top: 200px;
+    margin-bottom: 100px 
 }
-.container #opcoes{
+.containerP #opcoes{
     border-radius: 10px;
     padding: 5px;
 }
-.container #resultado{
+.containerP #resultado{
     display: flex;
     flex-direction: column;
     align-items: center;
