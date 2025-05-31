@@ -23,7 +23,8 @@ function autenticar(req, res) {
                         res.json({
                             email: resultadoAutenticar[0].email,
                             senha: resultadoAutenticar[0].senha,
-                            idUsuario: resultadoAutenticar[0].idUsuario
+                            nome: resultadoAutenticar[0].nome,
+                            idUsuario: resultadoAutenticar[0].idUsuario,
 
                         })
                     } else if (resultadoAutenticar.length == 0) {
@@ -45,7 +46,6 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    // var idUsuario = req.body.idUsuarioServer;
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -55,11 +55,7 @@ function cadastrar(req, res) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } 
-    // else if (idUsuario == undefined) {
-    //     res.status(400).send("Seu ID está undefined!");
-    // }
-    else if (senha == undefined) {
+    } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 

@@ -20,17 +20,17 @@
         </nav>
     </header>
     <div class="container">
-            <h1>Login</h1>
-            <div class="input-box">
-                <input type="text" placeholder="Email" id="email_input">
-            </div>
-            <div class="input-box">
-                <input type="password" placeholder="Senha" id="senha_input">
-            </div>
-            <button class="btn" onclick="entrar()">Login</button>
-            <div class="registrar">
-                <p>Ainda não tem uma conta? <a href="cadastro.html">Registre-se</a></p>
-            </div>
+        <h1>Login</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Email" id="email_input">
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Senha" id="senha_input">
+        </div>
+        <button class="btn" onclick="entrar()">Login</button>
+        <div class="registrar">
+            <p>Ainda não tem uma conta? <a href="cadastro.html">Registre-se</a></p>
+        </div>
     </div>
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
@@ -41,10 +41,11 @@
 <script>
     var emailVar = 0
     var senhaVar = 0
+
     function entrar() {
 
-        emailVar = email_input.value;
-        senhaVar = senha_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -70,7 +71,7 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.SENHA_USUARIO = json.senha;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.ID_USUARIO = json.idUsuario
 
                     setTimeout(function () {
                         window.location = "./home.html";
@@ -80,10 +81,10 @@
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
-                // resposta.text().then(texto => {
-                //     console.error(texto);
-                //     finalizarAguardar(texto);
-                // });
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
             }
 
         }).catch(function (erro) {
@@ -92,9 +93,5 @@
 
         return false;
     }
-
-    // function sumirMensagem() {
-    //     cardErro.style.display = "none"
-    // }
 
 </script>
