@@ -127,7 +127,7 @@
 
         var quantidade = Number(qtd);
 
-        if(quantidade == '' || caixa[0] == ''){
+        if(quantidade == ''){
             msg.innerHTML = `Preencha todos os campos para prosseguir`
         } 
 
@@ -217,6 +217,7 @@
             }
         }
 
+            msg.innerHTML = `Produto ${horta} adicionado com sucesso`
 
 
     }
@@ -250,7 +251,7 @@
                 precoServer: caixa[2][0]
             }),
         })
-        msg.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} moedas!`
+        msg.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} 🪙!`
         caixa = [[], [], []]
     }
     // }

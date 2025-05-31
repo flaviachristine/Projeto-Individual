@@ -21,6 +21,7 @@ header{
     backdrop-filter: blur(10px);
     font-size: 16px;
     font-weight: bold;
+    z-index: 10;
     /* border-bottom: 2px solid rgba(255, 255, 255, .2); */
 }
 .logout img{

@@ -145,11 +145,11 @@
 
         if (resposta.ok) {
 
-          // mensagem_erro.innerHTML =
-          //   "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
-            window.location = "login.html";
+            window.location = "./login.html";
           }, "2000");
 
           // limparFormulario();
@@ -158,12 +158,12 @@
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
-      // .catch(function (resposta) {
-      //   console.log(`#ERRO: ${resposta}`);
-      //   // finalizarAguardar();
-      // });
+    //   .catch(function (resposta) {
+    //     console.log(`#ERRO: ${resposta}`);
+    //     // finalizarAguardar();
+    //   });
 
-    return false;
+    // return false;
   }
   // function sumirMensagem() {
   //   mensagem_erro.innerHTML = "";

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/home.css">
+    <script src="./JS/sessao.js"></script>
     <title>Stardew-Project</title>
 </head>
 
@@ -20,8 +21,9 @@
         </nav>
         <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
     </header>
+    <body>
     <div class="divLogoPrincipal">
-        <h1>Bem-Vindo!</h1>
+        <h1>Bem-Vindo, <span id="b_usuario">usuário</span>!</h1>
         <section class="features">
             <div class="feature-card">
                 <a href="quiz.html">
@@ -31,14 +33,23 @@
 
             <div class="feature-card">
                 <a href="calculadora.html">
-                <h3>Calculadora</h3>
-                <p>Utilize a calculadora financeira para ver quais as melhores plantaçõess para a sua fazenda!</p>
+                    <h3>Calculadora</h3>
+                    <p>Utilize a calculadora para calcular o seu lucro que você irá obter em sua fazenda</p>
             </div>
 
             <div class="feature-card">
                 <a href="dashboard.html">
-                <h3>Dashboard</h3>
-                <p>Confira os seus resultados em comparação à outros visitantes!</p>
+                    <h3>Dashboard</h3>
+                    <p>Confira os seus resultados em comparação à outros visitantes!</p>
             </div>
         </section>
     </div>
+    <footer class="footer">
+        © 2025 Flávia Hidalgo - Todos os direitos Reservados
+    </footer>
+
+</body>
+</html>
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
