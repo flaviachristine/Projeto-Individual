@@ -25,19 +25,30 @@
         <h1>Dashboard</h1>
         <div class="dashboard">
             <div class="kpis">
-
                 <div class="kpi1">
-                    <p>KPI 1</p>
+                    <p>Quantas vezes fez o quiz:</p><br>
+                    <div id="kpi1"></div>
                 </div>
                 <div class="kpi2">
-                    <p>KPI 2</p>
+                    <p>NPC Mais Tirado:</p><br>
+                    <div id="kpi2"></div>
+                </div>
+                <div class="kpi3" >
+                    <p>Item mais vendido:</p><br>
+                    <div id="kpi3"></div>
+                </div>
+                <div class="kpi4">
+                    <p>Valor total de suas Vendas:</p><br>
+                    <div id="kpi4"></div>
                 </div>
             </div>
             <div class="grafics">
                 <div class="grafico1">
+                    Gráfico 1
                     <canvas>Gráfico 1</canvas>
                 </div>
                 <div class="grafico2">
+                    Gráfico 2
                     <canvas>Gráfico 2</canvas>
                 </div>
             </div>
@@ -50,90 +61,115 @@
 
 </html>
 <script>
-    function obterDadosGrafico(idAquario) {
-
-        alterarTitulo(idAquario)
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico(resposta, idAquario);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
+    fetch("/dash/qtdQuiz", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
         })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                kpi1.innerHTML = json[0]["COUNT(idTentativa)"]
             });
-    }
-    function plotarGrafico(resposta, idAquario) {
-
-        console.log('iniciando plotagem do gráfico...');
-
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
-
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
         }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
+    }).catch(function (erro) {
+        console.log(erro);
+    })
 
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
+    fetch("/dash/npcMaisTirado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
 
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
-            config
-        );
+        if (resposta.ok) {
+            console.log(resposta);
 
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
 
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                kpi2.innerHTML = json[0]["npc"] + ", " 
+                kpi2.innerHTML += json[0]["ocorrencia"] + " vezes"
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    fetch("/dash/itensVendidos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                if (json[0] != undefined) {
+                    kpi3.innerHTML = json[0]["itemVendido"] + ", "
+                    kpi3.innerHTML += json[0]["qtdVendida"] + " unidades"
+                } else {
+                    kpi3.innerHTML = 0
+                }
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    fetch("/dash/valorVendas", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                if (json[0] != undefined) {
+                    kpi4.innerHTML = json[0]["sum(valorVenda)"] + " 🪙"
+                } else {
+                    kpi3.innerHTML = 0
+                }
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
 </script>

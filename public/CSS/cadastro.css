@@ -111,6 +111,30 @@ body{
 .registrar p a:hover{
     text-decoration: underline;
 }
+.mensagem-erro {
+  padding: 10px;  
+  width: 300px;
+  background-color: #03678f;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  display: none;
+  text-align: center;
+}
+
+.mensagem-erro.sucesso {
+  padding: 10px;  
+  width: 300px;
+  background-color: #03678f;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  display: none;
+  text-align: center;
+}
+
 footer{
     background-color: #1cade6;
     width: 100%;

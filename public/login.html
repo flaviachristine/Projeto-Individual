@@ -32,6 +32,7 @@
             <p>Ainda não tem uma conta? <a href="cadastro.html">Registre-se</a></p>
         </div>
     </div>
+    <div id="msgErro" class="mensagem-erro"></div>
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
     </footer>
@@ -73,18 +74,17 @@
                     sessionStorage.SENHA_USUARIO = json.senha;
                     sessionStorage.ID_USUARIO = json.idUsuario
 
-                    setTimeout(function () {
-                        window.location = "./home.html";
-                    }, 1000);
+                    msgErro.innerHTML = "Login realizado com sucesso! Redirecionando...";
+                    msgErro.classList.add("sucesso");
+                    msgErro.style.display = "block";
+                    setTimeout(() => {
+                        window.location.href = "home.html";
+                    }, 2000);
                 });
             } else {
 
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                msgErro.innerHTML = "Erro ao cadastrar. <br> Tente novamente.";
+                msgErro.style.display = "block";
             }
 
         }).catch(function (erro) {

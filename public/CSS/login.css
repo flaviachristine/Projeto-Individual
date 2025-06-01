@@ -67,6 +67,7 @@ body{
     width: 100%;
     height: 50px;
     margin: 30px 0;
+    cursor: pointer;
 }
 .input-box input{
     width: 100%;
@@ -79,6 +80,7 @@ body{
     font-size: 16px;
     color: white;
     padding: 20px 45px 20px 20px;
+    cursor: pointer;
 }
 .input-box input::placeholder{
     color: white;
@@ -92,13 +94,7 @@ body{
 .lembrar label input{
     accent-color: white;
     margin-right: 3px;
-}
-.lembrar a{
-    color: white;
-    text-decoration: none;
-}
-.lembrar a:hover{
-    text-decoration: underline;
+    cursor: pointer;
 }
 .container .btn{
     width: 100%;
@@ -125,6 +121,30 @@ body{
 .registrar p a:hover{
     text-decoration: underline;
 }
+.mensagem-erro {
+  padding: 10px;  
+  width: 300px;
+  background-color: #03678f;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  display: none;
+  text-align: center;
+}
+
+.mensagem-erro.sucesso {
+  padding: 10px;  
+  width: 300px;
+  background-color: #03678f;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  display: none;
+  text-align: center;
+}
+
 footer{
     background-color: #1cade6;
     width: 100%;

@@ -2,153 +2,135 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/cadastro.css">
-    <script src="./js/sessao.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./CSS/cadastro.css">
+  <script src="./js/sessao.js"></script>
 
-    <title>Cadastro</title>
+  <title>Cadastro</title>
 </head>
 
 <body>
-    <header class="header">
-        <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
-        <nav class="navbar">
-           <a href="index.html">Home</a>
-            <a href="historia.html">História do Jogo</a>
-            <a href="gameplay.html">Sobre o Jogo</a>
-            <a href="cadastro.html">Cadastro</a>
-            <a href="login.html">Login</a>
-        </nav>
-    </header>
-    
-        <div class="container">
-            <form action="">
-                <h1>Cadastro</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Nome" id="nome_input">
+  <header class="header">
+    <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="historia.html">História do Jogo</a>
+      <a href="gameplay.html">Sobre o Jogo</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
 
-                </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Email" id="email_input">
+  <div class="container">
+    <form action="">
+      <h1>Cadastro</h1>
+      <div class="input-box">
+        <input type="text" placeholder="Nome" id="nome_input">
 
-                </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Senha" id="senha_input">
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Email" id="email_input">
 
-                </div>
-                <button class="btn" type="submit" onclick="cadastrar()">Cadastrar</button>
-                <div class="registrar">
-                    <p>Já possui uma conta? <a href="login.html">Entrar</a></p>
-                </div>
-            </form>
-        </div>
-        <div class="mensagem_erro"></div>
-        <footer class="footer">
-            © 2025 Flávia Hidalgo - Todos os direitos Reservados
-        </footer>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Senha" id="senha_input">
+
+      </div>
+      <button class="btn" type="button" onclick="cadastrar()">Cadastrar</button>
+      <div class="registrar">
+        <p>Já possui uma conta? <a href="login.html">Entrar</a></p>
+      </div>
+    </form>
+  </div>
+  
+  <div id="msgErro" class="mensagem-erro"></div>
+  <footer class="footer">
+    © 2025 Flávia Hidalgo - Todos os direitos Reservados
+  </footer>
 </body>
 
 </html>
 <script>
-    // function cadastrar() {
+  function cadastrar() {
+  const nome = document.getElementById("nome_input").value.trim();
+  const email = document.getElementById("email_input").value.trim();
+  const senha = document.getElementById("senha_input").value.trim();
+  const msgErro = document.getElementById("msgErro");
 
-    //     var nomeVar = nome_input.value;
-    //     var emailVar = email_input.value;
-    //     var senhaVar = senha_input.value;
+  // Reset
+  msgErro.style.display = "none";
+  msgErro.classList.remove("sucesso");
 
-
-    //     fetch("/usuarios/cadastrar", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             nomeServer: nomeVar,
-    //             emailServer: emailVar,
-    //             senhaServer: senhaVar
-    //         }),
-    //     })
-    //         .then(function (resposta) {
-    //             console.log("resposta: ", resposta);
-
-    //             if (resposta.ok) {
-                    
-    //                 setTimeout(() => {
-    //                     window.location = "./login.html";
-    //                 }, "2000");
-    //             } 
-    //         });
-
-
-    // }
-      function cadastrar() {
-    // aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-        var nomeVar = nome_input.value;
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-
-
-
-    //Validações específicas
-
-    
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" 
-    ) {
-      alert("Preencha todos os campos para se cadastrar");
-
-      // finalizarAguardar();
-      return false;
-    }
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        // idUsuarioServer: idUsuarioVar,
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "./login.html";
-          }, "2000");
-
-          // limparFormulario();
-          // finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-    //   .catch(function (resposta) {
-    //     console.log(`#ERRO: ${resposta}`);
-    //     // finalizarAguardar();
-    //   });
-
-    // return false;
+  // Validações
+  if (!nome || !email || !senha) {
+    msgErro.innerHTML = "Preencha todos os campos.";
+    msgErro.style.display = "block";
+    return;
   }
-  // function sumirMensagem() {
-  //   mensagem_erro.innerHTML = "";
-  // }
+  if (senha.length < 6) {
+    msgErro.innerHTML = "A senha precisa ter no mínimo 6 caracteres.";
+    msgErro.style.display = "block";
+    return;
+  }
+
+  if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+    msgErro.innerHTML = "Digite um e-mail válido.";
+    msgErro.style.display = "block";
+    return;
+  }
+
+  const especiais = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+  let temEspecial = false;
+  for (let i = 0; i < especiais.length; i++) {
+    if (senha.includes(especiais[i])) {
+      temEspecial = true;
+      break;
+    }
+  }
+  if (!temEspecial) {
+    msgErro.innerHTML = "A senha precisa conter caractere especial.";
+    msgErro.style.display = "block";
+    return;
+  }
+
+  const temMaiuscula = senha !== senha.toLowerCase();
+  const temMinuscula = senha !== senha.toUpperCase();
+
+  if (!temMaiuscula || !temMinuscula) {
+    msgErro.innerHTML = "A senha deve conter letras maiúsculas e minúsculas.";
+    msgErro.style.display = "block";
+    return;
+  }
+
+  // Envio para API
+  fetch("/usuarios/cadastrar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nomeServer: nome,
+      emailServer: email,
+      senhaServer: senha
+    }),
+  })
+    .then(resposta => {
+      if (resposta.ok) {
+        msgErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando...";
+        msgErro.classList.add("sucesso");
+        msgErro.style.display = "block";
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 2000);
+      } else {
+        msgErro.innerHTML = "Erro ao cadastrar. Tente novamente.";
+        msgErro.style.display = "block";
+      }
+    })
+    .catch(erro => {
+      msgErro.innerHTML = "Erro ao conectar com o servidor.";
+      msgErro.style.display = "block";
+      console.error("Erro:", erro);
+    });
+}
+
 </script>

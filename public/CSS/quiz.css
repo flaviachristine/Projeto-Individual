@@ -58,21 +58,16 @@ header{
     background-position: center;
 }
 .containerP{
-
     color: white;
     width: 600px;
-    background: rgba(0, 195, 255, .7);
+    background: #1cade6;
     border-radius: 10px;
     padding: 30px 40px;
-    backdrop-filter: blur(30px);
+    /* backdrop-filter: blur(30px); */
     display: flex;
     flex-direction: column;
     margin-top: 200px;
     margin-bottom: 100px 
-}
-.containerP #opcoes{
-    border-radius: 10px;
-    padding: 5px;
 }
 .containerP #resultado{
     display: flex;
@@ -84,7 +79,7 @@ header{
 button.opcao{
     width: 100%;
     height: 30px;
-    background-color: #1cade6;
+    background-color: #03678f;
     border: none;
     outline: none;
     border-radius: 10px;

@@ -67,7 +67,7 @@ header {
 
 .divLogoPrincipal h1 {
     color: white;
-    
+    margin-top: -50px;
 }
 .dashboard{
     display: flex;
@@ -85,24 +85,86 @@ header {
     gap: 20px;
 }
 .dashboard .grafico1{
-    background-color: #ffff;
-    width: 300px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    font-weight: bold;
+    width: 620px;
     padding: 40px;
+    transition: transform 0.3s;
+}
+.dashboard .grafico1:hover{
+    transform: translateY(-10px);
 }
 .dashboard .grafico2{
-    background-color: #ffff;
-    width: 300px;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+    border-radius: 20px;
+    width: 620px;
     padding: 40px;
+    transition: transform 0.3s;
+}
+.dashboard .grafico2:hover{
+    transform: translateY(-10px);
 }
 .dashboard .kpi1{
-    background-color: #ffff;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
     width: 300px;
     padding: 40px;
+    transition: transform 0.3s;
+}
+.dashboard .kpi1:hover{
+    transform: translateY(-10px);
+}
+.dashboard .kpi1 p{
+    font-size: 18px;
 }
 .dashboard .kpi2{
-    background-color: #ffff;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
     width: 300px;
     padding: 40px;
+    transition: transform 0.3s;
+}
+.dashboard .kpi2:hover{
+    transform: translateY(-10px);
+}
+.dashboard .kpi2 p{
+    font-size: 18px;
+}
+.dashboard .kpi3{
+    background-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 300px;
+    padding: 40px;
+    transition: transform 0.3s;
+}
+.dashboard .kpi3:hover{
+    transform: translateY(-10px);
+}
+.dashboard .kpi3 p{
+    font-size: 18px;
+}
+.dashboard .kpi4{
+    background-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 300px;
+    padding: 40px;
+    transition: transform 0.3s;
+}
+.dashboard .kpi4:hover{
+    transform: translateY(-10px);
+}
+.dashboard .kpi4 p{
+    font-size: 18px;
 }
 
 footer{

@@ -16,8 +16,8 @@ function cadastrar(req, res) {
         res.status(400).send("Seu nome está undefined!");
     }
 
-    vendaModel.cadastrar(usuario, produto, quantidade, preco).then(function(resposta){
-        res.status(200).send("venda criado com sucesso");
+    vendaModel.cadastrar(usuario, produto, quantidade, preco).then(function(resultado){
+        res.status(200).json(resultado);
     }).catch(function(erro){
         res.status(500).json(erro.sqlMessage);
     })
