@@ -71,16 +71,54 @@ header {
     
 }
 .container{
-    margin-top: 100px;
+    margin-top: 180px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;    
+    
+}
+.compra{
     display: flex;
     flex-direction: column;
-    background-color: #1cade6;
-    width: 700px;
+    background: #D98B3A;
+    width: 600px;
     align-items: center;
     padding: 20px;
-    height: 700px;
+    height: 600px;
+    border-radius: 20px;
+}
+.pierre{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 300px;
+    margin-right: 200px;
+    z-index: 0;
+}
+.falaPierre{
+    width: 300px;
+    margin-top: 20px;
+}
+.venda{
+    /* margin-top: 180px; */
+    display: flex;
+    flex-direction: column;
+    background-color: #006e12;
+    width: 600px;
+    align-items: center;
+    padding: 20px;
+    height: 600px;
     border-radius: 20px;
     color: white;
+    
+}
+#msg{
+    /* margin-top: 180px; */
+    background-color: aqua;
+    width: 300px;
+    height: 600px;
 }
 input{
     padding: 5px;
@@ -90,7 +128,7 @@ input{
 }
 select {
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
 }
 #selectFruta{
@@ -98,16 +136,30 @@ select {
     border-radius: 5px;
     border: none;
 }
-#msg{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: justify;
-}
 button{
     padding: 8px;
     border-radius: 5px;
     border: none;
+}
+.caixaRemessas .caixa{
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 30px;
+    background: rgba(217,139,58, 0.5);
+    color: #ffff;
+    backdrop-filter: blur(1px);
+    justify-content: space-around;
+    /* border: 3px solid rgba(255, 255, 255, .2); */
+}
+.caixaRemessas{
+    display: flex;
+    flex-direction: column;
+    background: url(../ASSETS/caixaRemessas.png);
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 300px;
 }
 footer{
     background-color: #1cade6;
@@ -118,6 +170,7 @@ footer{
     padding: 15px;
     font-size: 15px;
     color: #ffff;
+    margin-top: 50px;
 }
 
 

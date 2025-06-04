@@ -32,10 +32,11 @@ function valorVendas(idUsuario) {
 }
 function graficoNpc(idUsuario) {
     var instrucao = `
-        select sum(valorVenda) from venda where fkUsuario = ${idUsuario};`;
+        select npc, count(npc) as npcs from tentativa where fkUsuario = ${idUsuario} group by npc;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
 module.exports = {
     qtdQuiz,
     npcMaisTirado,

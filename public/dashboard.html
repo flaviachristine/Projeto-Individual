@@ -22,18 +22,18 @@
         <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
     </header>
     <div class="divLogoPrincipal">
-        <h1>Dashboard</h1>
+        <h1>Dashboard</h1><br><br>
         <div class="dashboard">
             <div class="kpis">
                 <div class="kpi1">
-                    <p>Quantas vezes fez o quiz:</p><br>
+                    <p>Quantas vezes o quiz foi feito:</p><br>
                     <div id="kpi1"></div>
                 </div>
                 <div class="kpi2">
-                    <p>NPC Mais Tirado:</p><br>
+                    <p>Personagem Mais Tirado:</p><br>
                     <div id="kpi2"></div>
                 </div>
-                <div class="kpi3" >
+                <div class="kpi3">
                     <p>Item mais vendido:</p><br>
                     <div id="kpi3"></div>
                 </div>
@@ -42,10 +42,10 @@
                     <div id="kpi4"></div>
                 </div>
             </div>
-            <div class="grafics">
+            <div class="grafics" id="grafico1">
                 <div class="grafico1">
-                    Gráfico 1
-                    <canvas>Gráfico 1</canvas>
+                    Personagens tirados e quantidade de vezes em que foi tirado:
+                    <canvas id="myChart"></canvas>
                 </div>
                 <div class="grafico2">
                     Gráfico 2
@@ -61,6 +61,7 @@
 
 </html>
 <script>
+
     fetch("/dash/qtdQuiz", {
         method: "POST",
         headers: {
@@ -79,7 +80,7 @@
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
-                kpi1.innerHTML = json[0]["COUNT(idTentativa)"]
+                kpi1.innerHTML = json[0]["COUNT(idTentativa)"] + " vezes"
             });
         }
 
@@ -105,8 +106,12 @@
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
-                kpi2.innerHTML = json[0]["npc"] + ", " 
-                kpi2.innerHTML += json[0]["ocorrencia"] + " vezes"
+                if(json[0] != undefined){
+                    kpi2.innerHTML = json[0]["npc"] + ", "
+                    kpi2.innerHTML += json[0]["ocorrencia"] + " vezes"
+                } else{
+                    kpi2.innerHTML = "Faça o quiz para obter os personagens mais tirados aqui"
+                }
             });
         }
 
@@ -136,7 +141,7 @@
                     kpi3.innerHTML = json[0]["itemVendido"] + ", "
                     kpi3.innerHTML += json[0]["qtdVendida"] + " unidades"
                 } else {
-                    kpi3.innerHTML = 0
+                    kpi3.innerHTML = "Nenhum item vendido"
                 }
             });
         }
@@ -162,14 +167,67 @@
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
-                if (json[0] != undefined) {
+                if (json[0]["sum(valorVenda)"] != null) {
                     kpi4.innerHTML = json[0]["sum(valorVenda)"] + " 🪙"
                 } else {
-                    kpi3.innerHTML = 0
+                    kpi4.innerHTML = 0 + " 🪙"
                 }
             });
         }
     }).catch(function (erro) {
         console.log(erro);
     })
+
+    fetch("/dash/graficoNpc", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+                const ctx = document.getElementById('myChart');
+                var nomes = []
+                var quantidadeNome = []
+                for(var i = 0; i < json.length; i++){
+                    nomes.push(json[i]['npc'])
+                }
+                for(var i = 0; i < json.length; i++){
+                    quantidadeNome.push(json[i]['npcs'])
+                }
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: nomes,
+                        datasets: [{
+                            label: 'Quantas vezes o NPC foi tirado',
+                            data: quantidadeNome,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
 </script>

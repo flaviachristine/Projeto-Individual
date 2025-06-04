@@ -21,7 +21,7 @@ router.post("/valorVendas", function (req, res) {
 })
 
 router.post("/graficoNpc", function (req, res) {
-    dashController.valorVendas(req, res);
+    dashController.graficoNpc(req, res);
 })
 
 module.exports = router;

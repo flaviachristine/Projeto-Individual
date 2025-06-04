@@ -22,32 +22,51 @@
     </header>
     <div class="divLogoPrincipal">
         <div class="container">
-            <h1>Calculadora</h1><br>
-            <label for="">Selecione uma estação:</label>
-            <select name="" id="selectEstacao" onchange="trocaSelect()">
-                <option value="primavera">Primavera</option>
-                <option value="verao">Verão</option>
-                <option value="outono">Outono</option>
-                <option value="inverno">Inverno</option>
-            </select><br>
-            <label for="">Selecione o produto</label>
-            <select name="" id="selectFruta"></select><br>
-            <label for="">Selecione a quantidade do produto</label>
-            <input type="number" id="iptQtd" placeholder="Quantidade"><br>
-
-
-            <button onclick="adicionar(selectFruta.value, iptQtd.value)">Adicionar na Caixa</button><br>
-            <button onclick="vender()">Vender</button><br>
-            Produto a ser removido da caixa
-            <input type="text" id="inputDeletar"><br>
-            <button onclick="remover(selectFruta.value, iptQtd.value)">Remover Produto</button><br>
+            <div class="compra">
+                <h1>Compra</h1><br>
+                <label for="">Selecione uma estação:</label>
+                <select name="" id="selectEstacaoCompra" onchange="trocaSelectCompra()">
+                    <option value="primavera">Primavera</option>
+                    <option value="verao">Verão</option>
+                    <option value="outono">Outono</option>
+                    <option value="inverno">Inverno</option>
+                </select><br>
+                <label for="">Selecione o produto</label>
+                <select name="" id="selectFrutaCompra"></select><br>
+                <label for="">Selecione a quantidade do produto</label>
+                <input type="number" id="iptQtdCompra" placeholder="Quantidade"><br>
+                <button onclick="adicionar(selectFrutaCompra.value, iptQtdCompra.value)">Comprar</button><br>
+                <div class="pierre">
+                    <img src="ASSETS/pierre.png" alt="">
+                    <div class="falaPierre">
+                        <img src="ASSETS/pierreFala.png" alt="" class="falaPierre">
+                    </div>
+                </div>
+            </div>
             <div id="msg"></div>
-
-            
-
-
+            <div class="container">
+            <div class="venda">
+                <h1>Venda</h1><br>
+                <label for="">Selecione uma estação:</label>
+                <select name="" id="selectEstacaoVenda" onchange="trocaSelectVenda()">
+                    <option value="primavera">Primavera</option>
+                    <option value="verao">Verão</option>
+                    <option value="outono">Outono</option>
+                    <option value="inverno">Inverno</option>
+                </select><br>
+                <label for="">Selecione o produto</label>
+                <select name="" id="selectFrutaVenda"></select><br>
+                <label for="">Selecione a quantidade do produto</label>
+                <input type="number" id="iptQtdVenda" placeholder="Quantidade"><br>
+                <div class="caixaRemessas">
+                    <button class="caixa" onclick="adicionar(selectFrutaVenda.value, iptQtdVenda.value)">Adicionar na Caixa</button><br>
+                    <button class="caixa" onclick="vender()">Vender</button><br>
+                    <button class="caixa" onclick="remover(selectFruta.value, iptQtd.value)">Remover Último Produto</button><br>
+                </div>
+            </div>
         </div>
     </div>
+    <div id="msg"></div>
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
     </footer>
@@ -62,65 +81,124 @@
         [] // Preço de cada Horta
     ]
 
-    function trocaSelect() {
+    function trocaSelectCompra() {
 
-        var estacao = selectEstacao.value;
+        var estacaoCompra = selectEstacaoCompra.value;
+        
 
-        if (estacao == 'primavera') {
+        if (estacaoCompra == 'primavera') {
 
-            selectFruta.innerHTML = `<option value="chirivia">Chirivia</option>`
-            selectFruta.innerHTML += `<option value="batata">Batata</option>`
-            selectFruta.innerHTML += `<option value="morango">Morango</option>`
-            selectFruta.innerHTML += `<option value="vagem">Vagem</option>`
-            selectFruta.innerHTML += `<option value="couve-flor">Couve-Flor</option>`
-            selectFruta.innerHTML += `<option value="couve">Couve</option>`
-            selectFruta.innerHTML += `<option value="alho">Alho</option>`
-            selectFruta.innerHTML += `<option value="arroz">Arroz não moído</option>`
-            selectFruta.innerHTML += `<option value="cenoura">Cenoura</option>`
-            selectFruta.innerHTML += `<option value="cafe">Grão de Café</option>`
-            selectFruta.innerHTML += `<option value="jasmin">Jasmin-Azul</option>`
-            selectFruta.innerHTML += `<option value="ruibarbo">Ruibarbo</option>`
-            selectFruta.innerHTML += `<option value="tulipa">Tulipa</option>`
+            selectFrutaCompra.innerHTML = `<option value="chirivia">Chirivia</option>`
+            selectFrutaCompra.innerHTML += `<option value="batata">Batata</option>`
+            selectFrutaCompra.innerHTML += `<option value="morango">Morango</option>`
+            selectFrutaCompra.innerHTML += `<option value="vagem">Vagem</option>`
+            selectFrutaCompra.innerHTML += `<option value="couve-flor">Couve-Flor</option>`
+            selectFrutaCompra.innerHTML += `<option value="couve">Couve</option>`
+            selectFrutaCompra.innerHTML += `<option value="alho">Alho</option>`
+            selectFrutaCompra.innerHTML += `<option value="arroz">Arroz não moído</option>`
+            selectFrutaCompra.innerHTML += `<option value="cenoura">Cenoura</option>`
+            selectFrutaCompra.innerHTML += `<option value="cafe">Grão de Café</option>`
+            selectFrutaCompra.innerHTML += `<option value="jasmin">Jasmin-Azul</option>`
+            selectFrutaCompra.innerHTML += `<option value="ruibarbo">Ruibarbo</option>`
+            selectFrutaCompra.innerHTML += `<option value="tulipa">Tulipa</option>`
 
-        } else if (estacao == 'verao') {
+        } else if (estacaoCompra == 'verao') {
 
-            selectFruta.innerHTML = `<option value="melao">Melão</option>`
-            selectFruta.innerHTML += `<option value="mirtilo">Mirtilo</option>`
-            selectFruta.innerHTML += `<option value="pimenta">Pimenta</option>`
-            selectFruta.innerHTML += `<option value="abobrinha">Abobrinha de Verão</option>`
-            selectFruta.innerHTML += `<option value="carambola">Carambola</option>`
-            selectFruta.innerHTML += `<option value="micanga">Flor-Miçanga</option>`
-            selectFruta.innerHTML += `<option value="girassol">Girassol</option>`
-            selectFruta.innerHTML += `<option value="lupulo">Lúpulo</option>`
-            selectFruta.innerHTML += `<option value="milho">Milho</option>`
-            selectFruta.innerHTML += `<option value="papoula">Papoula</option>`
-            selectFruta.innerHTML += `<option value="rabanete">Rabanete</option>`
-            selectFruta.innerHTML += `<option value="repolho">Repolho Roxo</option>`
-            selectFruta.innerHTML += `<option value="tomate">Tomate</option>`
-            selectFruta.innerHTML += `<option value="trigo">Trigo</option>`
+            selectFrutaCompra.innerHTML = `<option value="melao">Melão</option>`
+            selectFrutaCompra.innerHTML += `<option value="mirtilo">Mirtilo</option>`
+            selectFrutaCompra.innerHTML += `<option value="pimenta">Pimenta</option>`
+            selectFrutaCompra.innerHTML += `<option value="abobrinha">Abobrinha de Verão</option>`
+            selectFrutaCompra.innerHTML += `<option value="carambola">Carambola</option>`
+            selectFrutaCompra.innerHTML += `<option value="micanga">Flor-Miçanga</option>`
+            selectFrutaCompra.innerHTML += `<option value="girassol">Girassol</option>`
+            selectFrutaCompra.innerHTML += `<option value="lupulo">Lúpulo</option>`
+            selectFrutaCompra.innerHTML += `<option value="milho">Milho</option>`
+            selectFrutaCompra.innerHTML += `<option value="papoula">Papoula</option>`
+            selectFrutaCompra.innerHTML += `<option value="rabanete">Rabanete</option>`
+            selectFrutaCompra.innerHTML += `<option value="repolho">Repolho Roxo</option>`
+            selectFrutaCompra.innerHTML += `<option value="tomate">Tomate</option>`
+            selectFrutaCompra.innerHTML += `<option value="trigo">Trigo</option>`
 
-        } else if (estacao == 'outono') {
+        } else if (estacaoCompra == 'outono') {
 
-            selectFruta.innerHTML = `<option value="abobora">Abóbora</option>`
-            selectFruta.innerHTML += `<option value="berinjela">Berinjela</option>`
-            selectFruta.innerHTML += `<option value="alcachofra">Alcachofra</option>`
-            selectFruta.innerHTML += `<option value="amaranto">Amaranto</option>`
-            selectFruta.innerHTML += `<option value="beterraba">Beterraba</option>`
-            selectFruta.innerHTML += `<option value="brocolis">Brócolis</option>`
-            selectFruta.innerHTML += `<option value="couve-chinesa">Couve-Chinesa</option>`
-            selectFruta.innerHTML += `<option value="inhame">Inhame</option>`
-            selectFruta.innerHTML += `<option value="rosa-de-fada">Rosa-de-Fada</option>`
-            selectFruta.innerHTML += `<option value="uva">Uva</option>`
-            selectFruta.innerHTML += `<option value="oxicoco">Oxicoco</option>`
+            selectFrutaCompra.innerHTML = `<option value="abobora">Abóbora</option>`
+            selectFrutaCompra.innerHTML += `<option value="berinjela">Berinjela</option>`
+            selectFrutaCompra.innerHTML += `<option value="alcachofra">Alcachofra</option>`
+            selectFrutaCompra.innerHTML += `<option value="amaranto">Amaranto</option>`
+            selectFrutaCompra.innerHTML += `<option value="beterraba">Beterraba</option>`
+            selectFrutaCompra.innerHTML += `<option value="brocolis">Brócolis</option>`
+            selectFrutaCompra.innerHTML += `<option value="couve-chinesa">Couve-Chinesa</option>`
+            selectFrutaCompra.innerHTML += `<option value="inhame">Inhame</option>`
+            selectFrutaCompra.innerHTML += `<option value="rosa-de-fada">Rosa-de-Fada</option>`
+            selectFrutaCompra.innerHTML += `<option value="uva">Uva</option>`
+            selectFrutaCompra.innerHTML += `<option value="oxicoco">Oxicoco</option>`
 
 
-        } else if (estacao == 'inverno') {
+        } else if (estacaoCompra == 'inverno') {
 
-            selectFruta.innerHTML = `<option value="melao-poeiro">Melão-Poeiro</option>`
+            selectFrutaCompra.innerHTML = `<option value="melao-poeiro">Melão-Poeiro</option>`
 
 
         }
+    }
+    function trocaSelectVenda(){
 
+        var estacaoVenda = selectEstacaoVenda.value;
+
+        if (estacaoVenda == 'primavera') {
+
+            selectFrutaVenda.innerHTML = `<option value="chirivia">Chirivia</option>`
+            selectFrutaVenda.innerHTML += `<option value="batata">Batata</option>`
+            selectFrutaVenda.innerHTML += `<option value="morango">Morango</option>`
+            selectFrutaVenda.innerHTML += `<option value="vagem">Vagem</option>`
+            selectFrutaVenda.innerHTML += `<option value="couve-flor">Couve-Flor</option>`
+            selectFrutaVenda.innerHTML += `<option value="couve">Couve</option>`
+            selectFrutaVenda.innerHTML += `<option value="alho">Alho</option>`
+            selectFrutaVenda.innerHTML += `<option value="arroz">Arroz não moído</option>`
+            selectFrutaVenda.innerHTML += `<option value="cenoura">Cenoura</option>`
+            selectFrutaVenda.innerHTML += `<option value="cafe">Grão de Café</option>`
+            selectFrutaVenda.innerHTML += `<option value="jasmin">Jasmin-Azul</option>`
+            selectFrutaVenda.innerHTML += `<option value="ruibarbo">Ruibarbo</option>`
+            selectFrutaVenda.innerHTML += `<option value="tulipa">Tulipa</option>`
+
+        } else if (estacaoVenda == 'verao') {
+
+            selectFrutaVenda.innerHTML = `<option value="melao">Melão</option>`
+            selectFrutaVenda.innerHTML += `<option value="mirtilo">Mirtilo</option>`
+            selectFrutaVenda.innerHTML += `<option value="pimenta">Pimenta</option>`
+            selectFrutaVenda.innerHTML += `<option value="abobrinha">Abobrinha de Verão</option>`
+            selectFrutaVenda.innerHTML += `<option value="carambola">Carambola</option>`
+            selectFrutaVenda.innerHTML += `<option value="micanga">Flor-Miçanga</option>`
+            selectFrutaVenda.innerHTML += `<option value="girassol">Girassol</option>`
+            selectFrutaVenda.innerHTML += `<option value="lupulo">Lúpulo</option>`
+            selectFrutaVenda.innerHTML += `<option value="milho">Milho</option>`
+            selectFrutaVenda.innerHTML += `<option value="papoula">Papoula</option>`
+            selectFrutaVenda.innerHTML += `<option value="rabanete">Rabanete</option>`
+            selectFrutaVenda.innerHTML += `<option value="repolho">Repolho Roxo</option>`
+            selectFrutaVenda.innerHTML += `<option value="tomate">Tomate</option>`
+            selectFrutaVenda.innerHTML += `<option value="trigo">Trigo</option>`
+
+        } else if (estacaoVenda == 'outono') {
+
+            selectFrutaVenda.innerHTML = `<option value="abobora">Abóbora</option>`
+            selectFrutaVenda.innerHTML += `<option value="berinjela">Berinjela</option>`
+            selectFrutaVenda.innerHTML += `<option value="alcachofra">Alcachofra</option>`
+            selectFrutaVenda.innerHTML += `<option value="amaranto">Amaranto</option>`
+            selectFrutaVenda.innerHTML += `<option value="beterraba">Beterraba</option>`
+            selectFrutaVenda.innerHTML += `<option value="brocolis">Brócolis</option>`
+            selectFrutaVenda.innerHTML += `<option value="couve-chinesa">Couve-Chinesa</option>`
+            selectFrutaVenda.innerHTML += `<option value="inhame">Inhame</option>`
+            selectFrutaVenda.innerHTML += `<option value="rosa-de-fada">Rosa-de-Fada</option>`
+            selectFrutaVenda.innerHTML += `<option value="uva">Uva</option>`
+            selectFrutaVenda.innerHTML += `<option value="oxicoco">Oxicoco</option>`
+
+
+        } else if (estacaoVenda == 'inverno') {
+
+            selectFrutaVenda.innerHTML = `<option value="melao-poeiro">Melão-Poeiro</option>`
+
+
+        }
     }
 
     function adicionar(horta, qtd) {
@@ -249,7 +327,7 @@
                 produtoServer: caixa[0][0],
                 qtdServer: caixa[1][0],
                 precoServer: caixa[2][0]
-            }),
+            }), 
         })
         msg.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} 🪙!`
         caixa = [[], [], []]
