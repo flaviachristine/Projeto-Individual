@@ -35,7 +35,8 @@
                 <select name="" id="selectFrutaCompra"></select><br>
                 <label for="">Selecione a quantidade do produto</label>
                 <input type="number" id="iptQtdCompra" placeholder="Quantidade"><br>
-                <button onclick="adicionar(selectFrutaCompra.value, iptQtdCompra.value)">Comprar</button><br>
+                <button onclick="adicionarCarrinho(selectFrutaCompra.value, iptQtdCompra.value)">Adicionar no Carrinho</button><br>
+                <button onclick="comprar()">Comprar</button>
                 <div class="pierre">
                     <img src="ASSETS/pierre.png" alt="">
                     <div class="falaPierre">
@@ -43,7 +44,9 @@
                     </div>
                 </div>
             </div>
-            <div id="msg"></div>
+            <div id="msg">
+                <!-- <div id="carteira"></div> -->
+            </div>
             <div class="container">
             <div class="venda">
                 <h1>Venda</h1><br>
@@ -66,7 +69,6 @@
             </div>
         </div>
     </div>
-    <div id="msg"></div>
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
     </footer>
@@ -75,15 +77,22 @@
 </html>
 
 <script>
-    var caixa = [
+    let caixa = [
         [], // Nome Horta
         [],  // Quantidade Horta
         [] // Preço de cada Horta
     ]
+    let carrinho = [
+        [],
+        [],
+        []
+    ]
+    let carteira = 500;
+    msg.innerHTML = `Seu saldo na carteira: ${carteira}`;  
 
     function trocaSelectCompra() {
 
-        var estacaoCompra = selectEstacaoCompra.value;
+        let estacaoCompra = selectEstacaoCompra.value;
         
 
         if (estacaoCompra == 'primavera') {
@@ -206,7 +215,7 @@
         var quantidade = Number(qtd);
 
         if(quantidade == ''){
-            msg.innerHTML = `Preencha todos os campos para prosseguir`
+            msg.innerHTML += `Preencha todos os campos para prosseguir`
         } 
 
         if (caixa[0].includes(horta)) {
@@ -294,8 +303,104 @@
                 caixa[2].push(quantidade * 60)
             }
         }
+            msg.innerHTML = `Produto ${horta} adicionado com sucesso <br>`
 
-            msg.innerHTML = `Produto ${horta} adicionado com sucesso`
+
+    }
+    function adicionarCarrinho(horta, qtd) {
+
+        var quantidade = Number(qtd);
+
+        if(quantidade == ''){
+            msg.innerHTML = `Preencha todos os campos para prosseguir`
+        } 
+
+        if (carrinho[0].includes(horta)) {
+
+            carrinho[1][carrinho[0].indexOf(horta)] += quantidade;
+        } else {
+            carrinho[0].push(horta)
+            carrinho[1].push(quantidade)
+
+            if (horta == 'alho') {
+                carrinho[2].push(quantidade * 60)
+            } else if(horta == 'arroz'){
+                carrinho[2].push(quantidade * 30)
+            }else if(horta == 'batata'){
+                carrinho[2].push(quantidade * 80)
+            }else if(horta == 'cenoura'){
+                carrinho[2].push(quantidade * 35)
+            }else if(horta == 'chirivia'){
+                carrinho[2].push(quantidade * 35)
+            }else if(horta == 'couve'){
+                carrinho[2].push(quantidade * 110)
+            }else if(horta == 'couve-flor'){
+                carrinho[2].push(quantidade * 175)
+            }else if(horta == 'cafe'){
+                carrinho[2].push(quantidade * 15)
+            }else if(horta == 'jasmin'){
+                carrinho[2].push(quantidade * 50)
+            }else if(horta == 'morango'){
+                carrinho[2].push(quantidade * 120)
+            }else if(horta == 'ruibabo'){
+                carrinho[2].push(quantidade * 220)
+            }else if(horta == 'tulipa'){
+                carrinho[2].push(quantidade * 30)
+            }else if(horta == 'vagem'){
+                carrinho[2].push(quantidade * 40)
+            }else if(horta == 'abobrinha'){
+                carrinho[2].push(quantidade * 45)
+            }else if(horta == 'carambola'){
+                carrinho[2].push(quantidade * 750)
+            }else if(horta == 'micanga'){
+                carrinho[2].push(quantidade * 90)
+            }else if(horta == 'girassol'){
+                carrinho[2].push(quantidade * 80)
+            }else if(horta == 'lupulo'){
+                carrinho[2].push(quantidade * 25)
+            }else if(horta == 'melao'){
+                carrinho[2].push(quantidade * 250)
+            }else if(horta == 'mirtilo'){
+                carrinho[2].push(quantidade * 50)
+            }else if(horta == 'papoula'){
+                carrinho[2].push(quantidade * 140)
+            }else if(horta == 'pimenta'){
+                carrinho[2].push(quantidade * 40)
+            }else if(horta == 'rabanete'){
+                carrinho[2].push(quantidade * 90)
+            }else if(horta == 'repolho'){
+                carrinho[2].push(quantidade * 260)
+            }else if(horta == 'tomate'){
+                carrinho[2].push(quantidade * 60)
+            }else if(horta == 'trigo'){
+                carrinho[2].push(quantidade * 25)
+            }else if(horta == 'abobora'){
+                carrinho[2].push(quantidade * 320)
+            }else if(horta == 'alcachofra'){
+                carrinho[2].push(quantidade * 160)
+            }else if(horta == 'amaranto'){
+                carrinho[2].push(quantidade * 150)
+            }else if(horta == 'berinjela'){
+                carrinho[2].push(quantidade * 60)
+            }else if(horta == 'beterraba'){
+                carrinho[2].push(quantidade * 100)
+            }else if(horta == 'brocolis'){
+                carrinho[2].push(quantidade * 70)
+            }else if(horta == 'couve-chinesa'){
+                carrinho[2].push(quantidade * 80)
+            }else if(horta == 'inhame'){
+                carrinho[2].push(quantidade * 160)
+            }else if(horta == 'oxicoco'){
+                carrinho[2].push(quantidade * 75)
+            }else if(horta == 'rosa-de-fada'){
+                carrinho[2].push(quantidade * 290)
+            }else if(horta == 'uva'){
+                carrinho[2].push(quantidade * 80)
+            }else if(horta == 'melao-poeiro'){
+                carrinho[2].push(quantidade * 60)
+            }
+        }
+            msg.innerHTML = `Produto ${horta} adicionado com sucesso no carrinho <br>`
 
 
     }
@@ -329,8 +434,29 @@
                 precoServer: caixa[2][0]
             }), 
         })
-        msg.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} 🪙!`
+        msg.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} 🪙! <br>`
+        carteira += caixa[2][0]
         caixa = [[], [], []]
+    }
+    function comprar() {
+
+        // for(var i= 0; i < caixa.length; i++){
+
+        // fetch("/venda/cadastrar", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         idUsuarioServer: sessionStorage.ID_USUARIO,
+        //         produtoServer: caixa[0][0],
+        //         qtdServer: caixa[1][0],
+        //         precoServer: caixa[2][0]
+        //     }), 
+        // })
+        msg.innerHTML = `Produto ${carrinho[0][carrinho[0].length - 1]} comprado com sucesso, você comprou ${carrinho[1][carrinho[1].length - 1]} unidades, pelo preço de ${carrinho[2][carrinho[2].length - 1]} 🪙! <br>`
+        carteira -= carrinho[2][0]
+        carrinho = [[], [], []]
     }
     // }
 

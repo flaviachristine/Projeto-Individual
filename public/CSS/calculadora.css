@@ -83,11 +83,12 @@ header {
     display: flex;
     flex-direction: column;
     background: #D98B3A;
-    width: 600px;
+    width: 600px;   
     align-items: center;
     padding: 20px;
     height: 600px;
     border-radius: 20px;
+    color: #ffff;
 }
 .pierre{
     display: flex;
@@ -99,26 +100,35 @@ header {
 }
 .falaPierre{
     width: 300px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 .venda{
     /* margin-top: 180px; */
     display: flex;
     flex-direction: column;
-    background-color: #006e12;
+    background-color: #43A118;
     width: 600px;
     align-items: center;
     padding: 20px;
     height: 600px;
     border-radius: 20px;
     color: white;
+    margin-top: -20vh;
     
 }
 #msg{
     /* margin-top: 180px; */
-    background-color: aqua;
+    background-color: rgba(255, 255, 255, 0.6);
     width: 300px;
     height: 600px;
+    border-radius: 10px;
+    border: 4px solid #DC5F00;
+    padding: 5px;
+    color: #DC5F00;
+}
+#msg p{
+    font-size: 16px;
+    font-weight: bold;
 }
 input{
     padding: 5px;
