@@ -170,6 +170,27 @@ body{
     display: flex;
     align-items: center;
 }
+.Valley{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tituloValley{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.imgValley{
+    width: 555px;
+    border-radius: 20px;
+}
+.Valley .textoValley{
+    margin-top: 20px;
+    margin-left: 50px;
+    text-align: justify;
+    display: flex;
+    align-items: center;
+}
 footer{
     margin-top: -50px;
     background-color:#1cade6;

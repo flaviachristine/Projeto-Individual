@@ -24,4 +24,8 @@ router.post("/graficoNpc", function (req, res) {
     dashController.graficoNpc(req, res);
 })
 
+router.post("/graficoCarteira", function (req, res) {
+    dashController.graficoCarteira(req, res);
+})
+
 module.exports = router;

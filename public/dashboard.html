@@ -48,8 +48,8 @@
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="grafico2">
-                    Gráfico 2
-                    <canvas>Gráfico 2</canvas>
+                    Sua carteira
+                    <canvas id="myChart2"></canvas>
                 </div>
             </div>
         </div>
@@ -229,5 +229,52 @@
     }).catch(function (erro) {
         console.log(erro);
     })
+fetch("/dash/graficoCarteira", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
 
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+                const ctx = document.getElementById('myChart2');
+                var valor = []
+                for(var i = 0; i < json.length; i++){
+                    valor.push(json[i]['sum(valorVenda)'])
+                }
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: nomes,
+                        datasets: [{
+                            label: 'Quantas vezes o NPC foi tirado',
+                            data: quantidadeNome,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+    
 </script>

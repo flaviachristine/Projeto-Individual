@@ -44,9 +44,13 @@
                     </div>
                 </div>
             </div>
-            <div id="msg">
-                <!-- <div id="carteira"></div> -->
+            <div id="Mensagens">
+                
+                <div id="msg" class="msg1"></div>
+                <div id="msgVenda" class="msg"></div>
+                <div id="msgCompra" class="msg"></div>
             </div>
+            
             <div class="container">
             <div class="venda">
                 <h1>Venda</h1><br>
@@ -64,7 +68,6 @@
                 <div class="caixaRemessas">
                     <button class="caixa" onclick="adicionar(selectFrutaVenda.value, iptQtdVenda.value)">Adicionar na Caixa</button><br>
                     <button class="caixa" onclick="vender()">Vender</button><br>
-                    <button class="caixa" onclick="remover(selectFruta.value, iptQtd.value)">Remover Último Produto</button><br>
                 </div>
             </div>
         </div>
@@ -88,8 +91,8 @@
         []
     ]
     let carteira = 500;
-    msg.innerHTML = `Seu saldo na carteira: ${carteira}`;  
-
+     
+    msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙<br><br>`; 
     function trocaSelectCompra() {
 
         let estacaoCompra = selectEstacaoCompra.value;
@@ -215,7 +218,7 @@
         var quantidade = Number(qtd);
 
         if(quantidade == ''){
-            msg.innerHTML += `Preencha todos os campos para prosseguir`
+            msg.innerHTML += `Preencha todos os campos para prosseguir<br><br>`
         } 
 
         if (caixa[0].includes(horta)) {
@@ -303,7 +306,7 @@
                 caixa[2].push(quantidade * 60)
             }
         }
-            msg.innerHTML = `Produto ${horta} adicionado com sucesso <br>`
+            msgVenda.innerHTML = `Produto ${horta} adicionado com sucesso <br><br>`
 
 
     }
@@ -312,7 +315,7 @@
         var quantidade = Number(qtd);
 
         if(quantidade == ''){
-            msg.innerHTML = `Preencha todos os campos para prosseguir`
+            msg.innerHTML += `Preencha todos os campos para prosseguir<br><br>`
         } 
 
         if (carrinho[0].includes(horta)) {
@@ -400,27 +403,9 @@
                 carrinho[2].push(quantidade * 60)
             }
         }
-            msg.innerHTML = `Produto ${horta} adicionado com sucesso no carrinho <br>`
-
-
-    }
-
-    function remover() {
-        var remover = inputDeletar.value
-
-        if (caixa[0].includes(remover)) {
-            while (caixa[0].includes(remover)) {
-                caixa[1].splice(caixa[0].indexOf(remover), 1)
-                caixa[1].splice(caixa[1].indexOf(remover), 1)
-            }
-            msg.innerHTML = `O produto ${remover} foi removido da caixa`
-        } else {
-            msg.innerHTML = `O produto ${remover} não foi vendido hoje`
-        }
+            msgCompra.innerHTML = `Produto ${horta} adicionado com sucesso no carrinho <br><br>`
     }
     function vender() {
-
-        // for(var i= 0; i < caixa.length; i++){
 
         fetch("/venda/cadastrar", {
             method: "POST",
@@ -434,30 +419,17 @@
                 precoServer: caixa[2][0]
             }), 
         })
-        msg.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} 🪙! <br>`
+        msgVenda.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} 🪙! <br><br>`
         carteira += caixa[2][0]
         caixa = [[], [], []]
+        msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙<br><br>`; 
     }
     function comprar() {
 
-        // for(var i= 0; i < caixa.length; i++){
-
-        // fetch("/venda/cadastrar", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         idUsuarioServer: sessionStorage.ID_USUARIO,
-        //         produtoServer: caixa[0][0],
-        //         qtdServer: caixa[1][0],
-        //         precoServer: caixa[2][0]
-        //     }), 
-        // })
-        msg.innerHTML = `Produto ${carrinho[0][carrinho[0].length - 1]} comprado com sucesso, você comprou ${carrinho[1][carrinho[1].length - 1]} unidades, pelo preço de ${carrinho[2][carrinho[2].length - 1]} 🪙! <br>`
+        msgCompra.innerHTML = `Produto ${carrinho[0][carrinho[0].length - 1]} comprado com sucesso, você comprou ${carrinho[1][carrinho[1].length - 1]} unidades, pelo preço de ${carrinho[2][carrinho[2].length - 1]} 🪙! <br><br>`
         carteira -= carrinho[2][0]
         carrinho = [[], [], []]
-    }
-    // }
 
+        msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙<br><br>`; 
+    }
 </script>

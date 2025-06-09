@@ -68,6 +68,19 @@ header{
     font-weight: bold;
     color: #ffff;
 }
+.btn{
+    width: 200px;
+    height: 45px;
+    background-color: #1cade6;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffff;
+}
 .btn:hover{
     background-color: #03678f;
 }
@@ -83,6 +96,14 @@ header{
     flex-direction: row;
     align-items: center;
     justify-content: center; 
+}
+.imagemDivConteudo2{
+     width: 200px;
+    padding: 100px;
+    margin-left: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-left: -50px;
 }
 .imagemDivConteudo1{
     width: 350px;

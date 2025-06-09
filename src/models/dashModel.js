@@ -36,11 +36,17 @@ function graficoNpc(idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-
+function graficoCarteira(idUsuario) {
+    var instrucao = `
+        select sum(valorVenda) as somaVendas from venda where fkUsuario = ${idUsuario};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     qtdQuiz,
     npcMaisTirado,
     itensVendidos,
     valorVendas,
-    graficoNpc
+    graficoNpc,
+    graficoCarteira
 };
