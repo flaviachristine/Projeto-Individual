@@ -19,7 +19,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var quizRouter = require("./src/routes/quiz");
 var vendaRouter = require("./src/routes/venda");
 var dashRouter = require("./src/routes/dash");
-// var aquariosRouter = require("./src/routes/aquarios");
+var compraRouter = require("./src/routes/compra");
 // var empresasRouter = require("./src/routes/empresas");
 
 app.use(express.json());
@@ -33,7 +33,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/quiz", quizRouter);
 app.use("/venda", vendaRouter);
 app.use("/dash", dashRouter);
-// app.use("/aquarios", aquariosRouter);
+app.use("/compra", compraRouter);
 // app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {

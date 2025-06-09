@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./CSS/quiz.css">
     <title>Stardew-Project</title>
 </head>
+
 <body>
     <header class="header">
         <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
@@ -27,194 +28,207 @@
             <div id="resultado"></div>
         </div>
     </div>
+   
 </body>
 <footer class="footer">
     © 2025 Flávia Hidalgo - Todos os direitos Reservados
 </footer>
+
 </html>
- <script>
+<script>
 
-                var idUsuario = sessionStorage.ID_USUARIO
+    var idUsuario = sessionStorage.ID_USUARIO
 
 
-                var pontuacao = {
-                    Abigail: 0, Sebastian: 0, Leah: 0, Sam: 0, Penny: 0,
-                    Haley: 0, Maru: 0, Shane: 0, Alex: 0, Emily: 0, Elliott: 0, Harvey: 0
-                }
+    var pontuacao = {
+        Abigail: 0, Sebastian: 0, Leah: 0, Sam: 0, Penny: 0,
+        Haley: 0, Maru: 0, Shane: 0, Alex: 0, Emily: 0, Elliott: 0, Harvey: 0
+    }
 
-                var perguntas = [
-                    {
-                        texto: "O que você prefere fazer em um dia de folga?",
-                        opcoes: [
-                            { texto: "Explorar cavernas", npcs: ["Abigail"] },
-                            { texto: "Jogar bola ou praticar esportes", npcs: ["Alex"] },
-                            { texto: "Pegar sol perto do mar", npcs: ["Haley"] },
-                            { texto: "Meditar ou relaxar com cristais", npcs: ["Emily"] },
-                            { texto: "Escutar músicas", npcs: ["Sebastian"] },
-                            { texto: "Escrever poemas", npcs: ["Elliott"] },
-                            { texto: "Tomar um bom café", npcs: ["Harvey"] },
-                            { texto: "Fazer minha propria arte", npcs: ["Leah"] },
-                            { texto: "Ir beber no bar", npcs: ["Shane"] },
-                            { texto: "Ler um bom livro", npcs: ["Penny"] },
-                            { texto: "Estudar astronomia", npcs: ["Maru"] }
-                        ]
-                    },
-                    {
-                        texto: "Qual desses estilos mais combina com você?",
-                        opcoes: [
-                            { texto: "Estilo moderno e fashion", npcs: ["Haley"] },
-                            { texto: "Natural e boêmio", npcs: ["Leah"] },
-                            { texto: "Tecnológico e prático", npcs: ["Maru"] },
-                            { texto: "Clássico e discreto", npcs: ["Penny"] },
-                            { texto: "Despojado e colorido", npcs: ["Emily"] },
-                            { texto: "Gótico e alternativo", npcs: ["Abigail"] },
-                            { texto: "Emo alternativo", npcs: ["Sebastian"] },
-                            { texto: "Esportivo", npcs: ["Alex"] },
-                            { texto: "Casual", npcs: ["Harvey"] },
-                            { texto: "Formal e romântico", npcs: ["Elliott"] },
-                            { texto: "Descolado", npcs: ["Sam"] },
-                            { texto: "Desleixado", npcs: ["Shane"] },
-                        ]
-                    },
-                    {
-                        texto: "Em um festival da cidade, onde você estaria?",
-                        opcoes: [
-                            { texto: "Tocando guitarra com os amigos", npcs: ["Sam"] },
-                            { texto: "Observando tudo de longe, mais na sua", npcs: ["Sebastian"] },
-                            { texto: "Aproveitando os jogos com entusiasmo", npcs: ["Alex"] },
-                            { texto: "Contando histórias perto da fogueira", npcs: ["Elliott"] },
-                            { texto: "Assistindo o por do sol", npcs: ["Harvey"] },
-                            { texto: "Olhando o que posso comprar", npcs: ["Haley"] },
-                            { texto: "Dançando por ai", npcs: ["Emily"] },
-                            { texto: "Bebendo no meu canto", npcs: ["Shane"] },
-                            { texto: "Cuidando das crianças da cidade", npcs: ["Penny"] },
-                            { texto: "Acompanhando meu pai", npcs: ["Maru"] },
-                            { texto: "Admirando as artes do festival", npcs: ["Leah"] }
-                        ]
-                    },
-                    {
-                        texto: "Qual animal de estimação você escolheria?",
-                        opcoes: [
-                            { texto: "Sapo", npcs: ["Sebastian"] },
-                            { texto: "Cão esportivo", npcs: ["Alex"] },
-                            { texto: "Pássaro exótico", npcs: ["Emily"] },
-                            { texto: "Coelho fofo", npcs: ["Haley"] },
-                            { texto: "Cavalos", npcs: ["Elliott"] },
-                            { texto: "Galinha azul", npcs: ["Shane"] },
-                            { texto: "Vaca", npcs: ["Leah"] },
-                            { texto: "Tartaruga", npcs: ["Maru"] },
-                            { texto: "Gato preto", npcs: ["Abigail"] },
-                            { texto: "Águia", npcs: ["Harvey"] },
-                            { texto: "Pato", npcs: ["Sam"] }
-                        ]
-                    },
-                    {
-                        texto: "Qual dessas frases mais te representa?",
-                        opcoes: [
-                            { texto: "A vida é uma aventura a ser explorada", npcs: ["Abigail"] },
-                            { texto: "Com esforço, tudo se conquista", npcs: ["Maru"] },
-                            { texto: "Nada como um bom vinho e poesia", npcs: ["Elliott"] },
-                            { texto: "Prefiro a calma e a simplicidade", npcs: ["Leah"] },
-                            { texto: "Espero poder ajudar todos sempre que puder", npcs: ["Harvey"] },
-                            { texto: "As aparências enganam", npcs: ["Haley"] },
-                            { texto: "Mesmo no escuro, me sinto bem", npcs: ["Sebastian"] },
-                            { texto: "Nada melhor que a minha guitarra e um bom som", npcs: ["Sam"] },
-                            { texto: "Quero apenas dançar, sem me preocupar", npcs: ["Emily"] },
-                            { texto: "Não há nada que uma boa cerveja não resolva", npcs: ["Shane"] },
-                            { texto: "Precisamos ter foco nos objetivos", npcs: ["Alex"] }
-                        ]
-                    }
-                ]
+    var perguntas = [
+        {
+            texto: "O que você prefere fazer em um dia de folga?",
+            opcoes: [
+                { texto: "Explorar cavernas", npcs: ["Abigail"] },
+                { texto: "Jogar bola ou praticar esportes", npcs: ["Alex"] },
+                { texto: "Pegar sol perto do mar", npcs: ["Haley"] },
+                { texto: "Meditar ou relaxar com cristais", npcs: ["Emily"] },
+                { texto: "Escutar músicas", npcs: ["Sebastian"] },
+                { texto: "Escrever poemas", npcs: ["Elliott"] },
+                { texto: "Tomar um bom café", npcs: ["Harvey"] },
+                { texto: "Fazer minha propria arte", npcs: ["Leah"] },
+                { texto: "Ir beber no bar", npcs: ["Shane"] },
+                { texto: "Ler um bom livro", npcs: ["Penny"] },
+                { texto: "Estudar astronomia", npcs: ["Maru"] }
+            ]
+        },
+        {
+            texto: "Qual desses estilos mais combina com você?",
+            opcoes: [
+                { texto: "Estilo moderno e fashion", npcs: ["Haley"] },
+                { texto: "Natural e boêmio", npcs: ["Leah"] },
+                { texto: "Tecnológico e prático", npcs: ["Maru"] },
+                { texto: "Clássico e discreto", npcs: ["Penny"] },
+                { texto: "Despojado e colorido", npcs: ["Emily"] },
+                { texto: "Gótico e alternativo", npcs: ["Abigail"] },
+                { texto: "Emo alternativo", npcs: ["Sebastian"] },
+                { texto: "Esportivo", npcs: ["Alex"] },
+                { texto: "Casual", npcs: ["Harvey"] },
+                { texto: "Formal e romântico", npcs: ["Elliott"] },
+                { texto: "Descolado", npcs: ["Sam"] },
+                { texto: "Desleixado", npcs: ["Shane"] },
+            ]
+        },
+        {
+            texto: "Em um festival da cidade, onde você estaria?",
+            opcoes: [
+                { texto: "Tocando guitarra com os amigos", npcs: ["Sam"] },
+                { texto: "Observando tudo de longe, mais na sua", npcs: ["Sebastian"] },
+                { texto: "Aproveitando os jogos com entusiasmo", npcs: ["Alex"] },
+                { texto: "Contando histórias perto da fogueira", npcs: ["Elliott"] },
+                { texto: "Assistindo o por do sol", npcs: ["Harvey"] },
+                { texto: "Olhando o que posso comprar", npcs: ["Haley"] },
+                { texto: "Dançando por ai", npcs: ["Emily"] },
+                { texto: "Bebendo no meu canto", npcs: ["Shane"] },
+                { texto: "Cuidando das crianças da cidade", npcs: ["Penny"] },
+                { texto: "Acompanhando meu pai", npcs: ["Maru"] },
+                { texto: "Admirando as artes do festival", npcs: ["Leah"] }
+            ]
+        },
+        {
+            texto: "Qual animal de estimação você escolheria?",
+            opcoes: [
+                { texto: "Sapo", npcs: ["Sebastian"] },
+                { texto: "Cão esportivo", npcs: ["Alex"] },
+                { texto: "Pássaro exótico", npcs: ["Emily"] },
+                { texto: "Coelho fofo", npcs: ["Haley"] },
+                { texto: "Cavalos", npcs: ["Elliott"] },
+                { texto: "Galinha azul", npcs: ["Shane"] },
+                { texto: "Vaca", npcs: ["Leah"] },
+                { texto: "Tartaruga", npcs: ["Maru"] },
+                { texto: "Gato preto", npcs: ["Abigail"] },
+                { texto: "Águia", npcs: ["Harvey"] },
+                { texto: "Pato", npcs: ["Sam"] }
+            ]
+        },
+        {
+            texto: "Qual dessas frases mais te representa?",
+            opcoes: [
+                { texto: "A vida é uma aventura a ser explorada", npcs: ["Abigail"] },
+                { texto: "Com esforço, tudo se conquista", npcs: ["Maru"] },
+                { texto: "Nada como um bom vinho e poesia", npcs: ["Elliott"] },
+                { texto: "Prefiro a calma e a simplicidade", npcs: ["Leah"] },
+                { texto: "Espero poder ajudar todos sempre que puder", npcs: ["Harvey"] },
+                { texto: "As aparências enganam", npcs: ["Haley"] },
+                { texto: "Mesmo no escuro, me sinto bem", npcs: ["Sebastian"] },
+                { texto: "Nada melhor que a minha guitarra e um bom som", npcs: ["Sam"] },
+                { texto: "Quero apenas dançar, sem me preocupar", npcs: ["Emily"] },
+                { texto: "Não há nada que uma boa cerveja não resolva", npcs: ["Shane"] },
+                { texto: "Precisamos ter foco nos objetivos", npcs: ["Alex"] }
+            ]
+        }
+    ]
 
-                var perguntaAtual = 0
+    var perguntaAtual = 0
 
-                function mostrarPergunta() {
-                    var div = document.getElementById("container")
-                    div.innerHTML = ""
+    function mostrarPergunta() {
+        var div = document.getElementById("container")
+        div.innerHTML = ""
 
-                    if (perguntaAtual >= perguntas.length) {
-                        mostrarResultado()
-                        return
-                    }
+        if (perguntaAtual >= perguntas.length) {
+            mostrarResultado()
+            return
+        }
 
-                    var p = perguntas[perguntaAtual]
-                    div.innerHTML += "<h2>" + p.texto + "</h2><br><br>"
+        var p = perguntas[perguntaAtual]
+        div.innerHTML += "<h2>" + p.texto + "</h2><br><br>"
 
-                    for (var i = 0; i < p.opcoes.length; i++) {
-                        div.innerHTML += "<button class='opcao' onclick='responder(" + i + ")'>" + p.opcoes[i].texto + "</button><br><br>"
-                    }
-                }
+        for (var i = 0; i < p.opcoes.length; i++) {
+            div.innerHTML += "<button class='opcao' onclick='responder(" + i + ")'>" + p.opcoes[i].texto + "</button><br><br>"
+        }
+    }
 
-                function responder(indiceOpcao) {
-                    var op = perguntas[perguntaAtual].opcoes[indiceOpcao]
+    function responder(indiceOpcao) {
+        var op = perguntas[perguntaAtual].opcoes[indiceOpcao]
 
-                    for (var i = 0; i < op.npcs.length; i++) {
-                        var nome = op.npcs[i]
-                        pontuacao[nome]++
-                    }
+        for (var i = 0; i < op.npcs.length; i++) {
+            var nome = op.npcs[i]
+            pontuacao[nome]++
+        }
 
-                    perguntaAtual++
-                    mostrarPergunta()
-                }
+        perguntaAtual++
+        mostrarPergunta()
+    }
 
-                var imagensNPC = {
-                    Abigail: "./ASSETS/Abigail.png",
-                    Sebastian: "./ASSETS/Sebastian.png",
-                    Leah: "./ASSETS/Leah.png",
-                    Sam: "./ASSETS/Sam.png",
-                    Penny: "./ASSETS/Penny.png",
-                    Haley: "./ASSETS/Haley.png",
-                    Maru: "./ASSETS/Maru.png",
-                    Shane: "./ASSETS/Shane.png",
-                    Alex: "./ASSETS/Alex.png",
-                    Emily: "./ASSETS/Emily.png",
-                    Elliott: "./ASSETS/Elliott.png",
-                    Harvey: "./ASSETS/Harvey.png"
-                }
+    var imagensNPC = {
+        Abigail: "./ASSETS/Abigail.png",
+        Sebastian: "./ASSETS/Sebastian.png",
+        Leah: "./ASSETS/Leah.png",
+        Sam: "./ASSETS/Sam.png",
+        Penny: "./ASSETS/Penny.png",
+        Haley: "./ASSETS/Haley.png",
+        Maru: "./ASSETS/Maru.png",
+        Shane: "./ASSETS/Shane.png",
+        Alex: "./ASSETS/Alex.png",
+        Emily: "./ASSETS/Emily.png",
+        Elliott: "./ASSETS/Elliott.png",
+        Harvey: "./ASSETS/Harvey.png"
+    }
 
-                var textoNpc = {
-                    Abigail: "Abigail mora na loja com seus pais. Às vezes discute com sua mãe que se preocupa com o seu estilo de vida alternativo. Sua mãe diz o seguinte: Eu gostaria que Abby se vestisse mais apropriadamente e parasse de tingir seu cabelo de azul. Ela tem uma maravilhosa cor de cabelo natural, assim como sua avó. Ah, e eu gostaria que ela encontrasse alguns interesses saudáveis, em vez deste absurdo oculto em que ela está. Diz sua mãe Caroline. Você pode encontrar Abigail sozinha no cemitério, ou talvez em uma tempestade a procura de sapos.",
-                    Sebastian: "Sebastian é um solitário rebelde que mora no porão da casa dos pais. Ele é meio-irmão mais velho de Maru e sente que a irmã recebe toda a atenção e adoração, enquanto ele é abandonado para apodrecer no escuro. Ele tende a se envolver profundamente em jogos de computador, histórias em quadrinhos e romances de ficção científica, e às vezes passa muito tempo sozinho em seu quarto, praticando esses hobbies. Ele pode ser um pouco hostil com pessoas que não conhece. Será que um charmoso novo fazendeiro conseguiria cultivar o deserto do seu coração? Quem sabe?",
-                    Leah: "Leah mora sozinha em uma pequena cabana nos arredores da cidade. Ela adora passar o tempo ao ar livre, buscando uma refeição saborosa ou simplesmente apreciando os presentes da estação. Ela é uma artista talentosa com um vasto portfólio de trabalhos... mas fica nervosa demais para exibi-los ao público. Talvez você possa dar um empurrãozinho na confiança dela?",
-                    Sam: "Sam é um cara extrovertido e simpático, cheio de energia juvenil. Ele toca guitarra e bateria e quer formar uma banda com Sebastian assim que tiver músicas suficientes. No entanto, ele tem o hábito de começar projetos ambiciosos e não concluí-los. Sam está um pouco estressado com o retorno iminente do pai, que está ausente há anos por conta do trabalho.",
-                    Penny: "Penny mora com a mãe, Pam, em um pequeno trailer à beira do rio. Enquanto Pam se diverte no bar, Penny cuida discretamente de suas tarefas no quarto escuro e abafado que é obrigada a chamar de lar. Ela é tímida e modesta, sem grandes ambições na vida além de se estabelecer e constituir família. Gosta de cozinhar (embora suas habilidades sejam questionáveis) e ler livros da biblioteca local.",
-                    Haley: "Ser rica e popular durante o ensino médio tornou Haley um pouco convencida e egocêntrica. Ela tem a tendência de julgar as pessoas por motivos superficiais. Mas será tarde demais para ela descobrir um significado mais profundo para a vida? Será que existe uma jovem divertida e de mente aberta escondida dentro dessa casca açucarada?",
-                    Maru: "Crescendo com um carpinteiro e uma cientista como pais, Maru adquiriu uma paixão por criar gadgets desde cedo. Quando não está em seu quarto, mexendo em ferramentas e máquinas, às vezes faz bicos na clínica local. Simpática, extrovertida e ambiciosa, Maru seria uma ótima parceira para uma novata como você... Você conseguirá conquistar o coração dela ou ela escapará por entre seus dedos e desaparecerá da sua vida para sempre?",
-                    Shane: "Shane é um aldeão da Vila Pelicanos que está quase sempre bravo e infeliz, e sofre de depressão e alcoolismo. Porém, sua atitude com o jogador começa a mudar caso este decida fazer amizade com ele. Ele trabalha no Mercado Joja quase todos os dias das 09:00 até as 17:00 a menos que o Centro Comunitário seja restaurado, e frequentemente passa a noite no Saloon Fruta Estrelar. Ele não trabalha aos fins de semana, exceto em dias de chuva, e pode ser visto com frequência no rancho.",
-                    Alex: "Alex adora esportes e curtir a praia. Ele é bastante arrogante e se gaba para todos de que vai ser um atleta profissional. Será que sua arrogância é apenas uma fachada para mascarar sua insegurança devastadora? Será que ele está usando seu sonho esportivo para preencher o vazio deixado pelo desaparecimento dos pais? Ou será apenas um jovem descarado tentando parecer descolado?",
-                    Emily: "Emily é uma aldeã que mora na Vila Pelicanos. Sua casa fica ao sul da praça da cidade, ao lado da casa de Jodi, na Rua do Salgueiro, nº 2. Ela trabalha geralmente à tarde no Saloon Fruta Estrelar começando por volta das 4:00 PM.",
-                    Elliott: "Elliott mora sozinho em uma cabana na praia. Ele é um escritor que sonha em, um dia, escrever um romance magnífico. Ele é sentimental e “romântico” com tendências a fazer poesias sobre flores. Quando ele pode pagar, gosta de uma bebida forte no Saloon Fruta Estrelar. Poderia um humilde fazendeiro como você ser a inspiração que Elliott procura? Só existe um jeito de descobrir…",
-                    Harvey: "Harvey é o médico da cidade. Ele é um pouco velho para um solteiro, mas tem um grande coração amável e uma posição respeitada na comunidade. Ele mora em um pequeno apartamento em cima da clínica, mas gasta grande parte do seu tempo trabalhando. Você consegue sentir uma tristeza nele, como se houvesse algo que ele não diz."
-                }
+    var textoNpc = {
+        Abigail: "Abigail mora na loja com seus pais. Às vezes discute com sua mãe que se preocupa com o seu estilo de vida alternativo. Sua mãe diz o seguinte: Eu gostaria que Abby se vestisse mais apropriadamente e parasse de tingir seu cabelo de azul. Ela tem uma maravilhosa cor de cabelo natural, assim como sua avó. Ah, e eu gostaria que ela encontrasse alguns interesses saudáveis, em vez deste absurdo oculto em que ela está. Diz sua mãe Caroline. Você pode encontrar Abigail sozinha no cemitério, ou talvez em uma tempestade a procura de sapos.",
+        Sebastian: "Sebastian é um solitário rebelde que mora no porão da casa dos pais. Ele é meio-irmão mais velho de Maru e sente que a irmã recebe toda a atenção e adoração, enquanto ele é abandonado para apodrecer no escuro. Ele tende a se envolver profundamente em jogos de computador, histórias em quadrinhos e romances de ficção científica, e às vezes passa muito tempo sozinho em seu quarto, praticando esses hobbies. Ele pode ser um pouco hostil com pessoas que não conhece. Será que um charmoso novo fazendeiro conseguiria cultivar o deserto do seu coração? Quem sabe?",
+        Leah: "Leah mora sozinha em uma pequena cabana nos arredores da cidade. Ela adora passar o tempo ao ar livre, buscando uma refeição saborosa ou simplesmente apreciando os presentes da estação. Ela é uma artista talentosa com um vasto portfólio de trabalhos... mas fica nervosa demais para exibi-los ao público. Talvez você possa dar um empurrãozinho na confiança dela?",
+        Sam: "Sam é um cara extrovertido e simpático, cheio de energia juvenil. Ele toca guitarra e bateria e quer formar uma banda com Sebastian assim que tiver músicas suficientes. No entanto, ele tem o hábito de começar projetos ambiciosos e não concluí-los. Sam está um pouco estressado com o retorno iminente do pai, que está ausente há anos por conta do trabalho.",
+        Penny: "Penny mora com a mãe, Pam, em um pequeno trailer à beira do rio. Enquanto Pam se diverte no bar, Penny cuida discretamente de suas tarefas no quarto escuro e abafado que é obrigada a chamar de lar. Ela é tímida e modesta, sem grandes ambições na vida além de se estabelecer e constituir família. Gosta de cozinhar (embora suas habilidades sejam questionáveis) e ler livros da biblioteca local.",
+        Haley: "Ser rica e popular durante o ensino médio tornou Haley um pouco convencida e egocêntrica. Ela tem a tendência de julgar as pessoas por motivos superficiais. Mas será tarde demais para ela descobrir um significado mais profundo para a vida? Será que existe uma jovem divertida e de mente aberta escondida dentro dessa casca açucarada?",
+        Maru: "Crescendo com um carpinteiro e uma cientista como pais, Maru adquiriu uma paixão por criar gadgets desde cedo. Quando não está em seu quarto, mexendo em ferramentas e máquinas, às vezes faz bicos na clínica local. Simpática, extrovertida e ambiciosa, Maru seria uma ótima parceira para uma novata como você... Você conseguirá conquistar o coração dela ou ela escapará por entre seus dedos e desaparecerá da sua vida para sempre?",
+        Shane: "Shane é um aldeão da Vila Pelicanos que está quase sempre bravo e infeliz, e sofre de depressão e alcoolismo. Porém, sua atitude com o jogador começa a mudar caso este decida fazer amizade com ele. Ele trabalha no Mercado Joja quase todos os dias das 09:00 até as 17:00 a menos que o Centro Comunitário seja restaurado, e frequentemente passa a noite no Saloon Fruta Estrelar. Ele não trabalha aos fins de semana, exceto em dias de chuva, e pode ser visto com frequência no rancho.",
+        Alex: "Alex adora esportes e curtir a praia. Ele é bastante arrogante e se gaba para todos de que vai ser um atleta profissional. Será que sua arrogância é apenas uma fachada para mascarar sua insegurança devastadora? Será que ele está usando seu sonho esportivo para preencher o vazio deixado pelo desaparecimento dos pais? Ou será apenas um jovem descarado tentando parecer descolado?",
+        Emily: "Emily é uma aldeã que mora na Vila Pelicanos. Sua casa fica ao sul da praça da cidade, ao lado da casa de Jodi, na Rua do Salgueiro, nº 2. Ela trabalha geralmente à tarde no Saloon Fruta Estrelar começando por volta das 4:00 PM.",
+        Elliott: "Elliott mora sozinho em uma cabana na praia. Ele é um escritor que sonha em, um dia, escrever um romance magnífico. Ele é sentimental e “romântico” com tendências a fazer poesias sobre flores. Quando ele pode pagar, gosta de uma bebida forte no Saloon Fruta Estrelar. Poderia um humilde fazendeiro como você ser a inspiração que Elliott procura? Só existe um jeito de descobrir…",
+        Harvey: "Harvey é o médico da cidade. Ele é um pouco velho para um solteiro, mas tem um grande coração amável e uma posição respeitada na comunidade. Ele mora em um pequeno apartamento em cima da clínica, mas gasta grande parte do seu tempo trabalhando. Você consegue sentir uma tristeza nele, como se houvesse algo que ele não diz."
+    }
 
-                function mostrarResultado() {
-                    var maiorPontuacao = 0
-                    var npcFinal = ""
-                    var nomes = ["Abigail", "Sebastian", "Leah", "Sam", "Penny", "Haley", "Maru", "Shane", "Alex", "Emily", "Elliot", "Harvey"]
+    function mostrarResultado() {
+        var maiorPontuacao = 0
+        var npcFinal = ""
+        var nomes = ["Abigail", "Sebastian", "Leah", "Sam", "Penny", "Haley", "Maru", "Shane", "Alex", "Emily", "Elliot", "Harvey"]
 
-                    for (var i = 0; i < nomes.length; i++) {
-                        var nome = nomes[i]
-                        if (pontuacao[nome] > maiorPontuacao) {
-                            maiorPontuacao = pontuacao[nome]
-                            npcFinal = nome
-                        }
-                    }
+        for (var i = 0; i < nomes.length; i++) {
+            var nome = nomes[i]
+            if (pontuacao[nome] > maiorPontuacao) {
+                maiorPontuacao = pontuacao[nome]
+                npcFinal = nome
+            }
+        }
 
-                    document.getElementById("container").innerHTML = ""
-                    document.getElementById("resultado").innerHTML = `<h2>Você combina mais com: ${npcFinal}!</h2><br><br><img src="${imagensNPC[npcFinal]}" alt="${npcFinal}" style="width:150px; border-radius:10px; align-items: center;"><br><br>${textoNpc[npcFinal]}`
+        document.getElementById("container").innerHTML = ""
+        document.getElementById("resultado").innerHTML = `<h2>Você combina mais com: ${npcFinal}!</h2><br><br><img src="${imagensNPC[npcFinal]}" alt="${npcFinal}" style="width:150px; border-radius:10px; align-items: center;"><br><br>${textoNpc[npcFinal]}<br><br> <a href="quiz.html">
+<button style="width: 300px;
+    height: 45px;
+    background-color: #097099;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffff;">Tentar novamente</button>
+    </a>`
 
-                    fetch("/quiz/cadastrar", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            npcServer: npcFinal,
-                            idUsuarioServer: sessionStorage.ID_USUARIO
-                        }),
-                    })
+        fetch("/quiz/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                npcServer: npcFinal,
+                idUsuarioServer: sessionStorage.ID_USUARIO
+            }),
+        })
 
-                }
+    }
 
-                mostrarPergunta()
-            </script>
+    mostrarPergunta()
+</script>

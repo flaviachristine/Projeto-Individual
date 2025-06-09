@@ -18,9 +18,9 @@ function itensVendidos(idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-function valorVendas(idUsuario) {
+function itensComprados(idUsuario) {
     var instrucao = `
-        select sum(valorVenda) from venda where fkUsuario = ${idUsuario};`;
+        select itemComprado, qtdComprada from compra where fkUsuario = ${idUsuario} group by itemComprado, qtdComprada order by qtdComprada Desc limit 1;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -30,6 +30,7 @@ function valorVendas(idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
 function graficoNpc(idUsuario) {
     var instrucao = `
         select npc, count(npc) as npcs from tentativa where fkUsuario = ${idUsuario} group by npc;`;
@@ -38,7 +39,7 @@ function graficoNpc(idUsuario) {
 }
 function graficoCarteira(idUsuario) {
     var instrucao = `
-        select sum(valorVenda) as somaVendas from venda where fkUsuario = ${idUsuario};`;
+        select valorCarteiraAtual, dataCarteira from historicoCarteira where fkUsuario = ${idUsuario} limit 10;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -46,6 +47,7 @@ module.exports = {
     qtdQuiz,
     npcMaisTirado,
     itensVendidos,
+    itensComprados,
     valorVendas,
     graficoNpc,
     graficoCarteira

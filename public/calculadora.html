@@ -80,6 +80,34 @@
 </html>
 
 <script>
+    let carteira
+    
+    fetch("/usuarios/carteira", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                carteira = json[0]['carteira']
+                msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙<br><br>`; 
+                
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
     let caixa = [
         [], // Nome Horta
         [],  // Quantidade Horta
@@ -90,9 +118,7 @@
         [],
         []
     ]
-    let carteira = 500;
      
-    msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙<br><br>`; 
     function trocaSelectCompra() {
 
         let estacaoCompra = selectEstacaoCompra.value;
@@ -100,55 +126,55 @@
 
         if (estacaoCompra == 'primavera') {
 
-            selectFrutaCompra.innerHTML = `<option value="chirivia">Chirivia</option>`
-            selectFrutaCompra.innerHTML += `<option value="batata">Batata</option>`
-            selectFrutaCompra.innerHTML += `<option value="morango">Morango</option>`
-            selectFrutaCompra.innerHTML += `<option value="vagem">Vagem</option>`
-            selectFrutaCompra.innerHTML += `<option value="couve-flor">Couve-Flor</option>`
-            selectFrutaCompra.innerHTML += `<option value="couve">Couve</option>`
-            selectFrutaCompra.innerHTML += `<option value="alho">Alho</option>`
-            selectFrutaCompra.innerHTML += `<option value="arroz">Arroz não moído</option>`
-            selectFrutaCompra.innerHTML += `<option value="cenoura">Cenoura</option>`
-            selectFrutaCompra.innerHTML += `<option value="cafe">Grão de Café</option>`
-            selectFrutaCompra.innerHTML += `<option value="jasmin">Jasmin-Azul</option>`
-            selectFrutaCompra.innerHTML += `<option value="ruibarbo">Ruibarbo</option>`
-            selectFrutaCompra.innerHTML += `<option value="tulipa">Tulipa</option>`
+            selectFrutaCompra.innerHTML = `<option value="Chirivia">Chirivia 20🪙 </option>`
+            selectFrutaCompra.innerHTML += `<option value="Batata">Batata 62🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Morango">Morango 100🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Vagem">Vagem 60🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Couve-Flor">Couve-Flor 80🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Couve">Couve 70🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Alho">Alho 40🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Arroz">Arroz 40🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Cenoura">Cenoura 10🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Café">Café 15🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Jasmin-Azul">Jasmin-Azul 30🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Ruibarbo">Ruibarbo 100🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Tulipa">Tulipa 20🪙</option>`
 
         } else if (estacaoCompra == 'verao') {
 
-            selectFrutaCompra.innerHTML = `<option value="melao">Melão</option>`
-            selectFrutaCompra.innerHTML += `<option value="mirtilo">Mirtilo</option>`
-            selectFrutaCompra.innerHTML += `<option value="pimenta">Pimenta</option>`
-            selectFrutaCompra.innerHTML += `<option value="abobrinha">Abobrinha de Verão</option>`
-            selectFrutaCompra.innerHTML += `<option value="carambola">Carambola</option>`
-            selectFrutaCompra.innerHTML += `<option value="micanga">Flor-Miçanga</option>`
-            selectFrutaCompra.innerHTML += `<option value="girassol">Girassol</option>`
-            selectFrutaCompra.innerHTML += `<option value="lupulo">Lúpulo</option>`
-            selectFrutaCompra.innerHTML += `<option value="milho">Milho</option>`
-            selectFrutaCompra.innerHTML += `<option value="papoula">Papoula</option>`
-            selectFrutaCompra.innerHTML += `<option value="rabanete">Rabanete</option>`
-            selectFrutaCompra.innerHTML += `<option value="repolho">Repolho Roxo</option>`
-            selectFrutaCompra.innerHTML += `<option value="tomate">Tomate</option>`
-            selectFrutaCompra.innerHTML += `<option value="trigo">Trigo</option>`
+            selectFrutaCompra.innerHTML = `<option value="Melão">Melão 80🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Mirtilo">Mirtilo 80🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Pimenta">Pimenta 40🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Abobrinha">Abobrinha 10🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Carambola">Carambola 400🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Flor-Miçanga">Flor-Miçanga 50🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Girassol">Girassol 200🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Lúpulo">Lúpulo 60🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Milho">Milho 150🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Papoula">Papoula 100🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Rabanete">Rabanete 40🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Repolho Roxo">Repolho Roxo 100🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Tomate">Tomate 50🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Trigo">Trigo 10🪙</option>`
 
         } else if (estacaoCompra == 'outono') {
 
-            selectFrutaCompra.innerHTML = `<option value="abobora">Abóbora</option>`
-            selectFrutaCompra.innerHTML += `<option value="berinjela">Berinjela</option>`
-            selectFrutaCompra.innerHTML += `<option value="alcachofra">Alcachofra</option>`
-            selectFrutaCompra.innerHTML += `<option value="amaranto">Amaranto</option>`
-            selectFrutaCompra.innerHTML += `<option value="beterraba">Beterraba</option>`
-            selectFrutaCompra.innerHTML += `<option value="brocolis">Brócolis</option>`
-            selectFrutaCompra.innerHTML += `<option value="couve-chinesa">Couve-Chinesa</option>`
-            selectFrutaCompra.innerHTML += `<option value="inhame">Inhame</option>`
-            selectFrutaCompra.innerHTML += `<option value="rosa-de-fada">Rosa-de-Fada</option>`
-            selectFrutaCompra.innerHTML += `<option value="uva">Uva</option>`
-            selectFrutaCompra.innerHTML += `<option value="oxicoco">Oxicoco</option>`
+            selectFrutaCompra.innerHTML = `<option value="Abóbora">Abóbora 100🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Berinjela">Berinjela 20🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Alcachofra">Alcachofra 30🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Amaranto">Amaranto 70🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Beterraba">Beterraba 20🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Brócolis">Brócolis 10🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Couve-Chinesa">Couve-Chinesa 50🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Inhame">Inhame 60🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Rosa-de-Fada">Rosa-de-Fada 200🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Uva">Uva 60🪙</option>`
+            selectFrutaCompra.innerHTML += `<option value="Oxicoco">Oxicoco 240🪙</option>`
 
 
         } else if (estacaoCompra == 'inverno') {
 
-            selectFrutaCompra.innerHTML = `<option value="melao-poeiro">Melão-Poeiro</option>`
+            selectFrutaCompra.innerHTML = `<option value="Melão-Poeiro">Melão-Poeiro 10🪙</option>`
 
 
         }
@@ -159,55 +185,55 @@
 
         if (estacaoVenda == 'primavera') {
 
-            selectFrutaVenda.innerHTML = `<option value="chirivia">Chirivia</option>`
-            selectFrutaVenda.innerHTML += `<option value="batata">Batata</option>`
-            selectFrutaVenda.innerHTML += `<option value="morango">Morango</option>`
-            selectFrutaVenda.innerHTML += `<option value="vagem">Vagem</option>`
-            selectFrutaVenda.innerHTML += `<option value="couve-flor">Couve-Flor</option>`
-            selectFrutaVenda.innerHTML += `<option value="couve">Couve</option>`
-            selectFrutaVenda.innerHTML += `<option value="alho">Alho</option>`
-            selectFrutaVenda.innerHTML += `<option value="arroz">Arroz não moído</option>`
-            selectFrutaVenda.innerHTML += `<option value="cenoura">Cenoura</option>`
-            selectFrutaVenda.innerHTML += `<option value="cafe">Grão de Café</option>`
-            selectFrutaVenda.innerHTML += `<option value="jasmin">Jasmin-Azul</option>`
-            selectFrutaVenda.innerHTML += `<option value="ruibarbo">Ruibarbo</option>`
-            selectFrutaVenda.innerHTML += `<option value="tulipa">Tulipa</option>`
+            selectFrutaVenda.innerHTML = `<option value="Chirivia">Chirivia 35🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Batata">Batata 80🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Morango">Morango 120🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Vagem">Vagem 40🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Couve-Flor">Couve-Flor 175🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Couve">Couve 110🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Alho">Alho 60🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Arroz">Arroz 30🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Cenoura">Cenoura 10🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Café">Café 15🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Jasmin-Azul">Jasmin-Azul 50🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Ruibarbo">Ruibarbo 220🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Tulipa">Tulipa 30🪙</option>`
 
         } else if (estacaoVenda == 'verao') {
 
-            selectFrutaVenda.innerHTML = `<option value="melao">Melão</option>`
-            selectFrutaVenda.innerHTML += `<option value="mirtilo">Mirtilo</option>`
-            selectFrutaVenda.innerHTML += `<option value="pimenta">Pimenta</option>`
-            selectFrutaVenda.innerHTML += `<option value="abobrinha">Abobrinha de Verão</option>`
-            selectFrutaVenda.innerHTML += `<option value="carambola">Carambola</option>`
-            selectFrutaVenda.innerHTML += `<option value="micanga">Flor-Miçanga</option>`
-            selectFrutaVenda.innerHTML += `<option value="girassol">Girassol</option>`
-            selectFrutaVenda.innerHTML += `<option value="lupulo">Lúpulo</option>`
-            selectFrutaVenda.innerHTML += `<option value="milho">Milho</option>`
-            selectFrutaVenda.innerHTML += `<option value="papoula">Papoula</option>`
-            selectFrutaVenda.innerHTML += `<option value="rabanete">Rabanete</option>`
-            selectFrutaVenda.innerHTML += `<option value="repolho">Repolho Roxo</option>`
-            selectFrutaVenda.innerHTML += `<option value="tomate">Tomate</option>`
-            selectFrutaVenda.innerHTML += `<option value="trigo">Trigo</option>`
+            selectFrutaVenda.innerHTML = `<option value="Melão">Melão 250🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Mirtilo">Mirtilo 50🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Pimenta">Pimenta 40🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Abobrinha">Abobrinha 10🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Carambola">Carambola 750🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Flor-Miçanga">Flor-Miçanga 90🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Girassol">Girassol 80🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Lúpulo">Lúpulo 25🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Milho">Milho 50🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Papoula">Papoula 140🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Rabanete">Rabanete 90🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Repolho-Roxo">Repolho-Roxo 260🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Tomate">Tomate 60🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Trigo">Trigo 25🪙</option>`
 
         } else if (estacaoVenda == 'outono') {
 
-            selectFrutaVenda.innerHTML = `<option value="abobora">Abóbora</option>`
-            selectFrutaVenda.innerHTML += `<option value="berinjela">Berinjela</option>`
-            selectFrutaVenda.innerHTML += `<option value="alcachofra">Alcachofra</option>`
-            selectFrutaVenda.innerHTML += `<option value="amaranto">Amaranto</option>`
-            selectFrutaVenda.innerHTML += `<option value="beterraba">Beterraba</option>`
-            selectFrutaVenda.innerHTML += `<option value="brocolis">Brócolis</option>`
-            selectFrutaVenda.innerHTML += `<option value="couve-chinesa">Couve-Chinesa</option>`
-            selectFrutaVenda.innerHTML += `<option value="inhame">Inhame</option>`
-            selectFrutaVenda.innerHTML += `<option value="rosa-de-fada">Rosa-de-Fada</option>`
-            selectFrutaVenda.innerHTML += `<option value="uva">Uva</option>`
-            selectFrutaVenda.innerHTML += `<option value="oxicoco">Oxicoco</option>`
+            selectFrutaVenda.innerHTML = `<option value="Abóbora">Abóbora 320🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Berinjela">Berinjela 60🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Alcachofra">Alcachofra 160🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Amaranto">Amaranto 150🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Beterraba">Beterraba 100🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Brócolis">Brócolis 70🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Couve-Chinesa">Couve-Chinesa 80🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Inhame">Inhame 160🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Rosa-de-Fada">Rosa-de-Fada 290🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Uva">Uva 80🪙</option>`
+            selectFrutaVenda.innerHTML += `<option value="Oxicoco">Oxicoco 75🪙</option>`
 
 
         } else if (estacaoVenda == 'inverno') {
 
-            selectFrutaVenda.innerHTML = `<option value="melao-poeiro">Melão-Poeiro</option>`
+            selectFrutaVenda.innerHTML = `<option value="Melão-Poeiro">Melão-Poeiro 10🪙</option>`
 
 
         }
@@ -228,81 +254,83 @@
             caixa[0].push(horta)
             caixa[1].push(quantidade)
 
-            if (horta == 'alho') {
+            if (horta == 'Alho') {
                 caixa[2].push(quantidade * 60)
-            } else if(horta == 'arroz'){
+            } else if(horta == 'Arroz'){
                 caixa[2].push(quantidade * 30)
-            }else if(horta == 'batata'){
+            }else if(horta == 'Batata'){
                 caixa[2].push(quantidade * 80)
-            }else if(horta == 'cenoura'){
+            }else if(horta == 'Cenoura'){
                 caixa[2].push(quantidade * 35)
-            }else if(horta == 'chirivia'){
+            }else if(horta == 'Chirivia'){
                 caixa[2].push(quantidade * 35)
-            }else if(horta == 'couve'){
+            }else if(horta == 'Couve'){
                 caixa[2].push(quantidade * 110)
-            }else if(horta == 'couve-flor'){
+            }else if(horta == 'Couve-flor'){
                 caixa[2].push(quantidade * 175)
-            }else if(horta == 'cafe'){
+            }else if(horta == 'Café'){
                 caixa[2].push(quantidade * 15)
-            }else if(horta == 'jasmin'){
+            }else if(horta == 'Jasmin-Azul'){
                 caixa[2].push(quantidade * 50)
-            }else if(horta == 'morango'){
+            }else if(horta == 'Morango'){
                 caixa[2].push(quantidade * 120)
-            }else if(horta == 'ruibabo'){
+            }else if(horta == 'Ruibabo'){
                 caixa[2].push(quantidade * 220)
-            }else if(horta == 'tulipa'){
+            }else if(horta == 'Tulipa'){
                 caixa[2].push(quantidade * 30)
-            }else if(horta == 'vagem'){
+            }else if(horta == 'Vagem'){
                 caixa[2].push(quantidade * 40)
-            }else if(horta == 'abobrinha'){
+            }else if(horta == 'Abobrinha'){
                 caixa[2].push(quantidade * 45)
-            }else if(horta == 'carambola'){
+            }else if(horta == 'Carambola'){
                 caixa[2].push(quantidade * 750)
-            }else if(horta == 'micanga'){
+            }else if(horta == 'Flor-Miçanga'){
                 caixa[2].push(quantidade * 90)
-            }else if(horta == 'girassol'){
+            }else if(horta == 'Girassol'){
                 caixa[2].push(quantidade * 80)
-            }else if(horta == 'lupulo'){
+            }else if(horta == 'Lúpulo'){
                 caixa[2].push(quantidade * 25)
-            }else if(horta == 'melao'){
+            }else if(horta == 'Melão'){
                 caixa[2].push(quantidade * 250)
-            }else if(horta == 'mirtilo'){
+            }else if(horta == 'Mirtilo'){
                 caixa[2].push(quantidade * 50)
-            }else if(horta == 'papoula'){
+            }else if(horta == 'Milho'){
+                caixa[2].push(quantidade * 50)
+            }else if(horta == 'Papoula'){
                 caixa[2].push(quantidade * 140)
-            }else if(horta == 'pimenta'){
+            }else if(horta == 'Pimenta'){
                 caixa[2].push(quantidade * 40)
-            }else if(horta == 'rabanete'){
+            }else if(horta == 'Rabanete'){
                 caixa[2].push(quantidade * 90)
-            }else if(horta == 'repolho'){
+            }else if(horta == 'Repolho-Roxo'){
                 caixa[2].push(quantidade * 260)
-            }else if(horta == 'tomate'){
+            }else if(horta == 'Tomate'){
                 caixa[2].push(quantidade * 60)
-            }else if(horta == 'trigo'){
+            }else if(horta == 'Trigo'){
                 caixa[2].push(quantidade * 25)
-            }else if(horta == 'abobora'){
+            }else if(horta == 'Abóbora'){
                 caixa[2].push(quantidade * 320)
-            }else if(horta == 'alcachofra'){
+            }else if(horta == 'Alcachofra'){
                 caixa[2].push(quantidade * 160)
-            }else if(horta == 'amaranto'){
+            }else if(horta == 'Amaranto'){
                 caixa[2].push(quantidade * 150)
-            }else if(horta == 'berinjela'){
+            }else if(horta == 'Berinjela'){
                 caixa[2].push(quantidade * 60)
-            }else if(horta == 'beterraba'){
+            }else if(horta == 'Beterraba'){
                 caixa[2].push(quantidade * 100)
-            }else if(horta == 'brocolis'){
+            }else if(horta == 'Brócolis'){
                 caixa[2].push(quantidade * 70)
-            }else if(horta == 'couve-chinesa'){
+            }else if(horta == 'Couve-chinesa'){
                 caixa[2].push(quantidade * 80)
-            }else if(horta == 'inhame'){
+            }else if(horta == 'Inhame'){
                 caixa[2].push(quantidade * 160)
-            }else if(horta == 'oxicoco'){
+            }else if(horta == 'Oxicoco'){
                 caixa[2].push(quantidade * 75)
-            }else if(horta == 'rosa-de-fada'){
+            }else if(horta == 'Rosa-de-Fada'){
                 caixa[2].push(quantidade * 290)
-            }else if(horta == 'uva'){
+            }else if(horta == 'Uva'){
                 caixa[2].push(quantidade * 80)
-            }else if(horta == 'melao-poeiro'){
+            }else if(horta == 'Melão-poeiro'){
                 caixa[2].push(quantidade * 60)
             }
         }
@@ -325,82 +353,84 @@
             carrinho[0].push(horta)
             carrinho[1].push(quantidade)
 
-            if (horta == 'alho') {
-                carrinho[2].push(quantidade * 60)
-            } else if(horta == 'arroz'){
-                carrinho[2].push(quantidade * 30)
-            }else if(horta == 'batata'){
-                carrinho[2].push(quantidade * 80)
-            }else if(horta == 'cenoura'){
-                carrinho[2].push(quantidade * 35)
-            }else if(horta == 'chirivia'){
-                carrinho[2].push(quantidade * 35)
-            }else if(horta == 'couve'){
-                carrinho[2].push(quantidade * 110)
-            }else if(horta == 'couve-flor'){
-                carrinho[2].push(quantidade * 175)
-            }else if(horta == 'cafe'){
-                carrinho[2].push(quantidade * 15)
-            }else if(horta == 'jasmin'){
-                carrinho[2].push(quantidade * 50)
-            }else if(horta == 'morango'){
-                carrinho[2].push(quantidade * 120)
-            }else if(horta == 'ruibabo'){
-                carrinho[2].push(quantidade * 220)
-            }else if(horta == 'tulipa'){
-                carrinho[2].push(quantidade * 30)
-            }else if(horta == 'vagem'){
+            if (horta == 'Alho') {
                 carrinho[2].push(quantidade * 40)
-            }else if(horta == 'abobrinha'){
-                carrinho[2].push(quantidade * 45)
-            }else if(horta == 'carambola'){
-                carrinho[2].push(quantidade * 750)
-            }else if(horta == 'micanga'){
-                carrinho[2].push(quantidade * 90)
-            }else if(horta == 'girassol'){
-                carrinho[2].push(quantidade * 80)
-            }else if(horta == 'lupulo'){
-                carrinho[2].push(quantidade * 25)
-            }else if(horta == 'melao'){
-                carrinho[2].push(quantidade * 250)
-            }else if(horta == 'mirtilo'){
-                carrinho[2].push(quantidade * 50)
-            }else if(horta == 'papoula'){
-                carrinho[2].push(quantidade * 140)
-            }else if(horta == 'pimenta'){
+            } else if(horta == 'Arroz'){
                 carrinho[2].push(quantidade * 40)
-            }else if(horta == 'rabanete'){
-                carrinho[2].push(quantidade * 90)
-            }else if(horta == 'repolho'){
-                carrinho[2].push(quantidade * 260)
-            }else if(horta == 'tomate'){
-                carrinho[2].push(quantidade * 60)
-            }else if(horta == 'trigo'){
-                carrinho[2].push(quantidade * 25)
-            }else if(horta == 'abobora'){
-                carrinho[2].push(quantidade * 320)
-            }else if(horta == 'alcachofra'){
-                carrinho[2].push(quantidade * 160)
-            }else if(horta == 'amaranto'){
-                carrinho[2].push(quantidade * 150)
-            }else if(horta == 'berinjela'){
-                carrinho[2].push(quantidade * 60)
-            }else if(horta == 'beterraba'){
-                carrinho[2].push(quantidade * 100)
-            }else if(horta == 'brocolis'){
+            }else if(horta == 'Batata'){
+                carrinho[2].push(quantidade * 50)
+            }else if(horta == 'Cenoura'){
+                carrinho[2].push(quantidade * 10)
+            }else if(horta == 'Chirivia'){
+                carrinho[2].push(quantidade * 20)
+            }else if(horta == 'Couve'){
                 carrinho[2].push(quantidade * 70)
-            }else if(horta == 'couve-chinesa'){
+            }else if(horta == 'Couve-flor'){
                 carrinho[2].push(quantidade * 80)
-            }else if(horta == 'inhame'){
-                carrinho[2].push(quantidade * 160)
-            }else if(horta == 'oxicoco'){
-                carrinho[2].push(quantidade * 75)
-            }else if(horta == 'rosa-de-fada'){
-                carrinho[2].push(quantidade * 290)
-            }else if(horta == 'uva'){
-                carrinho[2].push(quantidade * 80)
-            }else if(horta == 'melao-poeiro'){
+            }else if(horta == 'Café'){
+                carrinho[2].push(quantidade * 10)
+            }else if(horta == 'Jasmin-Azul'){
+                carrinho[2].push(quantidade * 30)
+            }else if(horta == 'Morango'){
+                carrinho[2].push(quantidade * 100)
+            }else if(horta == 'Ruibabo'){
+                carrinho[2].push(quantidade * 100)
+            }else if(horta == 'Tulipa'){
+                carrinho[2].push(quantidade * 20)
+            }else if(horta == 'Vagem'){
                 carrinho[2].push(quantidade * 60)
+            }else if(horta == 'Abobrinha'){
+                carrinho[2].push(quantidade * 10)
+            }else if(horta == 'Carambola'){
+                carrinho[2].push(quantidade * 400)
+            }else if(horta == 'Flor-Miçanga'){
+                carrinho[2].push(quantidade * 50)
+            }else if(horta == 'Girassol'){
+                carrinho[2].push(quantidade * 200)
+            }else if(horta == 'Lúpulo'){
+                carrinho[2].push(quantidade * 60)
+            }else if(horta == 'Melão'){
+                carrinho[2].push(quantidade * 80)
+            }else if(horta == 'Mirtilo'){
+                carrinho[2].push(quantidade * 150)
+            }else if(horta == 'Milho'){
+                carrinho[2].push(quantidade * 150)
+            }else if(horta == 'Papoula'){
+                carrinho[2].push(quantidade * 100)
+            }else if(horta == 'Pimenta'){
+                carrinho[2].push(quantidade * 40)
+            }else if(horta == 'Rabanete'){
+                carrinho[2].push(quantidade * 40)
+            }else if(horta == 'Repolho-Roxo'){
+                carrinho[2].push(quantidade * 100)
+            }else if(horta == 'Tomate'){
+                carrinho[2].push(quantidade * 50)
+            }else if(horta == 'Trigo'){
+                carrinho[2].push(quantidade * 10)
+            }else if(horta == 'Abóbora'){
+                carrinho[2].push(quantidade * 100)
+            }else if(horta == 'Alcachofra'){
+                carrinho[2].push(quantidade * 30)
+            }else if(horta == 'Amaranto'){
+                carrinho[2].push(quantidade * 70)
+            }else if(horta == 'Berinjela'){
+                carrinho[2].push(quantidade * 20)
+            }else if(horta == 'Beterraba'){
+                carrinho[2].push(quantidade * 20)
+            }else if(horta == 'Brócolis'){
+                carrinho[2].push(quantidade * 10)
+            }else if(horta == 'Couve-chinesa'){
+                carrinho[2].push(quantidade * 50)
+            }else if(horta == 'Inhame'){
+                carrinho[2].push(quantidade * 60)
+            }else if(horta == 'Oxicoco'){
+                carrinho[2].push(quantidade * 240)
+            }else if(horta == 'Rosa-de-Fada'){
+                carrinho[2].push(quantidade * 200)
+            }else if(horta == 'Uva'){
+                carrinho[2].push(quantidade * 60)
+            }else if(horta == 'Melão-poeiro'){
+                carrinho[2].push(quantidade * 10)
             }
         }
             msgCompra.innerHTML = `Produto ${horta} adicionado com sucesso no carrinho <br><br>`
@@ -420,16 +450,73 @@
             }), 
         })
         msgVenda.innerHTML = `Produto ${caixa[0][caixa[0].length - 1]} Vendido com sucesso, você vendeu ${caixa[1][caixa[1].length - 1]} unidades, pelo preço de ${caixa[2][caixa[2].length - 1]} 🪙! <br><br>`
-        carteira += caixa[2][0]
+        
+
+        fetch("/usuarios/attCarteira", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                valorAtualizadoServer: carteira += caixa[2][0]
+            }), 
+        })
+
+        fetch("/usuarios/valorCarteiraAtualizado", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                valorAtualizadoServer: carteira
+            }), 
+        })
+        
         caixa = [[], [], []]
-        msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙<br><br>`; 
+        msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙`
     }
     function comprar() {
 
+         fetch("/compra/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                produtoServer: carrinho[0][0],
+                qtdServer: carrinho[1][0],
+                precoServer: carrinho[2][0]
+            }), 
+        })
         msgCompra.innerHTML = `Produto ${carrinho[0][carrinho[0].length - 1]} comprado com sucesso, você comprou ${carrinho[1][carrinho[1].length - 1]} unidades, pelo preço de ${carrinho[2][carrinho[2].length - 1]} 🪙! <br><br>`
-        carteira -= carrinho[2][0]
-        carrinho = [[], [], []]
 
-        msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙<br><br>`; 
+
+        fetch("/usuarios/attCarteira", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                valorAtualizadoServer: carteira -= carrinho[2][0]
+            }), 
+        })
+
+        fetch("/usuarios/valorCarteiraAtualizado", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                valorAtualizadoServer: carteira
+            }), 
+        })
+
+        carrinho = [[], [], []]
+        msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙`
     }
 </script>

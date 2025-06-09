@@ -78,8 +78,40 @@ function cadastrar(req, res) {
             );
         }
 }
+function carteira(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    usuarioModel.carteira(idUsuario).then(function(resultado){
+        // precisamos informar que o resultado voltará para o front-end como uma resposta em json
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+function attCarteira(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var valorAtualizado = req.body.valorAtualizadoServer;
+    usuarioModel.attCarteira(valorAtualizado,idUsuario).then(function(resultado){
+        // precisamos informar que o resultado voltará para o front-end como uma resposta em json
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+function valorCarteiraAtualizado(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var valorAtualizado = req.body.valorAtualizadoServer;
 
+    usuarioModel.valorCarteiraAtualizado(valorAtualizado, idUsuario).then(function(resultado){
+        // precisamos informar que o resultado voltará para o front-end como uma resposta em json
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    carteira,
+    attCarteira,
+    valorCarteiraAtualizado
 }

@@ -37,6 +37,10 @@
                     <p>Item mais vendido:</p><br>
                     <div id="kpi3"></div>
                 </div>
+                <div class="kpi5">
+                    <p>Item mais comprado:</p><br>
+                    <div id="kpi5"></div>
+                </div>
                 <div class="kpi4">
                     <p>Valor total de suas Vendas:</p><br>
                     <div id="kpi4"></div>
@@ -48,7 +52,7 @@
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="grafico2">
-                    Sua carteira
+                    Histórico de valores na carteira
                     <canvas id="myChart2"></canvas>
                 </div>
             </div>
@@ -106,10 +110,10 @@
             resposta.json().then(json => {
                 console.log(json);
                 console.log(JSON.stringify(json));
-                if(json[0] != undefined){
+                if (json[0] != undefined) {
                     kpi2.innerHTML = json[0]["npc"] + ", "
                     kpi2.innerHTML += json[0]["ocorrencia"] + " vezes"
-                } else{
+                } else {
                     kpi2.innerHTML = "Faça o quiz para obter os personagens mais tirados aqui"
                 }
             });
@@ -148,7 +152,35 @@
     }).catch(function (erro) {
         console.log(erro);
     })
+    fetch("/dash/itensComprados", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
 
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                if (json[0] != undefined) {
+                    kpi5.innerHTML = json[0]["itemComprado"] + ", "
+                    kpi5.innerHTML += json[0]["qtdComprada"] + " unidades"
+                } else {
+                    kpi5.innerHTML = "Nenhum item vendido"
+                }
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
     fetch("/dash/valorVendas", {
         method: "POST",
         headers: {
@@ -200,10 +232,10 @@
                 const ctx = document.getElementById('myChart');
                 var nomes = []
                 var quantidadeNome = []
-                for(var i = 0; i < json.length; i++){
+                for (var i = 0; i < json.length; i++) {
                     nomes.push(json[i]['npc'])
                 }
-                for(var i = 0; i < json.length; i++){
+                for (var i = 0; i < json.length; i++) {
                     quantidadeNome.push(json[i]['npcs'])
                 }
                 new Chart(ctx, {
@@ -229,7 +261,8 @@
     }).catch(function (erro) {
         console.log(erro);
     })
-fetch("/dash/graficoCarteira", {
+    
+    fetch("/dash/graficoCarteira", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -249,17 +282,26 @@ fetch("/dash/graficoCarteira", {
                 console.log(JSON.stringify(json));
 
                 const ctx = document.getElementById('myChart2');
-                var valor = []
-                for(var i = 0; i < json.length; i++){
-                    valor.push(json[i]['sum(valorVenda)'])
+                // var valores = []
+                // for (var i = 0; i < json.length; i++) {
+                //     valores.push(json[i]['carteira'])
+                // }
+                const valoresAtt = []
+                for (var i = 0; i < json.length; i++){
+                    valoresAtt.push(json[i]['valorCarteiraAtual'])
+                }
+                const dtCarteira = []
+                for(let i = 0; i < json.length; i++){
+                    dtCarteira.push((json[i]['dataCarteira']).slice(11, 19))
+
                 }
                 new Chart(ctx, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
-                        labels: nomes,
+                        labels: dtCarteira,
                         datasets: [{
-                            label: 'Quantas vezes o NPC foi tirado',
-                            data: quantidadeNome,
+                            label: 'Valores que já estiveram na carteira',
+                            data: valoresAtt,
                             borderWidth: 1
                         }]
                     },
@@ -276,5 +318,4 @@ fetch("/dash/graficoCarteira", {
     }).catch(function (erro) {
         console.log(erro);
     })
-    
 </script>

@@ -16,13 +16,33 @@ function cadastrar(nome, email, senha) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+        INSERT INTO usuario (nome, email, senha, carteira) VALUES ('${nome}', '${email}', '${senha}', 500);
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
+function carteira(idUsuario) {
+    var instrucao = `
+        select carteira from usuario where idUsuario = ${idUsuario};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+function attCarteira(valorAtualizado, idUsuario) {
+    var instrucao = `
+        update usuario set carteira = ${valorAtualizado} where idUsuario = ${idUsuario}`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+function valorCarteiraAtualizado(valorAtualizado, idUsuario) {
+    var instrucao = `
+        insert into historicoCarteira (valorCarteiraAtual, fkUsuario) values ('${valorAtualizado}', '${idUsuario}')`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    carteira,
+    attCarteira,
+    valorCarteiraAtualizado
 };

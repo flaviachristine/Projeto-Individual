@@ -15,7 +15,9 @@ router.post("/npcMaisTirado", function (req, res) {
 router.post("/itensVendidos", function (req, res) {
     dashController.itensVendidos(req, res);
 })
-
+router.post("/itensComprados", function (req, res) {
+    dashController.itensComprados(req, res);
+})
 router.post("/valorVendas", function (req, res) {
     dashController.valorVendas(req, res);
 })

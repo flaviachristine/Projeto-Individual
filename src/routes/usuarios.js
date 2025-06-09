@@ -12,4 +12,14 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/carteira", function (req, res) {
+    usuarioController.carteira(req, res);
+});
+
+router.post("/attCarteira", function (req, res) {
+    usuarioController.attCarteira(req, res);
+});
+router.post("/valorCarteiraAtualizado", function (req, res) {
+    usuarioController.valorCarteiraAtualizado(req, res);
+});
 module.exports = router;
