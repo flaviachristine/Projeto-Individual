@@ -108,11 +108,13 @@
     }).catch(function (erro) {
         console.log(erro);
     })
+    // matriz caixa, que guarda o nome da horta, sua quantidade e seu preço
     let caixa = [
         [], // Nome Horta
         [],  // Quantidade Horta
         [] // Preço de cada Horta
     ]
+    // matriz carrinho, que guarda o nome da horta, sua quantidade e seu preço
     let carrinho = [
         [],
         [],
@@ -120,7 +122,7 @@
     ]
      
     function trocaSelectCompra() {
-
+        // esta funcao serve para que ao selecionar a estação, sejam habilitadas as hortas da respectiva estação
         let estacaoCompra = selectEstacaoCompra.value;
         
 
@@ -180,7 +182,7 @@
         }
     }
     function trocaSelectVenda(){
-
+        // esta funcao serve para que ao selecionar a estação, sejam habilitadas as hortas da respectiva estação
         var estacaoVenda = selectEstacaoVenda.value;
 
         if (estacaoVenda == 'primavera') {
@@ -240,20 +242,20 @@
     }
 
     function adicionar(horta, qtd) {
-
+        // usando parametros, trazemos a horta e a quantidade
         var quantidade = Number(qtd);
 
         if(quantidade == ''){
             msg.innerHTML += `Preencha todos os campos para prosseguir<br><br>`
         } 
-
+        // aqui é onde definimos que se o produto ja existe na caixa, ele é apenas incrementado na quantidade
         if (caixa[0].includes(horta)) {
 
             caixa[1][caixa[0].indexOf(horta)] += quantidade;
         } else {
             caixa[0].push(horta)
             caixa[1].push(quantidade)
-
+            // aqui é definido o preço de venda de cada hortaliça, definindo seu preço na matriz caixa na posição 2, que é o preço da hortaliça, quantidade referencia pelo input preenchido pelo usuário
             if (horta == 'Alho') {
                 caixa[2].push(quantidade * 60)
             } else if(horta == 'Arroz'){
@@ -339,20 +341,20 @@
 
     }
     function adicionarCarrinho(horta, qtd) {
-
+        // usando parametros, trazemos a horta e a quantidade
         var quantidade = Number(qtd);
 
         if(quantidade == ''){
             msg.innerHTML += `Preencha todos os campos para prosseguir<br><br>`
         } 
-
+        // aqui é onde definimos que se o produto ja existe na caixa, ele é apenas incrementado na quantidade
         if (carrinho[0].includes(horta)) {
 
             carrinho[1][carrinho[0].indexOf(horta)] += quantidade;
         } else {
             carrinho[0].push(horta)
             carrinho[1].push(quantidade)
-
+            // aqui é definido o preço de compra de cada hortaliça, definindo seu preço na matriz caixa na posição 2, que é o preço da hortaliça, quantidade referencia pelo input preenchido pelo usuário
             if (horta == 'Alho') {
                 carrinho[2].push(quantidade * 40)
             } else if(horta == 'Arroz'){
@@ -443,6 +445,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                // aqui na api, definimos que o produto, qtd e preço são tais posições na matriz
                 idUsuarioServer: sessionStorage.ID_USUARIO,
                 produtoServer: caixa[0][0],
                 qtdServer: caixa[1][0],
@@ -458,6 +461,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                // este fetch serve para atualizar o valor da carteira, conforme o usuário vende produtos
                 idUsuarioServer: sessionStorage.ID_USUARIO,
                 valorAtualizadoServer: carteira += caixa[2][0]
             }), 
@@ -469,12 +473,14 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                // este fetch serve para guardar o histórico da carteira para futuramente ser puxado no gráfico na dashboard
                 idUsuarioServer: sessionStorage.ID_USUARIO,
                 valorAtualizadoServer: carteira
             }), 
         })
-        
+        // zerando a matriz
         caixa = [[], [], []]
+        
         msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙`
     }
     function comprar() {
@@ -485,6 +491,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                // aqui na api, definimos que o produto, qtd e preço são tais posições na matriz
                 idUsuarioServer: sessionStorage.ID_USUARIO,
                 produtoServer: carrinho[0][0],
                 qtdServer: carrinho[1][0],
@@ -500,6 +507,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                // este fetch serve para atualizar o valor da carteira, conforme o usuário vende produtos
                 idUsuarioServer: sessionStorage.ID_USUARIO,
                 valorAtualizadoServer: carteira -= carrinho[2][0]
             }), 
@@ -511,11 +519,12 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                // este fetch serve para guardar o histórico da carteira para futuramente ser puxado no gráfico na dashboard
                 idUsuarioServer: sessionStorage.ID_USUARIO,
                 valorAtualizadoServer: carteira
             }), 
         })
-
+        // zerando a matriz
         carrinho = [[], [], []]
         msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙`
     }
