@@ -4,10 +4,6 @@ O Flawiis-Valey é um site para entretenimento de jogadores de Stardew Valley, c
 
 ## 🚀 Começando
 
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
-
-Consulte **[Implantação](#-implanta%C3%A7%C3%A3o)** para saber como implantar o projeto.
-
 ### 📋 Pré-requisitos
 
 Tenha o NodeJS em sua máquina
@@ -54,11 +50,9 @@ Mencione as ferramentas que você usou para criar seu projeto
 * [NodeJS] - Utilizado como servidor WEB
 * [HTML] - Utilizado para estruturação do site
 * [CSS]- Utilizado para estilização
-* [JS]- Utilizado para validações e inserções no banco
+* [JS]- Utilizado para validações e cálculos matemáticos
 
 ## ✒️ Autores
-
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
 
 * **Flávia Christine** 
 
