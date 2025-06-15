@@ -39,7 +39,7 @@ function graficoNpc(idUsuario) {
 }
 function graficoCarteira(idUsuario) {
     var instrucao = `
-        select valorCarteiraAtual, dataCarteira from historicoCarteira where fkUsuario = ${idUsuario} limit 10;`;
+        select valorCarteiraAtual, dataCarteira from historicoCarteira where fkUsuario = ${idUsuario};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }

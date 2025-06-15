@@ -53,16 +53,14 @@
 </html>
 <script>
   function cadastrar() {
-  const nome = document.getElementById("nome_input").value.trim();
-  const email = document.getElementById("email_input").value.trim();
-  const senha = document.getElementById("senha_input").value.trim();
+  const nome = document.getElementById("nome_input").value;
+  const email = document.getElementById("email_input").value;
+  const senha = document.getElementById("senha_input").value;
   const msgErro = document.getElementById("msgErro");
 
-  // Reset
   msgErro.style.display = "none";
   msgErro.classList.remove("sucesso");
-
-  // Validações
+ 
   if (!nome || !email || !senha) {
     msgErro.innerHTML = "Preencha todos os campos.";
     msgErro.style.display = "block";
@@ -103,7 +101,6 @@
     return;
   }
 
-  // Envio para API
   fetch("/usuarios/cadastrar", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
