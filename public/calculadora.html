@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de compras e vendas da sua fazenda em Stardew Valley.">
+    <meta name="theme-color" content="#1d5733">
     <link rel="stylesheet" href="./CSS/calculadora.css">
-    <title>Stardew-Project</title>
+    <link rel="stylesheet" href="./CSS/header.css">
+    <title>Calculadora | Stardew-Project</title>
 </head>
 
 <body>
     <header class="header">
-        <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt=""></a>
+        <a href="index.html" class="logo"><img src="./ASSETS/galinha.png" alt="Página inicial do Stardew Project"></a>
         <nav class="navbar">
             <a href="home.html">Home</a>
             <a href="dev.html">Desenvolvedora</a>
@@ -18,68 +21,112 @@
             <a href="calculadora.html">Calculadora</a>
             <a href="dashboard.html" class="dash">Dashboard</a>
         </nav>
-        <a href="index.html" class="logout"><img src="./ASSETS/Vector.svg" alt=""></a>
+        <a href="index.html" class="logout" title="Sair"><img src="./ASSETS/Vector.svg" alt="Sair"></a>
     </header>
-    <div class="divLogoPrincipal">
+
+    <main class="divLogoPrincipal">
         <div class="container">
-            <div class="compra">
-                <h1>Compra</h1><br>
-                <label for="">Selecione uma estação:</label>
-                <select name="" id="selectEstacaoCompra" onchange="trocaSelectCompra()">
-                    <option value="primavera">Primavera</option>
-                    <option value="verao">Verão</option>
-                    <option value="outono">Outono</option>
-                    <option value="inverno">Inverno</option>
-                </select><br>
-                <label for="">Selecione o produto</label>
-                <select name="" id="selectFrutaCompra"></select><br>
-                <label for="">Selecione a quantidade do produto</label>
-                <input type="number" id="iptQtdCompra" placeholder="Quantidade"><br>
-                <button onclick="adicionarCarrinho(selectFrutaCompra.value, iptQtdCompra.value)">Adicionar no Carrinho</button><br>
-                <button onclick="comprar()">Comprar</button>
-                <div class="pierre">
-                    <img src="ASSETS/pierre.png" alt="">
-                    <div class="falaPierre">
-                        <img src="ASSETS/pierreFala.png" alt="" class="falaPierre">
+
+            <!-- HIERARQUIA - NÍVEL 1: o saldo é o "visor" da calculadora.
+                 É a informação mais importante da tela, então ocupa a largura
+                 inteira e fica acima dos dois painéis de ação. -->
+            <section class="painelSaldo">
+                <span class="painelSaldo__titulo">Carteira</span>
+                <div id="msg" class="msg1" aria-live="polite"></div>
+            </section>
+
+            <!-- HIERARQUIA - NÍVEL 2: os dois painéis de ação, lado a lado no desktop
+                 e empilhados no celular. Ambos seguem exatamente a mesma estrutura
+                 (campos -> ações -> mensagem), o que alinha os dois lados da tela. -->
+            <section class="painel compra">
+                <h1>Compra</h1>
+
+                <div class="campos">
+                    <div class="campo">
+                        <label for="selectEstacaoCompra">Selecione uma estação</label>
+                        <select id="selectEstacaoCompra" onchange="trocaSelectCompra()">
+                            <option value="primavera">Primavera</option>
+                            <option value="verao">Verão</option>
+                            <option value="outono">Outono</option>
+                            <option value="inverno">Inverno</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="selectFrutaCompra">Selecione o produto</label>
+                        <select id="selectFrutaCompra"></select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="iptQtdCompra">Selecione a quantidade do produto</label>
+                        <input type="number" id="iptQtdCompra" min="1" placeholder="Quantidade">
                     </div>
                 </div>
-            </div>
-            <div id="Mensagens">
-                
-                <div id="msg" class="msg1"></div>
-                <div id="msgVenda" class="msg"></div>
-                <div id="msgCompra" class="msg"></div>
-            </div>
-            
-            <div class="container">
-            <div class="venda">
-                <h1>Venda</h1><br>
-                <label for="">Selecione uma estação:</label>
-                <select name="" id="selectEstacaoVenda" onchange="trocaSelectVenda()">
-                    <option value="primavera">Primavera</option>
-                    <option value="verao">Verão</option>
-                    <option value="outono">Outono</option>
-                    <option value="inverno">Inverno</option>
-                </select><br>
-                <label for="">Selecione o produto</label>
-                <select name="" id="selectFrutaVenda"></select><br>
-                <label for="">Selecione a quantidade do produto</label>
-                <input type="number" id="iptQtdVenda" placeholder="Quantidade"><br>
-                <div class="caixaRemessas">
-                    <button class="caixa" onclick="adicionar(selectFrutaVenda.value, iptQtdVenda.value)">Adicionar na Caixa</button><br>
-                    <button class="caixa" onclick="vender()">Vender</button><br>
+
+                <!-- HIERARQUIA - NÍVEL 3: as ações. A secundária ("Adicionar") vem
+                     primeiro e é mais discreta; a primária ("Comprar") fecha o fluxo. -->
+                <div class="acoes">
+                    <button type="button" class="btn btn--secundario"
+                        onclick="adicionarCarrinho(selectFrutaCompra.value, iptQtdCompra.value)">Adicionar no
+                        Carrinho</button>
+                    <button type="button" class="btn btn--primario" onclick="comprar()">Comprar</button>
                 </div>
-            </div>
+
+                <!-- a resposta de cada ação agora fica dentro do painel a que pertence,
+                     em vez de ficar em um bloco solto no meio da tela -->
+                <div id="msgCompra" class="msg" aria-live="polite"></div>
+
+                <div class="pierre" aria-hidden="true">
+                    <img src="ASSETS/pierre.png" alt="">
+                    <img src="ASSETS/pierreFala.png" alt="" class="falaPierre">
+                </div>
+            </section>
+
+            <section class="painel venda">
+                <h1>Venda</h1>
+
+                <div class="campos">
+                    <div class="campo">
+                        <label for="selectEstacaoVenda">Selecione uma estação</label>
+                        <select id="selectEstacaoVenda" onchange="trocaSelectVenda()">
+                            <option value="primavera">Primavera</option>
+                            <option value="verao">Verão</option>
+                            <option value="outono">Outono</option>
+                            <option value="inverno">Inverno</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="selectFrutaVenda">Selecione o produto</label>
+                        <select id="selectFrutaVenda"></select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="iptQtdVenda">Selecione a quantidade do produto</label>
+                        <input type="number" id="iptQtdVenda" min="1" placeholder="Quantidade">
+                    </div>
+                </div>
+
+                <!-- a caixa de remessas é a decoração de fundo; os botões ficam por cima -->
+                <div class="caixaRemessas">
+                    <div class="acoes">
+                        <button type="button" class="btn btn--secundario caixa"
+                            onclick="adicionar(selectFrutaVenda.value, iptQtdVenda.value)">Adicionar na Caixa</button>
+                        <button type="button" class="btn btn--primario caixa" onclick="vender()">Vender</button>
+                    </div>
+                </div>
+
+                <div id="msgVenda" class="msg" aria-live="polite"></div>
+            </section>
+
         </div>
-    </div>
+    </main>
+
     <footer class="footer">
         © 2025 Flávia Hidalgo - Todos os direitos Reservados
     </footer>
-</body>
 
-</html>
-
-<script>
+    <script>
     let carteira
     
     fetch("/usuarios/carteira", {
@@ -528,4 +575,13 @@
         carrinho = [[], [], []]
         msg.innerHTML = `Seu saldo na carteira: ${carteira}🪙`
     }
+
+    // Preenche as listas de produtos assim que a página abre.
+    // Sem estas duas chamadas os campos "Selecione o produto" nascem vazios,
+    // porque trocaSelectCompra/trocaSelectVenda só rodavam no evento onchange.
+    trocaSelectCompra()
+    trocaSelectVenda()
 </script>
+</body>
+
+</html>

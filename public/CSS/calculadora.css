@@ -1,202 +1,562 @@
+/* ==========================================================================
+   CALCULADORA - Stardew Project
+   Mesma linguagem visual do quiz: painéis de madeira + pergaminho.
+   Layout em grid: visor da carteira no topo, painéis de Compra e Venda
+   alinhados lado a lado no desktop e empilhados no celular.
+   ========================================================================== */
+
 @font-face {
     font-family: Poppins;
     src: url(../Poppins/Poppins-Regular.ttf);
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-SemiBold.ttf);
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-Bold.ttf);
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* Paleta central (a mesma do quiz.css, para o site ficar coeso) */
+:root {
+    --madeira-escura: #1d5733;
+    --madeira: #439964;
+    --pergaminho: #fdf3d8;
+    --pergaminho-escuro: #f0dfae;
+    --texto: #1d5733;
+    --texto-suave: #5c7a66;
+
+    /* cada painel guarda a sua cor de identidade: compra = âmbar, venda = verde */
+    --compra: #c8752c;
+    --compra-escura: #9a5518;
+    --venda: #4a8b2c;
+    --venda-escura: #34641d;
+
+    --dourado: #e8a33d;
+    --azul: #1cade6;
+
+    --raio: 14px;
+    --sombra-painel: 0 18px 40px rgba(10, 35, 20, .45);
+    --transicao: .2s ease;
+
+    /* altura mínima de qualquer alvo de toque: evita clique errado no celular */
+    --alvo-toque: 48px;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins';
-    
+    font-family: 'Poppins', sans-serif;
 }
 
-header {
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--madeira-escura);
+}
+
+/* ==========================================================================
+   CABEÇALHO
+   ========================================================================== */
+
+.header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 10px 100px;
+    padding: 10px clamp(16px, 6vw, 100px);
     background: rgba(255, 255, 255, .2);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     font-size: 16px;
-    font-weight: bold;
-    /* border-bottom: 2px solid rgba(255, 255, 255, .2); */
+    font-weight: 700;
+    z-index: 10;
 }
-.logout img{
-    width: 30px;
-    margin-left: 100px;
-    display: flex;
-    flex-direction: row-reverse;
 
-}
 .logo img {
-    width: 65px;
+    width: clamp(44px, 6vw, 65px);
+    display: block;
+}
+
+.logout img {
+    width: 30px;
+    display: block;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(14px, 2.5vw, 35px);
 }
 
 .navbar a {
-    color: #ffff;
-    font-size: 16px;
+    color: #ffffff;
+    font-size: clamp(13px, 1.2vw, 16px);
     text-decoration: none;
     cursor: pointer;
-    margin-left: 35px;
-    transition: .3s;
-
-}
-.navbar .dash{
-    color: #ffff;
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transicao), border-color var(--transicao);
 }
 
-.navbar a:hover {
-    color: #1cade6;
+.navbar a:hover,
+.navbar a:focus-visible {
+    color: var(--dourado);
+    border-bottom-color: var(--dourado);
 }
+
+.navbar a:focus-visible,
+.logo:focus-visible,
+.logout:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   ÁREA PRINCIPAL
+   ========================================================================== */
 
 .divLogoPrincipal {
-    flex-direction: column;
+    flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
-    background: url(../ASSETS/farm.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
-    border-bottom: #ffff 2px;
+    /* altura fixa de 100vh cortava o conteúdo; agora a área cresce com ele */
+    background: url(../ASSETS/farm.jpg) no-repeat center / cover;
+    background-attachment: fixed;
+    /* espaço para o header fixo, sem depender de margin-top fixa */
+    padding: clamp(110px, 16vh, 170px) clamp(16px, 4vw, 40px) clamp(50px, 8vh, 90px);
 }
 
-.divLogoPrincipal h1 {
-    color: white;
-    
+/* ==========================================================================
+   GRID PRINCIPAL
+   O visor ocupa as duas colunas; os painéis dividem o espaço em partes iguais.
+   ========================================================================== */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* espaçamento generoso e constante entre todos os blocos */
+    gap: clamp(20px, 3vw, 32px);
+    align-content: start;
 }
-.container{
-    margin-top: 180px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 30px;
-    align-items: center;    
-    
-}
-.compra{
-    display: flex;
-    flex-direction: column;
-    background: #D98B3A;
-    width: 600px;   
-    align-items: center;
-    padding: 20px;
-    height: 600px;
-    border-radius: 20px;
-    color: #ffff;
-}
-.pierre{
-    display: flex;
-    flex-direction: row;
-    width: 300px;
-    height: 300px;
-    margin-right: 200px;
-    z-index: 0;
-}
-.falaPierre{
-    width: 300px;
-    /* margin-top: 20px; */
-}
-.venda{
-    /* margin-top: 180px; */
+
+/* ==========================================================================
+   VISOR DA CARTEIRA (nível 1 da hierarquia)
+   ========================================================================== */
+
+.painelSaldo {
     display: flex;
     flex-direction: column;
-    background-color: #43A118;
-    width: 600px;
     align-items: center;
-    padding: 20px;
-    height: 600px;
-    border-radius: 20px;
-    color: white;
-    margin-top: -20vh;
-    
+    gap: 10px;
+    padding: clamp(16px, 2.5vw, 22px);
+    background: var(--pergaminho);
+    border: 5px solid var(--madeira);
+    outline: 3px solid var(--madeira-escura);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra-painel);
 }
-.msg{
-    /* margin-top: 180px; */
-    background-color: rgba(255, 255, 255, 0.6);
-    width: 300px;
-    height: 100px;
-    border-radius: 10px;
-    border: 4px solid #DC5F00;
-    padding: 5px;
-    color: #DC5F00;
-    margin-bottom: 10px;
+
+.painelSaldo__titulo {
+    font-size: clamp(.75rem, .7rem + .25vw, .85rem);
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
 }
-.msg1{
-    background-color: rgba(255, 255, 255, 0.6);
-    width: 300px;
-    height: 50px;
-    margin-top: -80px;
-    border-radius: 10px;
-    border: 4px solid #DC5F00;
-    padding: 5px;
-    color: #DC5F00;
-    margin-bottom: 10px;
-    text-align: center;
+
+/* o "display" propriamente dito: fundo escuro e número grande, como um visor */
+.msg1 {
+    width: 100%;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
+    text-align: center;
+    padding: 12px 18px;
+    background: var(--madeira-escura);
+    border: 3px solid var(--madeira);
+    border-radius: 10px;
+    color: var(--pergaminho);
+    font-size: clamp(1.05rem, .9rem + .9vw, 1.6rem);
+    font-weight: 700;
+    line-height: 1.35;
+    box-shadow: inset 0 3px 10px rgba(0, 0, 0, .35);
 }
-.msg p{
-    font-size: 14px;
-    font-weight: bold;
+
+/* estado vazio: enquanto o saldo não chega, o visor não fica em branco */
+.msg1:empty::before {
+    content: "Seu saldo aparecerá aqui";
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: .65;
 }
-input{
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    color: rgb(39, 39, 39);
-}
-select {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-}
-#selectFruta{
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-}
-button{
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-}
-.caixaRemessas .caixa{
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-    margin-top: 30px;
-    background: rgba(217,139,58, 0.5);
-    color: #ffff;
-    backdrop-filter: blur(1px);
-    justify-content: space-around;
-    /* border: 3px solid rgba(255, 255, 255, .2); */
-}
-.caixaRemessas{
+
+/* ==========================================================================
+   PAINÉIS DE COMPRA E VENDA (nível 2)
+   ========================================================================== */
+
+.painel {
+    /* --acento é trocado por .compra / .venda: o resto do estilo é compartilhado,
+       então os dois painéis ficam sempre alinhados e com o mesmo ritmo. */
     display: flex;
     flex-direction: column;
-    background: url(../ASSETS/caixaRemessas.png);
-    background-size: cover;
-    background-position: center;
-    width: 300px;
-    height: 300px;
+    gap: clamp(16px, 2.2vw, 22px);
+    padding: clamp(20px, 3vw, 30px);
+    background: var(--pergaminho);
+    border: 5px solid var(--acento);
+    outline: 3px solid var(--acento-escura);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra-painel);
+    color: var(--texto);
 }
-footer{
-    background-color: #1cade6;
+
+.compra {
+    --acento: var(--compra);
+    --acento-escura: var(--compra-escura);
+}
+
+.venda {
+    --acento: var(--venda);
+    --acento-escura: var(--venda-escura);
+}
+
+/* título com faixa colorida: identifica o painel de longe */
+.painel h1 {
+    margin: calc(clamp(20px, 3vw, 30px) * -1) calc(clamp(20px, 3vw, 30px) * -1) 0;
+    padding: 14px 20px;
+    background: var(--acento);
+    border-radius: 8px 8px 0 0;
+    color: #ffffff;
+    font-size: clamp(1.2rem, 1rem + .9vw, 1.6rem);
+    text-align: center;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+}
+
+/* ==========================================================================
+   CAMPOS DO FORMULÁRIO
+   ========================================================================== */
+
+.campos {
+    display: grid;
+    gap: 16px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: clamp(.8rem, .76rem + .2vw, .9rem);
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.campo select,
+.campo input {
+    width: 100%;
+    min-height: var(--alvo-toque);
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 2px solid var(--acento);
+    border-radius: 8px;
+    color: var(--texto);
+    font-size: 1rem;
+    /* 16px no mobile impede o zoom automático do iOS ao focar o campo */
+    cursor: pointer;
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.campo select:hover,
+.campo input:hover {
+    border-color: var(--acento-escura);
+}
+
+.campo select:focus-visible,
+.campo input:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 2px;
+    border-color: var(--acento-escura);
+    box-shadow: 0 0 0 3px rgba(232, 163, 61, .25);
+}
+
+/* ==========================================================================
+   BOTÕES DE AÇÃO (nível 3)
+   ========================================================================== */
+
+.acoes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.btn {
+    min-height: var(--alvo-toque);
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: clamp(.88rem, .84rem + .25vw, 1rem);
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    transition: transform var(--transicao), box-shadow var(--transicao),
+        background var(--transicao), filter var(--transicao);
+}
+
+/* primário: cheio, é a ação que conclui a operação */
+.btn--primario {
+    background: var(--acento);
+    border: 3px solid var(--acento-escura);
+    color: #ffffff;
+    box-shadow: 0 4px 0 var(--acento-escura);
+}
+
+/* secundário: contornado, pesa menos na hierarquia */
+.btn--secundario {
+    background: var(--pergaminho-escuro);
+    border: 3px solid var(--acento);
+    color: var(--acento-escura);
+    box-shadow: 0 4px 0 var(--acento);
+}
+
+.btn:hover {
+    filter: brightness(1.07);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--acento-escura);
+}
+
+.btn--secundario:hover {
+    background: #ffffff;
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 3px;
+}
+
+/* feedback tátil: o botão "afunda" ao ser pressionado */
+.btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--acento-escura);
+}
+
+/* ==========================================================================
+   MENSAGENS DE RETORNO
+   ========================================================================== */
+
+.msg {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, .75);
+    border: 3px dashed var(--acento);
+    border-radius: 10px;
+    color: var(--acento-escura);
+    font-size: clamp(.82rem, .78rem + .2vw, .92rem);
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+/* sem mensagem nenhuma, o bloco some em vez de deixar um buraco na tela */
+.msg:empty {
+    display: none;
+}
+
+/* ==========================================================================
+   DECORAÇÕES (Pierre e a caixa de remessas)
+   ========================================================================== */
+
+.pierre {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    /* empurra a decoração para o rodapé do painel, alinhando a altura
+       do painel de compra com a do painel de venda */
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.pierre img {
+    width: 50%;
+    /* max-width: 130px; */
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.falaPierre {
+    width: 60%;
+    max-width: 190px;
+}
+
+.caixaRemessas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* aspect-ratio no lugar de 300x300 fixo: a caixa acompanha a largura do painel */
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    margin-top: auto;
+    padding: clamp(14px, 4%, 26px);
+    background: url(../ASSETS/caixaRemessas.png) no-repeat center / contain;
+}
+
+/* os botões ficam por cima da caixa, então precisam de contraste próprio */
+.caixaRemessas .acoes {
+    width: 100%;
+}
+
+.caixaRemessas .caixa {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+
+.footer {
+    background-color: var(--azul);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
-    font-size: 15px;
-    color: #ffff;
-    margin-top: 50px;
+    text-align: center;
+    padding: 15px clamp(16px, 4vw, 40px);
+    font-size: clamp(.8rem, .75rem + .25vw, .95rem);
+    color: #ffffff;
 }
 
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
 
+/* Desktop: dois painéis lado a lado, visor ocupando a linha inteira */
+@media (min-width: 900px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        /* os dois painéis esticam até a mesma altura */
+        align-items: stretch;
+    }
 
+    .painelSaldo {
+        grid-column: 1 / -1;
+    }
+
+    /* com mais espaço, as duas ações cabem lado a lado */
+    .acoes {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* dentro da caixa de remessas continua empilhado, senão os botões ficam apertados */
+    .caixaRemessas .acoes {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablet: o menu passa a ocupar a linha inteira, abaixo da logo */
+@media (max-width: 900px) {
+    .header {
+        flex-wrap: wrap;
+        row-gap: 8px;
+        padding-bottom: 12px;
+    }
+
+    .navbar {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .divLogoPrincipal {
+        padding-top: clamp(140px, 20vh, 190px);
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    .divLogoPrincipal {
+        /* background-attachment: fixed trava/pesa em iOS e Android */
+        background-attachment: scroll;
+    }
+
+    .painel,
+    .painelSaldo {
+        border-width: 4px;
+    }
+
+    .navbar {
+        gap: 12px;
+    }
+
+    .navbar a {
+        font-size: 13px;
+    }
+
+    .logout img {
+        width: 24px;
+    }
+
+    /* mais respiro entre os botões: reduz o risco de clicar no errado */
+    .acoes {
+        gap: 14px;
+    }
+
+    .pierre {
+        display: none;
+    }
+}
+
+/* Celular pequeno */
+@media (max-width: 380px) {
+    .navbar {
+        gap: 10px;
+    }
+
+    .navbar a {
+        font-size: 12px;
+    }
+}
+
+/* Acessibilidade: respeita quem desativou animações no sistema */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

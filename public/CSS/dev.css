@@ -1,7 +1,25 @@
 @font-face {
     font-family: Poppins;
     src: url(../Poppins/Poppins-Regular.ttf);
+    font-weight: 400;
 }
+/* pesos reais no lugar do negrito sintético que o navegador criava sozinho */
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-SemiBold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-Bold.ttf);
+    font-weight: 700;
+}
+
+:root {
+    /* rosa um pouco mais fechado: o texto branco por cima fica legível */
+    --rosa: #c44b70;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -45,6 +63,13 @@ header{
 .navbar a:hover{
     color: #1cade6;
 }
+.navbar a:focus-visible,
+.logo:focus-visible,
+.logout:focus-visible{
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
 body{
     display: flex;
     justify-content: center;
@@ -59,11 +84,15 @@ body{
 .container{
     color: white;
     width: 900px;
-    background: rgb(255, 139, 174);
+    /* não deixa o cartão estourar a largura da tela */
+    max-width: 100%;
+    background: var(--rosa);
     border-radius: 10px;
     padding: 30px 40px;
     margin-top: 150px;
     margin-bottom: 10px;
+    /* destaca o cartão do fundo ilustrado */
+    box-shadow: 0 16px 36px rgba(70, 20, 45, .35);
     /* margin-left: 25px; */
 }
 .criador{
@@ -74,13 +103,36 @@ body{
     text-align: center;
     margin-bottom: 40px;
 }
+.tituloCriador h1{
+    font-weight: 700;
+    letter-spacing: .01em;
+    text-shadow: 0 2px 4px rgba(70, 20, 45, .3);
+}
+/* filete decorativo abaixo do título */
+.tituloCriador h1::after{
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    margin: 12px auto 0;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, .7);
+}
 .imgCriador{
     width: 300px;
     border-radius: 20px;
 }
+.criador img{
+    /* moldura discreta para as fotos descolarem do fundo rosa */
+    border: 3px solid rgba(255, 255, 255, .55);
+    box-shadow: 0 8px 20px rgba(70, 20, 45, .3);
+}
 .criador .textoBarone1{
     margin-left: 50px;
     text-align: justify;
+    /* hifenização evita os "rios" de espaço que o justificado abria */
+    hyphens: auto;
+    line-height: 1.75;
     display: flex;
     align-items: center;
 }
@@ -117,7 +169,7 @@ body{
     align-items: center;
 }
 footer{
-    background-color:rgb(255, 139, 174);
+    background-color: var(--rosa);
     width: 100%;
     display: flex;
     align-items: center;

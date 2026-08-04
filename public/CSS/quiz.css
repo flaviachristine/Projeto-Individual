@@ -1,101 +1,456 @@
+/* ==========================================================================
+   QUIZ - Stardew Project
+   Tema "aconchegante" inspirado nos painéis de madeira e pergaminho do jogo.
+   Todo o layout é fluido: usa clamp(), grid e media queries para funcionar
+   em desktop, tablet e celular.
+   ========================================================================== */
 
 @font-face {
     font-family: Poppins;
     src: url(../Poppins/Poppins-Regular.ttf);
+    font-weight: 400;
+    font-display: swap;
 }
 
-*{
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-SemiBold.ttf);
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-Bold.ttf);
+    font-weight: 700;
+    font-display: swap;
+}
+
+/* Paleta central: mudar aqui muda a página inteira */
+:root {
+    --madeira-escura: #1d5733;
+    --madeira: #439964;
+    --madeira-clara: #18cc5d;
+    --pergaminho: #fdfdfd;
+    --pergaminho-escuro: #fdfdfd;
+    --texto: #1d5733;
+    --texto-suave: #439964  ;
+    --verde: #6aa84f;
+    --verde-escuro: #4a7b2e;
+    --dourado: #1d5733;
+    --azul: #1cade6;
+    --azul-escuro: #03678f;
+
+    --raio: 14px;
+    --sombra-painel: 0 18px 40px rgba(35, 20, 5, .45);
+    --transicao: .25s ease;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
 }
-header{
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--madeira-escura);
+}
+
+/* ==========================================================================
+   CABEÇALHO
+   ========================================================================== */
+
+.header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 10px 100px;
+    /* padding acompanha a largura da tela em vez de ficar preso em 100px */
+    padding: 10px clamp(16px, 6vw, 100px);
     background: rgba(255, 255, 255, .2);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     font-size: 16px;
-    font-weight: bold;
-    z-index: 1;
-    /* border-bottom: 2px solid rgba(255, 255, 255, .2); */
+    font-weight: 700;
+    z-index: 10;
 }
-.logo img{
-    width: 65px;
-}
-.logout img{
-    width: 30px;
-    margin-left: 100px;
-    display: flex;
-    flex-direction: row-reverse;
 
+.logo img {
+    width: clamp(44px, 6vw, 65px);
+    display: block;
 }
-.navbar a{
-    color: #ffff;
-    font-size: 16px;
+
+.logout img {
+    width: 30px;
+    display: block;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(14px, 2.5vw, 35px);
+}
+
+.navbar a {
+    color: #ffffff;
+    font-size: clamp(13px, 1.2vw, 16px);
     text-decoration: none;
     cursor: pointer;
-    margin-left: 35px;
-    transition: .3s;
-}
-.navbar a:hover{
-    color: #1cade6;
-}
-.divLogoPrincipal{
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: url(../ASSETS/farm.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-.containerP{
-    color: white;
-    width: 600px;
-    background: #1cade6;
-    border-radius: 10px;
-    padding: 30px 40px;
-    /* backdrop-filter: blur(30px); */
-    display: flex;
-    flex-direction: column;
-    margin-top: 200px;
-    margin-bottom: 100px 
-}
-.containerP #resultado{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: justify;
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transicao), border-color var(--transicao);
 }
 
-button.opcao{
+.navbar a:hover,
+.navbar a:focus-visible {
+    color: var(--dourado);
+    border-bottom-color: var(--dourado);
+}
+
+.navbar a:focus-visible,
+.logo:focus-visible,
+.logout:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   ÁREA PRINCIPAL / FUNDO DA FAZENDA
+   ========================================================================== */
+
+.divLogoPrincipal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* o degradê escurece a foto para o texto do painel ficar legível */
+  background: url(../ASSETS/farm.jpg) no-repeat center / cover;  
+    background-attachment: fixed;
+    /* espaço para o header fixo, sem depender de margin-top fixa */
+    padding: clamp(110px, 16vh, 170px) clamp(16px, 4vw, 40px) clamp(50px, 8vh, 90px);
+}
+
+/* ==========================================================================
+   PAINEL DO QUIZ (o "letreiro de madeira")
+   ========================================================================== */
+
+.containerP {
     width: 100%;
-    height: 30px;
-    background-color: #03678f;
-    border: none;
+    max-width: 760px;
+    color: var(--texto);
+    background: var(--pergaminho);
+    border: 5px solid var(--madeira);
+    outline: 3px solid var(--madeira-escura);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra-painel);
+    padding: clamp(22px, 4vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.5vw, 24px);
+}
+
+.containerP h1 {
+    font-size: clamp(1.25rem, 1rem + 1.6vw, 2rem);
+    line-height: 1.3;
+    text-align: center;
+    color: var(--madeira-escura);
+    text-shadow: 0 2px 0 rgba(255, 255, 255, .6);
+}
+
+/* linha decorativa embaixo do título */
+.containerP h1::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    margin: 14px auto 0;
+    border-radius: 4px;
+    background: var(--dourado);
+}
+
+.containerP h2 {
+    font-size: clamp(1.05rem, .95rem + .8vw, 1.4rem);
+    line-height: 1.4;
+    text-align: center;
+    color: var(--madeira-escura);
+}
+
+/* ==========================================================================
+   PROGRESSO
+   ========================================================================== */
+
+.progresso {
+    text-align: center;
+    font-size: clamp(.8rem, .75rem + .3vw, .95rem);
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+.barraProgresso {
+    width: 100%;
+    height: 12px;
+    background: var(--pergaminho-escuro);
+    border: 2px solid var(--madeira);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.barraProgresso span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--verde), var(--dourado));
+    transition: width .35s ease;
+}
+
+/* quando o quiz termina, escondemos a barra e o contador */
+.escondido {
+    display: none !important;
+}
+
+/* ==========================================================================
+   PERGUNTAS E OPÇÕES
+   ========================================================================== */
+
+#container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.5vw, 22px);
+}
+
+/* as opções viram 2 colunas em telas largas e 1 coluna no celular */
+.opcoes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+button.opcao {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 18px;
+    background: linear-gradient(180deg, var(--pergaminho) 0%, var(--pergaminho-escuro) 100%);
+    border: 3px solid var(--madeira);
     outline: none;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffff;
+    font-size: clamp(.88rem, .82rem + .3vw, 1rem);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--texto);
+    text-align: center;
+    box-shadow: 0 4px 0 var(--madeira-escura);
+    transition: transform var(--transicao), box-shadow var(--transicao),
+        background var(--transicao), border-color var(--transicao);
 }
 
-footer{
-    background-color: #1cade6;
+button.opcao:hover {
+    background: linear-gradient(180deg, #fffaf0 0%, #e9f3d9 100%);
+    border-color: var(--verde-escuro);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--verde-escuro);
+}
+
+button.opcao:focus-visible {
+    border-color: var(--dourado);
+    outline: 3px solid var(--dourado);
+    outline-offset: 3px;
+}
+
+/* efeito de "botão pressionado" */
+button.opcao:active {
+    transform: translateY(2px);
+}
+        
+/* ==========================================================================
+   RESULTADO
+   ========================================================================== */
+
+.containerP #resultado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(14px, 2.5vw, 22px);
+}
+
+.containerP #resultado:empty {
+    display: none;
+}
+
+.imagemResultado {
+    width: clamp(120px, 30vw, 180px);
+    height: auto;
+    padding: 10px;
+    background: var(--pergaminho-escuro);
+    border: 4px solid var(--madeira);
+    border-radius: 12px;
+    box-shadow: 0 8px 18px rgba(35, 20, 5, .3);
+    image-rendering: pixelated;
+}
+
+.textoResultado {
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+    font-size: clamp(.88rem, .84rem + .25vw, 1rem);
+    line-height: 1.7;
+    color: var(--texto);
+}
+
+/* link estilizado como botão (evita <button> dentro de <a>, que é HTML inválido) */
+.botaoNovamente {
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    padding: 14px 24px;
+    background: linear-gradient(180deg, var(--verde) 0%, var(--verde-escuro) 100%);
+    border: 3px solid var(--madeira-escura);
+    border-radius: 10px;
+    box-shadow: 0 4px 0 var(--madeira-escura);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    transition: transform var(--transicao), box-shadow var(--transicao), filter var(--transicao);
+}
+
+.botaoNovamente:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--madeira-escura);
+}
+
+.botaoNovamente:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 3px;
+}
+
+.botaoNovamente:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--madeira-escura);
+}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+
+.footer {
+    background-color: var(--azul);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
-    font-size: 15px;
-    color: #ffff;
+    text-align: center;
+    padding: 15px clamp(16px, 4vw, 40px);
+    font-size: clamp(.8rem, .75rem + .25vw, .95rem);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/* Desktop / tablet grande: duas colunas de opções aproveitam o espaço */
+@media (min-width: 700px) {
+    .opcoes {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Tablet: o menu passa a ocupar a linha inteira, abaixo da logo */
+@media (max-width: 900px) {
+    .header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 8px;
+        padding-bottom: 12px;
+    }
+
+    .navbar {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .divLogoPrincipal {
+        /* o header ficou mais alto por causa da segunda linha do menu */
+        padding-top: clamp(140px, 20vh, 190px);
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    .divLogoPrincipal {
+        /* background-attachment: fixed trava/pesa em iOS e Android */
+        background-attachment: scroll;
+    }
+
+    .containerP {
+        border-width: 4px;
+        border-radius: 12px;
+    }
+
+    .navbar {
+        gap: 12px;
+    }
+
+    .navbar a {
+        font-size: 13px;
+    }
+
+    .logout img {
+        width: 24px;
+    }
+
+    .textoResultado {
+        text-align: left;
+    }
+
+    .botaoNovamente {
+        max-width: 100%;
+    }
+}
+
+/* Celular pequeno */
+@media (max-width: 380px) {
+    .navbar {
+        gap: 10px;
+    }
+
+    .navbar a {
+        font-size: 12px;
+    }
+}
+
+/* Acessibilidade: respeita quem desativou animações no sistema */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

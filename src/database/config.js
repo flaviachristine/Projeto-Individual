@@ -9,6 +9,14 @@ var mySqlConfig = {
     port: process.env.DB_PORT
 };
 
+// Bancos MySQL hospedados na nuvem (Aiven, Railway, Clever Cloud, RDS...) normalmente
+// exigem conexão criptografada. Defina DB_SSL=true nas variáveis de ambiente da Vercel.
+if (process.env.DB_SSL === "true") {
+    mySqlConfig.ssl = process.env.DB_SSL_CA
+        ? { ca: process.env.DB_SSL_CA }
+        : { rejectUnauthorized: false };
+}
+
 function executar(instrucao) {
 
     if (process.env.AMBIENTE_PROCESSO !== "producao" && process.env.AMBIENTE_PROCESSO !== "desenvolvimento") {
@@ -18,17 +26,29 @@ function executar(instrucao) {
 
     return new Promise(function (resolve, reject) {
         var conexao = mysql.createConnection(mySqlConfig);
-        conexao.connect();
-        conexao.query(instrucao, function (erro, resultados) {
-            conexao.end();
-            if (erro) {
-                reject(erro);
-            }
-            console.log(resultados);
-            resolve(resultados);
+
+        // Sem este tratamento uma falha de conexão derruba o processo inteiro.
+        // Na Vercel isso viraria um erro 500 sem nenhuma explicação no navegador.
+        conexao.on("error", function (erro) {
+            console.error("ERRO NO MySQL SERVER: ", erro.sqlMessage || erro.message);
+            reject(erro);
         });
-        conexao.on('error', function (erro) {
-            return ("ERRO NO MySQL SERVER: ", erro.sqlMessage);
+
+        conexao.connect(function (erroConexao) {
+            if (erroConexao) {
+                reject(erroConexao);
+                return;
+            }
+
+            conexao.query(instrucao, function (erro, resultados) {
+                conexao.end();
+                if (erro) {
+                    reject(erro);
+                    return;
+                }
+                console.log(resultados);
+                resolve(resultados);
+            });
         });
     });
 }

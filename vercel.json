@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/usuarios/:path*", "destination": "/api" },
+    { "source": "/quiz/:path*", "destination": "/api" },
+    { "source": "/venda/:path*", "destination": "/api" },
+    { "source": "/compra/:path*", "destination": "/api" },
+    { "source": "/dash/:path*", "destination": "/api" }
+  ]
+}

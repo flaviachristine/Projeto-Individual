@@ -1,6 +1,18 @@
 @font-face {
     font-family: Poppins;
     src: url(../Poppins/Poppins-Regular.ttf);
+    font-weight: 400;
+}
+/* pesos reais no lugar do negrito sintético que o navegador criava sozinho */
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-SemiBold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-Bold.ttf);
+    font-weight: 700;
 }
 
 * {
@@ -53,6 +65,14 @@ header {
     color: #1cade6;
 }
 
+.navbar a:focus-visible,
+.logo:focus-visible,
+.logout:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
 .divLogoPrincipal {
     flex-direction: column;
     display: flex;
@@ -68,15 +88,21 @@ header {
 .divLogoPrincipal h1 {
     color: #ffff;
     margin-bottom: 100px;
-    font-weight: bolder;
+    font-weight: 700;
     margin-top: -100px;
     font-size: 60px;
+    /* garante leitura do título sobre as partes claras do céu */
+    text-shadow: 0 3px 10px rgba(12, 40, 65, .55);
+    text-align: center;
+    padding: 0 20px;
 }
 
 .features {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    /* os cartões terminam todos na mesma linha de base */
+    align-items: stretch;
     margin-bottom: 40px;
     gap: 20px;
 }
@@ -88,13 +114,17 @@ header {
     background-color: #ffffff;
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* sombra mais presente: o cartão branco descola do fundo ilustrado */
+    box-shadow: 0 10px 24px rgba(12, 40, 65, .25);
     text-align: center;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 .feature-card a {
    color: #1a1919;
    text-decoration: none;
+   /* o link ocupa o cartão inteiro, então a área de clique é toda a caixa */
+   display: block;
+   height: 100%;
 }
 
 .feature-card a:visited {
@@ -106,13 +136,29 @@ header {
 }
 .feature-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 18px 34px rgba(12, 40, 65, .35);
+}
+
+.feature-card:focus-within {
+    transform: translateY(-10px);
+    outline: 3px solid #1cade6;
+    outline-offset: 3px;
 }
 
 .feature-card h3 {
     text-align: center;
     font-size: 1.8rem;
     margin-bottom: 15px;
-    color: #1cade6;
+    font-weight: 700;
+    /* azul um pouco mais fechado para contrastar com o cartão branco */
+    color: #0f89b8;
+}
+
+.feature-card p {
+    font-size: .95rem;
+    line-height: 1.6;
+    /* cinza suave: separa o texto de apoio do título */
+    color: #4a4a4a;
 }
 footer{
     background-color:#1cade6;
@@ -125,5 +171,4 @@ footer{
     color: #ffff;
     text-decoration: none;
     margin-top: -50px;
-    text-decoration: none;
 }

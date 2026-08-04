@@ -3,3 +3,14 @@ node_modules
 package-lock.json
 
 .github
+
+# Arquivos de ambiente: contêm SENHAS reais e nunca devem ir para o repositório.
+# Use o .env.example como modelo e mantenha os valores reais só na sua máquina
+# (e no painel de variáveis de ambiente da Vercel).
+.env
+.env.dev
+.env.local
+.env.*.local
+
+# Pasta de cache da CLI da Vercel
+.vercel

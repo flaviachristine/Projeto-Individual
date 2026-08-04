@@ -6,14 +6,16 @@ function cadastrar(req, res) {
     var quantidade = req.body.qtdServer;
     var preco = req.body.precoServer
 
+    // O "return" é obrigatório: sem ele o código continua e tenta responder duas
+    // vezes na mesma requisição, o que derruba o servidor (ERR_HTTP_HEADERS_SENT).
     if (produto == undefined) {
-        res.status(400).send("Seu nome está undefined!");
+        return res.status(400).send("Seu nome está undefined!");
     } else if(quantidade == undefined){
-        res.status(400).send("Seu nome está undefined!");
+        return res.status(400).send("Seu nome está undefined!");
     } else if(usuario == undefined){
-        res.status(400).send("Seu nome está undefined!");
+        return res.status(400).send("Seu nome está undefined!");
     } else if(preco == undefined){
-        res.status(400).send("Seu nome está undefined!");
+        return res.status(400).send("Seu nome está undefined!");
     }
 
     vendaModel.cadastrar(usuario, produto, quantidade, preco).then(function(resultado){

@@ -1,0 +1,192 @@
+/* ==========================================================================
+   HEADER PADRÃO - Stardew Project
+   Fonte única de verdade do cabeçalho. Este arquivo é carregado DEPOIS do CSS
+   de cada página, então ele sobrescreve as versões antigas que estavam
+   espalhadas (e diferentes) em cadastro.css, index.css, login.css, etc.
+
+   Diferenças que existiam antes e que este arquivo elimina:
+   - fundo com opacidade .1 em cadastro/login e .2 nas demais
+   - z-index só em algumas páginas (nas outras o conteúdo passava por cima)
+   - padding fixo 10px 100px (estourava no celular) x clamp() em quiz/calculadora
+   - .logout img com margin-left: 100px em umas páginas e sem em outras
+   - .navbar a com margin-left: 35px (sobrava margem no primeiro item) x gap
+   ========================================================================== */
+
+/* pesos reais: várias páginas só carregavam o Regular e o navegador
+   simulava o negrito, deixando o menu com espessura diferente entre telas */
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-Regular.ttf);
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-SemiBold.ttf);
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../Poppins/Poppins-Bold.ttf);
+    font-weight: 700;
+    font-display: swap;
+}
+
+:root {
+    --header-padding-x: clamp(16px, 6vw, 100px);
+    --header-logo: clamp(44px, 6vw, 65px);
+    --header-acento: #1cade6;
+}
+
+/* ==========================================================================
+   BARRA
+   ========================================================================== */
+
+header.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px var(--header-padding-x);
+    background: rgba(255, 255, 255, .2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 16px;
+    font-weight: 700;
+    /* sempre acima do conteúdo: faltava em home, dashboard, index, cadastro,
+       login e sobre, então em algumas telas o header ficava por baixo */
+    z-index: 10;
+}
+
+/* ==========================================================================
+   LOGO E BOTÃO SAIR
+   ========================================================================== */
+
+header.header .logo,
+header.header .logout {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+header.header .logo img {
+    width: var(--header-logo);
+    display: block;
+}
+
+header.header .logout img {
+    width: 30px;
+    /* o margin-left: 100px de algumas páginas empurrava o ícone para fora do lugar */
+    margin-left: 0;
+    display: block;
+}
+
+/* Páginas públicas (index, história, gameplay, cadastro, login) não têm o botão
+   "Sair". Sem ele o space-between jogava o menu para a direita. Este espaçador
+   invisível ocupa o lugar do botão e mantém o menu centralizado igual às demais. */
+header.header:not(:has(.logout))::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 30px;
+}
+
+/* ==========================================================================
+   MENU
+   ========================================================================== */
+
+header.header .navbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* gap no lugar do margin-left: 35px, que deixava uma sobra antes do 1º item */
+    gap: clamp(14px, 2.5vw, 35px);
+}
+
+header.header .navbar a,
+header.header .navbar .dash {
+    color: #ffffff;
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 0;
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color .3s ease, border-color .3s ease;
+}
+
+header.header .navbar a:hover {
+    color: var(--header-acento);
+    border-bottom-color: var(--header-acento);
+}
+
+header.header .navbar a:focus-visible,
+header.header .logo:focus-visible,
+header.header .logout:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (idêntica em todas as páginas)
+   ========================================================================== */
+
+/* Tablet: o menu desce para a linha de baixo, ocupando a largura toda */
+@media (max-width: 900px) {
+    header.header {
+        flex-wrap: wrap;
+        row-gap: 8px;
+        padding-bottom: 12px;
+    }
+
+    header.header .navbar {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    header.header .navbar {
+        gap: 12px;
+    }
+
+    header.header .navbar a {
+        font-size: 13px;
+    }
+
+    header.header .logout img {
+        width: 24px;
+    }
+
+    header.header:not(:has(.logout))::after {
+        width: 24px;
+    }
+}
+
+/* Celular pequeno */
+@media (max-width: 380px) {
+    header.header .navbar {
+        gap: 10px;
+    }
+
+    header.header .navbar a {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    header.header .navbar a {
+        transition-duration: .01ms;
+    }
+}
